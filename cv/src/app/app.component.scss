@@ -1,0 +1,67 @@
+@import "./../assets/css/variables.scss";
+
+$letterSpacing: 1.5px;
+
+.content {
+  background-color: transparent;
+  height: max-content;
+  position: relative;
+  padding: 150px;
+
+  .panel {
+    background-color: $panelColor;
+    position: absolute;
+    z-index: -1;
+    height: 100%;
+    width: 35vw;
+    left: 0;
+    top: 0;
+  }
+
+  .avatar {
+    width: 300px;
+    height: 300px;
+    margin-right: 100px;
+  }
+
+  .name {
+    font-family: $RudaFamily;
+    line-height: $fontSizeL;
+    font-size: $fontSizeL;
+    width: $fontSizeL * 2;
+    font-weight: bold;
+    color: $textColor;
+  }
+
+  .info {
+    font-size: $fontSizeM;
+    line-height: $fontSizeM;
+
+    a {
+      color: $textColor;
+      text-decoration: none;
+      letter-spacing: $letterSpacing;
+      font-weight: bold;
+      cursor: url("./../assets/img/cat.png"), pointer;
+    }
+  }
+
+  .section {
+    font-family: "DM Sans", sans-serif;
+    padding-top: 5vh;
+
+    .header {
+      width: 400px;
+      min-width: 400px;
+    }
+
+    .header,
+    .title,
+    .items {
+      letter-spacing: $letterSpacing;
+      font-weight: bolder;
+      font-size: $fontSizeM;
+      line-height: $fontSizeM * 2;
+    }
+  }
+}

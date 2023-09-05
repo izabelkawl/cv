@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "info": {
+      "title": "Informacje",
+      "phone": "Telefon",
+      "email": "Email",
+      "linkedIn": "LinkedIn"
+    },
+    "experience": "Doświadczenie",
+    "education": "Wykształcenie",
+    "skills": "Umiejętności"
+  }
+}
