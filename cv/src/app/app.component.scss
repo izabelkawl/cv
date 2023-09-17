@@ -3,65 +3,229 @@
 $letterSpacing: 1.5px;
 
 .content {
-  background-color: transparent;
+  width: 100%;
   height: max-content;
-  position: relative;
-  padding: 150px;
+  padding: 2rem;
 
-  .panel {
-    background-color: $panelColor;
-    position: absolute;
-    z-index: -1;
-    height: 100%;
-    width: 35vw;
-    left: 0;
-    top: 0;
+  .buttons {
+    display: flex;
+    justify-content: end;
   }
 
-  .avatar {
-    width: 300px;
-    height: 300px;
-    margin-right: 100px;
-  }
+  .personalInfo {
+    padding-bottom: 3rem;
 
-  .name {
-    font-family: $RudaFamily;
-    line-height: $fontSizeL;
-    font-size: $fontSizeL;
-    width: $fontSizeL * 2;
-    font-weight: bold;
-    color: $textColor;
-  }
+    img {
+      margin: 2rem 0;
+      width: 300px;
+      height: 300px;
+    }
 
-  .info {
-    font-size: $fontSizeM;
-    line-height: $fontSizeM;
+    .info {
+      font-size: $fontSizeS;
+      line-height: $fontSizeS;
 
-    a {
-      color: $textColor;
-      text-decoration: none;
-      letter-spacing: $letterSpacing;
-      font-weight: bold;
-      cursor: url("./../assets/img/cat.png"), pointer;
+      h1 {
+        font-family: $RudaFamily;
+        line-height: $fontSizeL;
+        font-size: $fontSizeL;
+        width: $fontSizeXL;
+        font-weight: bold;
+        color: $textColor;
+      }
+
+      a {
+        color: $textColor;
+        text-decoration: none;
+        letter-spacing: $letterSpacing;
+        font-weight: bold;
+        cursor: url("./../assets/img/cat.png"), pointer;
+      }
     }
   }
 
   .section {
+    display: flex;
+    flex-direction: column;
     font-family: "DM Sans", sans-serif;
-    padding-top: 5vh;
 
-    .header {
-      width: 400px;
-      min-width: 400px;
+    h1:first-child {
+      color: $textColor;
+      font-weight: bold;
     }
 
-    .header,
-    .title,
-    .items {
-      letter-spacing: $letterSpacing;
-      font-weight: bolder;
+    h4,
+    span {
+      font-weight: bold;
+    }
+
+    ul {
+      padding: 0 0 3rem 2rem;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+
+      .item {
+        width: 50%;
+        padding-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .content {
+    padding: 2rem 4rem;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    .panel {
+      background-color: $panelColor;
+      position: fixed;
+      z-index: -1;
+      height: 100%;
+      width: 35vw;
+      left: 0;
+      top: 0;
+    }
+
+    .personalInfo {
+      display: flex;
+
+      .info {
+        padding-left: 4rem;
+        padding-top: 2rem;
+
+        h1 {
+          margin: 0;
+          padding-top: 2rem;
+          font-size: $fontSizeL;
+          line-height: $fontSizeL;
+        }
+
+        div {
+          padding: 1rem 0;
+        }
+      }
+    }
+
+    .section {
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+
+        .item {
+          width: 33%;
+          padding-bottom: 1rem;
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1366px) {
+  .content {
+    padding: 4rem;
+
+    .panel {
+      width: 40vw;
+    }
+
+    .personalInfo {
+      margin: 0 5rem;
+
+      .info {
+        padding-top: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding-left: 4rem;
+
+        h1 {
+          font-size: $fontSizeXL;
+          line-height: $fontSizeXL;
+          width: min-content;
+          padding-left: 3rem;
+        }
+
+        div {
+          display: flex;
+          flex-direction: column;
+          align-items: end;
+          padding-top: 2.5rem;
+          font-size: $fontSizeS;
+          line-height: $fontSizeS;
+        }
+      }
+    }
+
+    .section {
+      display: flex;
+      flex-direction: row;
+      padding-bottom: 3rem;
+
+      h1 {
+        display: flex;
+        justify-content: center;
+        padding-right: 5rem;
+        font-size: $fontSizeM;
+        line-height: $fontSizeM;
+        width: 30%;
+      }
+
+      div {
+        width: 70%;
+      }
+
+      h4 {
+        font-size: $fontSizeM;
+        line-height: $fontSizeM;
+      }
+
+      h5 {
+        font-size: $fontSizeS;
+        line-height: $fontSizeM;
+        font-weight: bold;
+      }
+
+      ul {
+        padding-bottom: 3rem;
+        li {
+          font-size: $fontSizeS;
+          line-height: $fontSizeM;
+        }
+      }
+
+      .skills .item {
+        padding: 0 5rem 5rem 0;
+        width: max-content;
+
+        span {
+          font-size: $fontSizeM;
+          line-height: $fontSizeM;
+          font-weight: bold;
+          padding-bottom: 1rem;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .content {
+    padding: 5rem;
+
+    .personalInfo .info div {
       font-size: $fontSizeM;
-      line-height: $fontSizeM * 2;
+      line-height: $fontSizeM;
     }
   }
 }

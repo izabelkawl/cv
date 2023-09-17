@@ -15,7 +15,6 @@ export class PdfService {
 
   geratePdf(data: IPersonalInformation): void {
     const pdf = new jsPDF();
-
     pdf.addFileToVFS('assets/font/Signika-Light.ttf', 'Signika-Light.ttf');
     pdf.addFont('./assets/font/Signika-Light.ttf', 'Signika', 'normal');
     pdf.setFont('Signika');
@@ -36,17 +35,13 @@ export class PdfService {
       return ts.instant(name as string);
     }
 
-    function sectionName(name: SectionTypes): void {
-      pdf.text(translate(name).toUpperCase(), 20, iterate(y));
-    }
-
-    function createSectionBody(name: SectionTypes): void {
+    function createSection(type: SectionTypes): void {
       pdf.setFontSize(12);
-      sectionName(name);
+      pdf.text(translate(type).toUpperCase(), 20, iterate(y));
 
       y -= 10;
 
-      data[name].map((item: IExperienceEducation & ISkills) => {
+      data[type].map((item: IExperienceEducation & ISkills) => {
         const { title, company, description, name, level } = item;
 
         pdf.setFontSize(12);
@@ -100,9 +95,9 @@ export class PdfService {
 
     y += 40;
 
-    createSectionBody('experience');
-    createSectionBody('education');
-    createSectionBody('skills');
+    createSection('experience');
+    createSection('education');
+    createSection('skills');
 
     pdf.save('Izabela Wlazło CV.pdf');
   }
