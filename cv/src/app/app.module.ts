@@ -9,9 +9,12 @@ import { MaterialModule } from 'src/shared/material.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { RocketsComponent } from './commons/rockets/rockets.component';
+import { PersonalInfoComponent } from './components/personal-info/personal-info.component';
+import { SkillsComponent } from './components/skills/skills.component';
+import { ExperienceEducationComponent } from './components/experience-education/experience-education.component';
 
 @NgModule({
-  declarations: [AppComponent, RocketsComponent],
+  declarations: [AppComponent, RocketsComponent, PersonalInfoComponent, SkillsComponent, ExperienceEducationComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

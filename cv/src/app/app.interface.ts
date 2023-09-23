@@ -1,3 +1,7 @@
+import { IExperienceEducation } from "./components/experience-education/experience-education.interface";
+import { IInfo } from "./components/personal-info/personal-info.interfaces";
+import { ISkills } from "./components/skills/skills.interfaces";
+
 export interface IPersonalInformation {
   info: IInfo;
   experience: IExperienceEducation[];
@@ -6,25 +10,4 @@ export interface IPersonalInformation {
   [name: string]: any;
 }
 
-export interface IInfo {
-  person: string;
-  avatar?: string;
-  phone: string;
-  email: string;
-  linkedIn: string;
-}
-
-export interface IExperienceEducation {
-  title: string;
-  company: string;
-  description: string[];
-}
-
-export interface ISkills {
-  name: string;
-  level: 1 | 2 | 3 | 4 | 5;
-}
-
 export type SectionTypes = keyof IPersonalInformation;
-
-export type InfoKeys = keyof IInfo;

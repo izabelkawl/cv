@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content" *ngIf="personalInfo | async as personalInfo">
   <div class="buttons">
     <button mat-raised-button class="me-2" (click)="generatePdf()">PDF</button>
     <button mat-flat-button color="primary" (click)="changeLang()">
@@ -7,53 +7,25 @@
   </div>
 
   <div class="panel"></div>
+  <app-personal-info [info]="personalInfo.info" />
 
-  <div class="personalInfo" *ngIf="(personalInfo | async)?.info as info">
-    <img [src]="info.avatar" />
-    <div class="info">
-      <h1>{{ info.person | uppercase }}</h1>
-      <div>
-        <p *ngFor="let key of infoData">
-          {{ "sections.info." + key | translate }}:
-          <a (click)="onClickInfo(key)">{{ info[key] }}</a>
-        </p>
-      </div>
-    </div>
-  </div>
+  <div
+    class="section"
+    *ngFor="let key of sectionKeys(personalInfo); index as i; trackByIndex"
+  >
+    <h1>{{ "sections." + key | translate | uppercase }}</h1>
+    <ng-container [ngSwitch]="key">
+      <ng-container *ngSwitchCase="'experience'">
+        <app-experience-education [data]="personalInfo.experience" />
+      </ng-container>
 
-  <ng-container *ngIf="personalInfo | async as personalInfo">
-    <div
-      class="section"
-      *ngFor="let key of sectionKeys(personalInfo); index as i; trackByIndex"
-    >
-      <h1>{{ "sections." + key | translate | uppercase }}</h1>
-      <ng-container
-        *ngTemplateOutlet="
-          key === 'skills' ? skills : experienceEducation;
-          context: { data: personalInfo[key] }
-        "
-      />
-    </div>
-  </ng-container>
-</div>
+      <ng-container *ngSwitchCase="'education'">
+        <app-experience-education [data]="personalInfo.education" />
+      </ng-container>
 
-<ng-template #skills let-data="data">
-  <div class="skills">
-    <div class="item" *ngFor="let skill of data">
-      <span>{{ skill.name }}</span>
-      <app-rockets [level]="skill.level" />
-    </div>
-  </div>
-</ng-template>
-
-<ng-template #experienceEducation let-data="data">
-  <div>
-    <ng-container *ngFor="let item of data">
-      <h4>{{ item.title }}</h4>
-      <h5>{{ item.company }}</h5>
-      <ul>
-        <li *ngFor="let task of item?.description">{{ task }}</li>
-      </ul>
+      <ng-container *ngSwitchDefault>
+        <app-skills [data]="personalInfo.skills" />
+      </ng-container>
     </ng-container>
   </div>
-</ng-template>
+</div>

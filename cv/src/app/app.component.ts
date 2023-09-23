@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AppService } from './app.service';
 import { Observable, map } from 'rxjs';
-import { InfoKeys, IPersonalInformation, SectionTypes } from './app.interface';
+import { IPersonalInformation, SectionTypes } from './app.interface';
 import { LangService } from 'src/shared/services/lang/lang.service';
 import { PdfService } from 'src/shared/services/pdf/pdf-generator.service';
 
@@ -19,19 +19,6 @@ export class AppComponent {
     private lang: LangService
   ) {}
 
-  onClickInfo(type: InfoKeys): void {
-    switch (type) {
-      case 'linkedIn':
-        window.open('https://www.linkedin.com/in/izabelawl/', '_blank');
-        break;
-      case 'email':
-        window.open('mailto:izabelawlazlo9@gmail.com');
-        break;
-      default:
-        break;
-    }
-  }
-
   sectionKeys(info: IPersonalInformation): SectionTypes[] {
     return Object.keys(info).slice(1, 4);
   }
@@ -48,12 +35,9 @@ export class AppComponent {
     return this.lang.selectedLang.button;
   }
 
-  get infoData(): InfoKeys[] {
-    return ['phone', 'email', 'linkedIn'];
-  }
-
   get personalInfo(): Observable<IPersonalInformation> {
     const { lang } = this.lang.selectedLang;
+    
     return this.appService.getInfo(lang).pipe(
       map((response: IPersonalInformation) => {
         this.data = response;

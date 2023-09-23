@@ -1,0 +1,29 @@
+@import "./../../../assets/css/variables.scss";
+
+h4, h5 {
+  font-weight: bold;
+}
+
+ul {
+  padding: 0 0 3rem 2rem;
+}
+
+@media only screen and (min-width: 1366px) {
+  h4 {
+    font-size: $fontSizeM;
+    line-height: $fontSizeM;
+  }
+
+  h5 {
+    font-size: $fontSizeS;
+    line-height: $fontSizeM;
+  }
+
+  ul {
+    padding-bottom: 3rem;
+    li {
+      font-size: $fontSizeS;
+      line-height: $fontSizeM;
+    }
+  }
+}
