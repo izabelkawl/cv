@@ -1,11 +1,10 @@
-import { SectionTypes } from './../../../app/app.interface';
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { jsPDF } from 'jspdf';
-import { IPersonalInformation } from 'src/app/app.interface';
 import { IExperienceEducation } from 'src/app/components/experience-education/experience-education.interface';
 import { InfoKeys } from 'src/app/components/personal-info/personal-info.interfaces';
 import { ISkills } from 'src/app/components/skills/skills.interfaces';
+import { IPersonalInformation, SectionTypes } from 'src/app/main/main.interface';
 
 @Injectable({
   providedIn: 'root',

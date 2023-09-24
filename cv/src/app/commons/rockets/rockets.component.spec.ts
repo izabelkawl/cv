@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { RocketsComponent } from './rockets.component';
+import { MaterialModule } from 'src/shared/modules/material.module';
+import { CommonModule } from '@angular/common';
 
 describe('RocketsComponent', () => {
   let component: RocketsComponent;
@@ -7,7 +9,8 @@ describe('RocketsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [RocketsComponent]
+      declarations: [RocketsComponent],
+      imports: [MaterialModule, CommonModule],
     });
     fixture = TestBed.createComponent(RocketsComponent);
     component = fixture.componentInstance;

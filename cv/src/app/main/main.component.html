@@ -1,0 +1,28 @@
+<div class="content" *ngIf="personalInfo | async as personalInfo">
+  <div class="buttons">
+    <app-buttons [buttonsConfig]="buttonConfig" />
+  </div>
+
+  <div class="panel"></div>
+  <app-personal-info [info]="personalInfo.info" />
+
+  <div
+    class="section"
+    *ngFor="let key of sectionKeys(personalInfo); index as i; trackByIndex"
+  >
+    <h1>{{ "sections." + key | translate | uppercase }}</h1>
+    <ng-container [ngSwitch]="key">
+      <ng-container *ngSwitchCase="'experience'">
+        <app-experience-education [data]="personalInfo.experience" />
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'education'">
+        <app-experience-education [data]="personalInfo.education" />
+      </ng-container>
+
+      <ng-container *ngSwitchDefault>
+        <app-skills [data]="personalInfo.skills" />
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

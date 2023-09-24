@@ -1,26 +1,19 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
-import { MaterialModule } from 'src/shared/material.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { RocketsComponent } from './commons/rockets/rockets.component';
-import { PersonalInfoComponent } from './components/personal-info/personal-info.component';
-import { SkillsComponent } from './components/skills/skills.component';
-import { ExperienceEducationComponent } from './components/experience-education/experience-education.component';
+import { MainModule } from './main/main.module';
 
 @NgModule({
-  declarations: [AppComponent, RocketsComponent, PersonalInfoComponent, SkillsComponent, ExperienceEducationComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,HttpClientModule,
-    FormsModule,
-    MaterialModule,
+    HttpClientModule,
+    MainModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -29,11 +22,10 @@ import { ExperienceEducationComponent } from './components/experience-education/
       },
     }),
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
-  return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }

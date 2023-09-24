@@ -5,7 +5,7 @@ export interface ILangs {
 
 export interface ILang {
   lang: LangType;
-  button: 'PL' | 'ENG';
+  button: 'PL' | 'EN';
 }
 
 export type LangType = 'pl' | 'en'

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { IPersonalInformation } from './app.interface';
 import { LangType } from 'src/shared/services/lang/lang.interface';
+import { IPersonalInformation } from './main.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AppService {
+export class MainService {
   getInfo(lang: LangType): Observable<IPersonalInformation> {
     switch (lang) {
       case 'pl':

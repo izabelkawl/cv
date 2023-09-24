@@ -9,11 +9,11 @@ export class LangService {
   value: boolean = false;
 
   langs: ILangs = {
-    pl: { lang: 'pl', button: 'ENG' },
+    pl: { lang: 'pl', button: 'EN' },
     en: { lang: 'en', button: 'PL' },
   };
 
-  selectedLang: ILang = { lang: 'pl', button: 'ENG' };
+  selectedLang: ILang = this.langs.pl;
 
   constructor(private translate: TranslateService) {
     translate.addLangs(['en', 'pl'] as LangType[]);

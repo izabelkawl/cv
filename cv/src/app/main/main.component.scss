@@ -1,0 +1,75 @@
+@import "./../../assets/css/variables.scss";
+
+.content {
+  width: 100%;
+  height: max-content;
+  padding: 2rem;
+
+  .buttons {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 5rem;
+  }
+
+  .section {
+    display: flex;
+    flex-direction: column;
+    font-family: "DM Sans", sans-serif;
+
+    h1 {
+      color: $textColor;
+      font-weight: bold;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .content {
+    padding: 2rem 4rem;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    .panel {
+      background-color: $panelColor;
+      position: fixed;
+      z-index: -1;
+      height: 100%;
+      width: 35vw;
+      left: 0;
+      top: 0;
+    }
+  }
+}
+
+@media only screen and (min-width: 1366px) {
+  .content {
+    padding: 4rem;
+
+    .panel {
+      width: 40vw;
+    }
+
+    .section {
+      display: flex;
+      flex-direction: row;
+      padding-bottom: 3rem;
+
+      h1 {
+        display: flex;
+        justify-content: center;
+        padding-right: 5rem;
+        font-size: $fontSizeM;
+        line-height: $fontSizeM;
+        min-width: 30%;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .content {
+    padding: 5rem;
+  }
+}
