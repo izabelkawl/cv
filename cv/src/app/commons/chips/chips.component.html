@@ -1,0 +1,9 @@
+<mat-chip-listbox multiple="false">
+  <mat-chip-option
+    *ngFor="let option of chipsOptions; trackByIndex"
+    [selected]="option.selected"
+    [color]="option.name"
+    (selectionChange)="getStyle(option.color)"
+    >{{ "chips." + option.name | translate }}</mat-chip-option
+  >
+</mat-chip-listbox>

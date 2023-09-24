@@ -17,7 +17,7 @@
     font-family: "DM Sans", sans-serif;
 
     h1 {
-      color: $textColor;
+      color: var(--text-color);
       font-weight: bold;
     }
   }
@@ -32,7 +32,7 @@
     position: relative;
 
     .panel {
-      background-color: $panelColor;
+      background-color: var(--panel-color);
       position: fixed;
       z-index: -1;
       height: 100%;

@@ -4,6 +4,7 @@ import { ComponentsModule } from '../components/components.module';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { ButtonsModule } from '../commons/buttons/buttons.module';
+import { ChipsModule } from '../commons/chips/chips.module';
 
 @NgModule({
   declarations: [MainComponent],
@@ -12,6 +13,7 @@ import { ButtonsModule } from '../commons/buttons/buttons.module';
     TranslateModule.forRoot(),
     ComponentsModule,
     ButtonsModule,
+    ChipsModule,
   ],
   exports: [MainComponent],
 })

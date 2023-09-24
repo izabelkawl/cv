@@ -5,7 +5,7 @@
         mat-raised-button
         [class]="button.className"
         [color]="button.color"
-        (click)="onClick(button.name)"
+        (click)="onClick(button.id)"
       >
         {{ button.name }}
       </button>
@@ -16,7 +16,7 @@
         mat-flat-button
         [class]="button.className"
         [color]="button.color"
-        (click)="onClick(button.name)"
+        (click)="onClick(button.id)"
       >
         {{ button.name }}
       </button>
@@ -27,7 +27,7 @@
         mat-button
         [class]="button.className"
         [color]="button.color"
-        (click)="onClick(button.name)"
+        (click)="onClick(button.id)"
       >
         {{ button.name }}
       </button>

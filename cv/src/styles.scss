@@ -21,11 +21,11 @@ body {
 
   mat-icon {
     &.unlocked {
-      color: $textColor;
+      color: var(--text-color);
     }
 
     &.locked {
-      color: rgba($textColor, 0.5);
+      color: rgba(var(--text-color), 0.5);
     }
   }
 }

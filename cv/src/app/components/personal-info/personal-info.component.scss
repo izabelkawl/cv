@@ -19,11 +19,11 @@
       font-size: $fontSizeL;
       width: $fontSizeXL;
       font-weight: bold;
-      color: $textColor;
+      color: var(--text-color);
     }
 
     a {
-      color: $textColor;
+      color: var(--text-color);
       text-decoration: none;
       letter-spacing: $letterSpacing;
       font-weight: bold;

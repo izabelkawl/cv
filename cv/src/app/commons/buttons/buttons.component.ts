@@ -11,7 +11,7 @@ export class ButtonsComponent {
 
   @Output() clickEvent: EventEmitter<string> = new EventEmitter<string>();
 
-  onClick(name: string) {
-    this.clickEvent.emit(name);
+  onClick(id?: string) {
+    this.clickEvent.emit(id);
   }
 }

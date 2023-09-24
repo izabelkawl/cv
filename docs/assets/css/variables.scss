@@ -1,6 +1,3 @@
-$textColor: #594557;
-$panelColor: #f8f8f8;
-
 $fontSizeXL: 100px;
 $fontSizeL: 66px;
 $fontSizeM: 30px;
@@ -10,3 +7,8 @@ $letterSpacing: 1.5px;
 
 $RudaFamily: "Ruda", sans-serif;
 $SansFamily: "DM Sans", sans-serif;
+
+:root {
+  --text-color: #594557;
+  --panel-color: #f8f8f8;
+}

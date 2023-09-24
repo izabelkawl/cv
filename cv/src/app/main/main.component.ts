@@ -9,6 +9,7 @@ import {
   ColorTypes,
   IButton,
 } from '../commons/buttons/buttons.interfaces';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-main',
@@ -19,6 +20,7 @@ export class MainComponent {
   data!: IPersonalInformation;
 
   constructor(
+    private translateService: TranslateService,
     private mainService: MainService,
     private pdfService: PdfService,
     private lang: LangService
@@ -36,9 +38,9 @@ export class MainComponent {
     this.lang.changeLang();
   }
 
-  onClick(name: string): void {
-    switch (name) {
-      case 'PDF':
+  onClick(id: string): void {
+    switch (id) {
+      case 'pdf':
         this.generatePdf();
         break;
       default:
@@ -49,12 +51,13 @@ export class MainComponent {
 
   get buttonConfig(): IButton[] {
     return [
-      { name: 'PDF', type: 'mat-raised-button' },
+      { id: 'pdf', name: 'PDF', type: 'mat-raised-button' },
       {
+        id: 'lang',
         name: this.lang.selectedLang.button,
         type: 'mat-flat-button',
         color: 'primary',
-        className: 'ms-2',
+        className: 'ms-2 me-2',
       },
     ];
   }

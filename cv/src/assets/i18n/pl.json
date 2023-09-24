@@ -1,4 +1,12 @@
 {
+  "buttons": {
+    "theme": "Motyw"
+  },
+  "chips": {
+    "primary": "Domyślny",
+    "accent": "Zielony",
+    "warn": "Czerwony"
+  },
   "sections": {
     "info": {
       "title": "Informacje",

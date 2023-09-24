@@ -1,6 +1,7 @@
 <div class="content" *ngIf="personalInfo | async as personalInfo">
   <div class="buttons">
-    <app-buttons [buttonsConfig]="buttonConfig" />
+    <app-chips class="me-4"/>
+    <app-buttons [buttonsConfig]="buttonConfig" (clickEvent)="onClick($event)"/>
   </div>
 
   <div class="panel"></div>
