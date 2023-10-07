@@ -1,5 +1,5 @@
 import { IExperienceEducation } from "../components/experience-education/experience-education.interface";
-import { IInfo } from "../components/personal-info/personal-info.interfaces";
+import { IInfo } from "../components/user-info/user-info.interfaces";
 import { ISkills } from "../components/skills/skills.interfaces";
 
 export interface IPersonalInformation {

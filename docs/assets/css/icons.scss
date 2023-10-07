@@ -1,0 +1,9 @@
+mat-icon {
+  &.unlocked {
+    color: var(--basic-color);
+  }
+
+  &.locked {
+    color: var(--light-gray);
+  }
+}

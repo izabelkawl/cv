@@ -4,28 +4,33 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 
 @import "./assets/css/variables.scss";
+@import "./assets/css/scroll.scss";
+@import "./assets/css/icons.scss";
 
 html,
 body {
-  height: 100%;
-  min-height: max-content;
+  margin: 0;
+  padding: 0;
+  height: max-content;
 }
+
 body {
-  width: 100vw;
+  width: 100%;
 
   * {
     font-family: $SansFamily;
     margin: 0;
     padding: 0;
   }
+}
 
-  mat-icon {
-    &.unlocked {
-      color: var(--text-color);
-    }
-
-    &.locked {
-      color: rgba(var(--text-color), 0.5);
-    }
+@media only screen and (min-width: 1366px) {
+  body {
+    background: linear-gradient(
+      162deg,
+      var(--dark-blue) 0%,
+      var(--basic-color) 35%,
+      var(--light-blue) 100%
+    );
   }
 }

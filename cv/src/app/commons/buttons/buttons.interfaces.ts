@@ -8,4 +8,5 @@ export interface IButton {
   color?: ColorTypes;
   className?: string;
   type?: ButtonTypes;
+  animate?: boolean;
 }

@@ -2,10 +2,13 @@
   "buttons": {
     "theme": "Motyw"
   },
+  "input": {
+    "enterColor": "Wpisz kolor"
+  },
   "chips": {
-    "primary": "Domyślny",
+    "primary": "Fioletowy",
     "accent": "Zielony",
-    "warn": "Czerwony"
+    "basic": "Czarny"
   },
   "sections": {
     "info": {

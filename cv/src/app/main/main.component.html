@@ -1,11 +1,18 @@
-<div class="content" *ngIf="personalInfo | async as personalInfo">
+<div
+  class="content"
+  *ngIf="personalInfo | async as personalInfo"
+  [@pulse]="flipped"
+>
   <div class="buttons">
-    <app-chips class="me-4"/>
-    <app-buttons [buttonsConfig]="buttonConfig" (clickEvent)="onClick($event)"/>
+    <app-chips/>
+    <app-buttons
+      [buttonsConfig]="buttonConfig"
+      (clickEvent)="onClick($event)"
+    />
   </div>
 
   <div class="panel"></div>
-  <app-personal-info [info]="personalInfo.info" />
+  <app-user-info [info]="personalInfo.info" />
 
   <div
     class="section"

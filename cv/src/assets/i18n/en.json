@@ -2,10 +2,13 @@
   "buttons": {
     "theme": "Theme"
   },
+  "input": {
+    "enterColor": "Enter color"
+  },
   "chips": {
-    "primary": "Default",
+    "primary": "Purple",
     "accent": "Green",
-    "warn": "Red"
+    "basic": "Black"
   },
   "sections": {
     "info": {

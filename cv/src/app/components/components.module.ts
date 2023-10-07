@@ -1,10 +1,10 @@
 import { NgModule } from "@angular/core";
-import { PersonalInfoModule } from "./personal-info/personal-info.module";
+import { UserInfoModule } from "./user-info/user-info.module";
 import { SkillsModule } from "./skills/skills.module";
 import { ExperienceEducationModule } from "./experience-education/experience-education.module";
 
 @NgModule({
-  imports: [PersonalInfoModule, SkillsModule, ExperienceEducationModule],
-  exports: [PersonalInfoModule, SkillsModule, ExperienceEducationModule],
+  imports: [UserInfoModule, SkillsModule, ExperienceEducationModule],
+  exports: [UserInfoModule, SkillsModule, ExperienceEducationModule],
 })
 export class ComponentsModule {}

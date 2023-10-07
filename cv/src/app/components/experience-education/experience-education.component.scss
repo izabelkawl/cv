@@ -1,6 +1,7 @@
 @import "./../../../assets/css/variables.scss";
 
 h4, h5 {
+  color: var(--basic-color);
   font-weight: bold;
 }
 
@@ -15,14 +16,15 @@ ul {
   }
 
   h5 {
-    font-size: $fontSizeS;
+    font-size: $fontSizeXS;
     line-height: $fontSizeM;
   }
 
   ul {
     padding-bottom: 3rem;
+
     li {
-      font-size: $fontSizeS;
+      font-size: $fontSizeXS;
       line-height: $fontSizeM;
     }
   }

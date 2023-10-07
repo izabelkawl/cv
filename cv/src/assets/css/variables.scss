@@ -1,14 +1,18 @@
 $fontSizeXL: 100px;
 $fontSizeL: 66px;
-$fontSizeM: 30px;
-$fontSizeS: 16px;
+$fontSizeM: 24px;
+$fontSizeS: 20px;
+$fontSizeXS: 14px;
 
-$letterSpacing: 1.5px;
+$letterSpacing: 0.5px;
 
 $RudaFamily: "Ruda", sans-serif;
 $SansFamily: "DM Sans", sans-serif;
 
 :root {
-  --text-color: #594557;
-  --panel-color: #f8f8f8;
+  --basic-color: #594557;
+  --light-gray: #f0f2f4;
+  --dark-blue: #020024;
+  --light-blue: #00D4FF;
+  --white: #ffffff;
 }

@@ -1,4 +1,7 @@
-<ng-container *ngFor="let button of buttonsConfig; trackByIndex">
+<ng-container
+  class="buttons"
+  *ngFor="let button of buttonsConfig; trackByIndex"
+>
   <ng-container [ngSwitch]="button.type">
     <ng-container *ngSwitchCase="'mat-raised-button'">
       <button
@@ -10,7 +13,7 @@
         {{ button.name }}
       </button>
     </ng-container>
-  
+
     <ng-container *ngSwitchCase="'mat-flat-button'">
       <button
         mat-flat-button
@@ -21,7 +24,7 @@
         {{ button.name }}
       </button>
     </ng-container>
-  
+
     <ng-container *ngSwitchDefault>
       <button
         mat-button
@@ -33,5 +36,4 @@
       </button>
     </ng-container>
   </ng-container>
-  
 </ng-container>

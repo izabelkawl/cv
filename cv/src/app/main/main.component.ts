@@ -1,30 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IPersonalInformation, SectionTypes } from './main.interface';
 import { MainService } from './main.service';
 import { Observable, map } from 'rxjs';
 import { PdfService } from 'src/shared/services/pdf/pdf-generator.service';
 import { LangService } from 'src/shared/services/lang/lang.service';
+import { IButton } from '../commons/buttons/buttons.interfaces';
 import {
-  ButtonTypes,
-  ColorTypes,
-  IButton,
-} from '../commons/buttons/buttons.interfaces';
-import { TranslateService } from '@ngx-translate/core';
+  flipAnimation,
+  rubberBandAnimation,
+  pulseAnimation,
+} from 'angular-animations';
+import pSBC from 'shade-blend-color';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
+  animations: [flipAnimation(), rubberBandAnimation(), pulseAnimation()],
 })
-export class MainComponent {
+export class MainComponent implements OnInit {
+  color = '';
+
+  flipped = false;
+
   data!: IPersonalInformation;
 
   constructor(
-    private translateService: TranslateService,
     private mainService: MainService,
     private pdfService: PdfService,
     private lang: LangService
   ) {}
+
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.flipped = !this.flipped;
+    }, 0);
+  }
 
   sectionKeys(info: IPersonalInformation): SectionTypes[] {
     return Object.keys(info).slice(1, 4);
@@ -58,6 +69,7 @@ export class MainComponent {
         type: 'mat-flat-button',
         color: 'primary',
         className: 'ms-2 me-2',
+        animate: true,
       },
     ];
   }

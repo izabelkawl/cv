@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+} from '@angular/core';
+import { IChips } from './chips.interfaces';
 
 @Component({
   selector: 'app-chips',
@@ -6,12 +9,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./chips.component.scss'],
 })
 export class ChipsComponent {
-  getStyle(hex: string): void {
-    document.documentElement.style.setProperty('--text-color', hex);
-    document.documentElement.style.setProperty('--panel-color', `${hex}10`);
+
+  toggleSelection(index: number, hex: string): void {
+    this.chipsOptions = this.chipsOptions.map((option: IChips) => ({
+      ...option,
+      selected: false,
+    }));
+    this.chipsOptions[index].selected = true;
+
+    document.documentElement.style.setProperty('--basic-color', hex);
   }
 
-  chipsOptions = [
+  chipsOptions: IChips[] = [
     {
       name: 'primary',
       color: '#594557',
@@ -20,12 +29,10 @@ export class ChipsComponent {
     {
       name: 'accent',
       color: '#214a36',
-      selected: false,
     },
     {
-      name: 'warn',
-      color: '#590524',
-      selected: false,
+      name: 'basic',
+      color: '#4d4d4d',
     },
   ];
 }

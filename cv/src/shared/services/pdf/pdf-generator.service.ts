@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { jsPDF } from 'jspdf';
 import { IExperienceEducation } from 'src/app/components/experience-education/experience-education.interface';
-import { InfoKeys } from 'src/app/components/personal-info/personal-info.interfaces';
+import { InfoKeys } from 'src/app/components/user-info/user-info.interfaces';
 import { ISkills } from 'src/app/components/skills/skills.interfaces';
 import {
   IPersonalInformation,
@@ -15,6 +15,7 @@ import pSBC from 'shade-blend-color';
 })
 export class PdfService {
   constructor(private translateService: TranslateService) {}
+
   geratePdf(data: IPersonalInformation): void {
     const pdf = new jsPDF();
     const fontFamily: string = 'Ruda-Regular';
@@ -24,7 +25,7 @@ export class PdfService {
     const { person, avatar = '' } = data.info;
     const [fistName, lastName] = person.split(' ');
     const primary =
-      document.documentElement.style.getPropertyValue('--text-color');
+      document.documentElement.style.getPropertyValue('--basic-color');
     const black = '#000';
 
     pdf.addFileToVFS(`assets/font/${fontFamily}.ttf`, `${fontFamily}.ttf`);
@@ -105,8 +106,8 @@ export class PdfService {
       infoPosition += 5;
     }
 
-    const aasdasd: string = pSBC(0.9, primary) as string;
-    pdf.setFillColor(aasdasd);
+    const backgroup: string = pSBC(0.9, primary) as string;
+    pdf.setFillColor(backgroup);
     pdf.rect(0, 0, (pageSize.width / 5) * 2, pageSize.height, 'F');
 
     pdf.addImage(avatar, 'JPEG', 20, getY(y) - 5, 35, 35);

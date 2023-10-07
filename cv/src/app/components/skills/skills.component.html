@@ -1,6 +1,6 @@
 <div class="skills" *ngIf="data">
   <div class="item" *ngFor="let skill of data; index as i; trackByIndex">
-    <span>{{ skill.name }}</span>
+    <span class="name">{{ skill.name }}</span>
     <app-rockets [level]="skill.level" />
   </div>
 </div>
