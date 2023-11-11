@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { HttpLoaderFactory } from './app.module';
 
 describe('AppComponent', () => {
@@ -25,6 +25,7 @@ describe('AppComponent', () => {
         }),
       ],
       declarations: [AppComponent],
+      providers: [TranslateService]
     })
   );
 

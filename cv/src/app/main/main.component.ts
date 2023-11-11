@@ -10,7 +10,6 @@ import {
   rubberBandAnimation,
   pulseAnimation,
 } from 'angular-animations';
-import pSBC from 'shade-blend-color';
 
 @Component({
   selector: 'app-main',

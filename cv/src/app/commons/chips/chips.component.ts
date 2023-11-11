@@ -1,15 +1,11 @@
-import {
-  Component,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { IChips } from './chips.interfaces';
 
 @Component({
   selector: 'app-chips',
   templateUrl: './chips.component.html',
-  styleUrls: ['./chips.component.scss'],
 })
 export class ChipsComponent {
-
   toggleSelection(index: number, hex: string): void {
     this.chipsOptions = this.chipsOptions.map((option: IChips) => ({
       ...option,

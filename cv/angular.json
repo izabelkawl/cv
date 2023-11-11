@@ -33,7 +33,11 @@
               "lodash",
               "rxjs-compat",
               "html2canvas",
-              "jspdf"
+              "jspdf",
+              "core-js",
+              "raf",
+              "rgbcolor",
+              "shade-blend-color"
             ]
           },
           "configurations": {
@@ -41,7 +45,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "1MB",
+                  "maximumWarning": "2MB",
                   "maximumError": "2mb"
                 },
                 {
@@ -50,7 +54,14 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                }
+              }
             },
             "development": {
               "buildOptimizer": false,

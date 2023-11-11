@@ -6,7 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [ChipsComponent],
-  imports: [CommonModule, MaterialModule, TranslateModule],
+  imports: [CommonModule, MaterialModule, TranslateModule.forRoot()],
   exports: [ChipsComponent],
 })
 export class ChipsModule {}

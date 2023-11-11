@@ -11,6 +11,8 @@ import { pulseAnimation, rubberBandAnimation } from 'angular-animations';
 export class UserInfoComponent implements OnInit {
   pulse = true;
 
+  hideNumber = true;
+
   ngOnInit(): void {
     setTimeout(() => {
       this.pulse = !this.pulse;
@@ -30,6 +32,9 @@ export class UserInfoComponent implements OnInit {
         break;
       case 'email':
         window.open('mailto:izabelawlazlo9@gmail.com');
+        break;
+      case 'phone':
+        this.hideNumber = !this.hideNumber;
         break;
       default:
         break;

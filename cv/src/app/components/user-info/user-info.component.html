@@ -1,11 +1,13 @@
 <div class="user-info" *ngIf="info">
-  <img [src]="info.avatar" [@rubberBand]="pulse"/>
+  <img [src]="info.avatar" [@rubberBand]="pulse" />
   <div class="info">
     <h1>{{ info.person | uppercase }}</h1>
     <div>
       <p *ngFor="let key of infoData; index as i; trackByIndex">
         {{ "sections.info." + key | translate }}:
-        <a (click)="onClickInfo(key)">{{ info[key] }}</a>
+        <a (click)="onClickInfo(key)"
+          >{{ info[key] | phonePipe : key : hideNumber }}
+        </a>
       </p>
     </div>
   </div>

@@ -6,6 +6,8 @@ import { ComponentsModule } from '../components/components.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { ButtonsModule } from '../commons/buttons/buttons.module';
 import { ChipsModule } from '../commons/chips/chips.module';
+import { MaterialModule } from 'src/shared/modules/material.module';
+import { IPersonalInformation } from './main.interface';
 
 describe('MainComponent', () => {
   let component: MainComponent;
@@ -14,7 +16,14 @@ describe('MainComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [MainComponent],
-      imports: [CommonModule, TranslateModule.forRoot(), ComponentsModule, ButtonsModule, ChipsModule],
+      imports: [
+        MaterialModule,
+        CommonModule,
+        TranslateModule.forRoot(),
+        ComponentsModule,
+        ButtonsModule,
+        ChipsModule,
+      ],
     });
     fixture = TestBed.createComponent(MainComponent);
     component = fixture.componentInstance;
@@ -23,5 +32,23 @@ describe('MainComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('it should return the correct keys', () => {
+    const info: IPersonalInformation = {
+      info: {
+        person: '',
+        avatar: '',
+        phone: '',
+        email: '',
+        linkedIn: '',
+      },
+      experience: [],
+      education: [],
+      skills: [],
+    };
+    const expected = ['experience', 'education', 'skills'];
+    const result = fixture.componentInstance.sectionKeys(info);
+    expect(result).toEqual(expected);
   });
 });
