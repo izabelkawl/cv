@@ -24,13 +24,16 @@ export class MainComponent implements OnInit {
 
   data!: IPersonalInformation;
 
+  buttons: IButton[] = [];
+
   constructor(
     private mainService: MainService,
     private pdfService: PdfService,
-    private lang: LangService
+    private langService: LangService
   ) {}
 
   ngOnInit(): void {
+    this.buttons = this.buttonConfig;
     setTimeout(() => {
       this.flipped = !this.flipped;
     }, 0);
@@ -45,7 +48,8 @@ export class MainComponent implements OnInit {
   }
 
   changeLang(): void {
-    this.lang.changeLang();
+    this.langService.changeLang();
+    this.buttons = this.buttonConfig;
   }
 
   onClick(id: string): void {
@@ -53,8 +57,10 @@ export class MainComponent implements OnInit {
       case 'pdf':
         this.generatePdf();
         break;
-      default:
+      case 'lang':
         this.changeLang();
+        break;
+      default:
         break;
     }
   }
@@ -64,7 +70,7 @@ export class MainComponent implements OnInit {
       { id: 'pdf', name: 'PDF', type: 'mat-raised-button' },
       {
         id: 'lang',
-        name: this.lang.selectedLang.button,
+        name: this.langService.oppositeTranslation.toUpperCase(),
         type: 'mat-flat-button',
         color: 'primary',
         className: 'ms-2 me-2',
@@ -74,7 +80,7 @@ export class MainComponent implements OnInit {
   }
 
   get personalInfo(): Observable<IPersonalInformation> {
-    const { lang } = this.lang.selectedLang;
+    const { lang } = this.langService;
 
     return this.mainService.getInfo(lang).pipe(
       map((response: IPersonalInformation) => {

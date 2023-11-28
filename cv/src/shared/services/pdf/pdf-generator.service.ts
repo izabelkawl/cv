@@ -25,7 +25,8 @@ export class PdfService {
     const { person, avatar = '' } = data.info;
     const [fistName, lastName] = person.split(' ');
     const primary =
-      document.documentElement.style.getPropertyValue('--basic-color');
+    getComputedStyle(document.body).getPropertyValue('--basic-color');
+      
     const black = '#000';
 
     pdf.addFileToVFS(`assets/font/${fontFamily}.ttf`, `${fontFamily}.ttf`);
