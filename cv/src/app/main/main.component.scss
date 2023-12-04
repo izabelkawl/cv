@@ -37,7 +37,7 @@ $radius: 0.5rem;
 
     .panel {
       background-color: var(--basic-color);
-      border-end-end-radius: $radius;
+      border-top-left-radius: $radius;
       border-bottom-left-radius: $radius;
       position: absolute;
       opacity: 0.1;

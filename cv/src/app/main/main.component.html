@@ -4,17 +4,15 @@
   [@pulse]="flipped"
 >
   <div class="buttons">
-    <app-chips/>
-    <app-buttons
-      [buttonsConfig]="buttons"
-      (clickEvent)="onClick($event)"
-    />
+    <app-chips />
+    <app-buttons [buttonsConfig]="buttons" (clickEvent)="onClick($event)" />
   </div>
 
   <div class="panel"></div>
-  <app-user-info [info]="personalInfo.info" />
+  <app-user-info [info]="personalInfo.info" [languageState]="languageState"/>
 
   <div
+    [@changeLanguage]="languageState"
     class="section"
     *ngFor="let key of sectionKeys(personalInfo); index as i; trackByIndex"
   >

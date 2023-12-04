@@ -2,7 +2,7 @@
   <img [src]="info.avatar" [@rubberBand]="pulse" />
   <div class="info">
     <h1>{{ info.person | uppercase }}</h1>
-    <div>
+    <div [@changeLanguage]="languageState" >
       <p *ngFor="let key of infoData; index as i; trackByIndex">
         {{ "sections.info." + key | translate }}:
         <a (click)="onClickInfo(key)"

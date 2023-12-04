@@ -10,12 +10,19 @@ import {
   rubberBandAnimation,
   pulseAnimation,
 } from 'angular-animations';
+import { changeLanguage } from 'src/shared/animations/animations';
+import { LangType } from 'src/shared/services/lang/lang.interface';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
-  animations: [flipAnimation(), rubberBandAnimation(), pulseAnimation()],
+  animations: [
+    flipAnimation(),
+    rubberBandAnimation(),
+    pulseAnimation(),
+    changeLanguage,
+  ],
 })
 export class MainComponent implements OnInit {
   color = '';
@@ -25,6 +32,8 @@ export class MainComponent implements OnInit {
   data!: IPersonalInformation;
 
   buttons: IButton[] = [];
+
+  languageState: LangType = this.langService.lang;
 
   constructor(
     private mainService: MainService,
@@ -49,6 +58,7 @@ export class MainComponent implements OnInit {
 
   changeLang(): void {
     this.langService.changeLang();
+    this.languageState = this.langService.lang;
     this.buttons = this.buttonConfig;
   }
 

@@ -17,11 +17,9 @@ export class ChipsComponent implements OnInit {
     const basicColor: string = getComputedStyle(document.body).getPropertyValue(
       '--basic-color'
     );
-
     this.chipsOptions.forEach((option, index) => {
+      option.selected = (chipsIndex ?? 0).toString() === index.toString();
       const { selected, color } = option;
-
-      option.selected = chipsIndex ? chipsIndex === index.toString() : !index;
 
       if (selected) {
         document.documentElement.style.setProperty(

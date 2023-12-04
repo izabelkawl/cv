@@ -1,14 +1,20 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IInfo, InfoKeys } from './user-info.interfaces';
 import { pulseAnimation, rubberBandAnimation } from 'angular-animations';
+import { changeLanguage } from 'src/shared/animations/animations';
+import { LangType } from 'src/shared/services/lang/lang.interface';
 
 @Component({
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.scss'],
-  animations: [pulseAnimation(), rubberBandAnimation()],
+  animations: [pulseAnimation(), rubberBandAnimation(), changeLanguage],
 })
 export class UserInfoComponent implements OnInit {
+  @Input() languageState: LangType = 'pl';
+
+  @Input() info!: IInfo;
+  
   pulse = true;
 
   hideNumber = true;
@@ -18,8 +24,6 @@ export class UserInfoComponent implements OnInit {
       this.pulse = !this.pulse;
     }, 0);
   }
-
-  @Input() info!: IInfo;
 
   get infoData(): InfoKeys[] {
     return ['phone', 'email', 'linkedIn'];
