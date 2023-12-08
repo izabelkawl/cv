@@ -24,15 +24,22 @@ export class PdfService {
     const translateService = this.translateService;
     const { person, avatar = '' } = data.info;
     const [fistName, lastName] = person.split(' ');
-    const primary =
-    getComputedStyle(document.body).getPropertyValue('--basic-color');
-      
+    const primary = getComputedStyle(document.body).getPropertyValue(
+      '--basic-color'
+    );
     const black = '#000';
 
     pdf.addFileToVFS(`assets/font/${fontFamily}.ttf`, `${fontFamily}.ttf`);
-    pdf.addFileToVFS(`assets/font/${fontFamilyBold}.ttf`, `${fontFamilyBold}.ttf`);
+    pdf.addFileToVFS(
+      `assets/font/${fontFamilyBold}.ttf`,
+      `${fontFamilyBold}.ttf`
+    );
     pdf.addFont(`./assets/font/${fontFamily}.ttf`, fontFamily, 'normal');
-    pdf.addFont(`./assets/font/${fontFamilyBold}.ttf`, fontFamilyBold, 'normal');
+    pdf.addFont(
+      `./assets/font/${fontFamilyBold}.ttf`,
+      fontFamilyBold,
+      'normal'
+    );
     pdf.setFont(fontFamily);
 
     let y = 20;
@@ -71,7 +78,7 @@ export class PdfService {
           let i = 0;
           while (i < level) {
             pdf.addImage(
-              `assets/img/rocket_locked.png`,
+              `assets/img/rocket.png`,
               'PNG',
               sectionX + 30 + i * 6,
               sectionY - 4,
@@ -90,7 +97,30 @@ export class PdfService {
           pdf.setTextColor(black);
           pdf.setFontSize(8);
           description.forEach((desc: string, i: number) => {
-            pdf.text('\u2022 ' + desc, 70, getY(i ? y : y + 2, 5));
+            if (desc.length > 95) {
+              const ostatniaSpacja = desc
+                .substring(0, 95)
+                .lastIndexOf(' ');
+
+              pdf.text(
+                '\u2022 ' + desc.substring(0, ostatniaSpacja),
+                70,
+                getY(i ? y : y + 2, 5)
+              );
+              pdf.text(
+                desc.substring(ostatniaSpacja, desc.length),
+                72,
+                getY(i ? y : y, 5)
+              );
+
+              console.log(
+                desc.substring(0, ostatniaSpacja) +
+                  ' + ' +
+                  desc.substring(ostatniaSpacja, desc.length)
+              );
+            } else {
+              pdf.text('\u2022 ' + desc, 70, getY(i ? y : y + 2, 5));
+            }
           });
         }
       });
@@ -108,16 +138,17 @@ export class PdfService {
     }
 
     const backgroup: string = pSBC(0.9, primary) as string;
+
     pdf.setFillColor(backgroup);
     pdf.rect(0, 0, (pageSize.width / 5) * 2, pageSize.height, 'F');
 
-    pdf.addImage(avatar, 'JPEG', 20, getY(y) - 5, 35, 35);
+    pdf.addImage(avatar, 'JPEG', 20, getY(y) - 5, 40, 40);
 
     pdf.setFontSize(40);
     pdf.setTextColor(primary);
     pdf.setFont(fontFamilyBold);
-    pdf.text(fistName.toUpperCase(), 65, 40);
-    pdf.text(lastName.toUpperCase(), 65, 55);
+    pdf.text(fistName.toUpperCase(), 75, 40);
+    pdf.text(lastName.toUpperCase(), 75, 55);
 
     pdf.setFont(fontFamily);
     pdf.setFontSize(10);

@@ -4,7 +4,8 @@
   [@pulse]="flipped"
 >
   <div class="buttons">
-    <app-chips />
+    <app-chips 
+    [@changeLanguage]="languageState"/>
     <app-buttons [buttonsConfig]="buttons" (clickEvent)="onClick($event)" />
   </div>
 
