@@ -1,5 +1,5 @@
-<mat-icon
-  [class]="skillUnlocked ? 'unlocked' : 'locked'"
-  *ngFor="let skillUnlocked of rockets"
+@for (skillUnlocked of rockets; track $index) {
+<mat-icon [class]="skillUnlocked ? 'unlocked' : 'locked'"
   >rocket_launch
 </mat-icon>
+}

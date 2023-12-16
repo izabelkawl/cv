@@ -3,11 +3,12 @@
   cdkDropList
   cdkDropListOrientation="horizontal"
 >
-  <mat-chip-option
-    *ngFor="let option of chipsOptions; index as i; trackByIndex"
-    [selected]="option.selected"
-    [color]="option.name"
-    (click)="toggleSelection(i, option.color)"
-    >{{ "chips." + option.name | translate }}</mat-chip-option
-  >
+  @for (option of chipsOptions; let i = $index; track i) {
+    <mat-chip-option
+      [selected]="option.selected"
+      [color]="option.name"
+      (click)="toggleSelection(i, option.color)"
+      >{{ "chips." + option.name | translate }}</mat-chip-option
+    >
+  }
 </mat-chip-listbox>

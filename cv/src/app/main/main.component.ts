@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { IPersonalInformation, SectionTypes } from './main.interface';
 import { MainService } from './main.service';
 import { Observable, map } from 'rxjs';
@@ -24,7 +24,7 @@ import { LangType } from 'src/shared/services/lang/lang.interface';
     changeLanguage,
   ],
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements AfterViewInit {
   color = '';
 
   flipped = false;
@@ -41,11 +41,9 @@ export class MainComponent implements OnInit {
     private langService: LangService
   ) {}
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.buttons = this.buttonConfig;
-    setTimeout(() => {
-      this.flipped = !this.flipped;
-    }, 0);
+    this.flipped = !this.flipped;
   }
 
   sectionKeys(info: IPersonalInformation): SectionTypes[] {

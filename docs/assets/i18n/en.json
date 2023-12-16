@@ -20,5 +20,6 @@
     "experience": "Experience",
     "education": "Education",
     "skills": "Skills"
-  }
+  },
+  "noData": "No data"
 }

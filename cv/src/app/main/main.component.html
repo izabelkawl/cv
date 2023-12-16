@@ -1,35 +1,31 @@
-<div
-  class="content"
-  *ngIf="personalInfo | async as personalInfo"
-  [@pulse]="flipped"
->
-  <div class="buttons">
-    <app-chips 
-    [@changeLanguage]="languageState"/>
-    <app-buttons [buttonsConfig]="buttons" (clickEvent)="onClick($event)" />
+@if (personalInfo | async; as personalInfoData) {
+  <div class="content" [@pulse]="flipped">
+    <div class="buttons">
+      <app-chips [@changeLanguage]="languageState" />
+      <app-buttons [buttonsConfig]="buttons" (clickEvent)="onClick($event)" />
+    </div>
+
+    <div class="panel"></div>
+    <app-user-info
+      [info]="personalInfoData.info"
+      [languageState]="languageState"
+    />
+
+    @for (key of sectionKeys(personalInfoData); track $index) {
+      <div [@changeLanguage]="languageState" class="section">
+        <h1>{{ "sections." + key | translate | uppercase }}</h1>
+        @switch (key) {
+          @case ("experience") {
+            <app-experience-education [data]="personalInfoData.experience" />
+          }
+          @case ("education") {
+            <app-experience-education [data]="personalInfoData.education" />
+          }
+          @default {
+            <app-skills [data]="personalInfoData.skills" />
+          }
+        }
+      </div>
+    }
   </div>
-
-  <div class="panel"></div>
-  <app-user-info [info]="personalInfo.info" [languageState]="languageState"/>
-
-  <div
-    [@changeLanguage]="languageState"
-    class="section"
-    *ngFor="let key of sectionKeys(personalInfo); index as i; trackByIndex"
-  >
-    <h1>{{ "sections." + key | translate | uppercase }}</h1>
-    <ng-container [ngSwitch]="key">
-      <ng-container *ngSwitchCase="'experience'">
-        <app-experience-education [data]="personalInfo.experience" />
-      </ng-container>
-
-      <ng-container *ngSwitchCase="'education'">
-        <app-experience-education [data]="personalInfo.education" />
-      </ng-container>
-
-      <ng-container *ngSwitchDefault>
-        <app-skills [data]="personalInfo.skills" />
-      </ng-container>
-    </ng-container>
-  </div>
-</div>
+}

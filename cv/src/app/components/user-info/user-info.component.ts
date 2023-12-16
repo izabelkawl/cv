@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input } from '@angular/core';
 import { IInfo, InfoKeys } from './user-info.interfaces';
 import { pulseAnimation, rubberBandAnimation } from 'angular-animations';
 import { changeLanguage } from 'src/shared/animations/animations';
@@ -10,7 +10,7 @@ import { LangType } from 'src/shared/services/lang/lang.interface';
   styleUrls: ['./user-info.component.scss'],
   animations: [pulseAnimation(), rubberBandAnimation(), changeLanguage],
 })
-export class UserInfoComponent implements OnInit {
+export class UserInfoComponent implements AfterViewInit {
   @Input() languageState: LangType = 'pl';
 
   @Input() info!: IInfo;
@@ -19,10 +19,8 @@ export class UserInfoComponent implements OnInit {
 
   hideNumber = true;
 
-  ngOnInit(): void {
-    setTimeout(() => {
+  ngAfterViewInit(): void {
       this.pulse = !this.pulse;
-    }, 0);
   }
 
   get infoData(): InfoKeys[] {

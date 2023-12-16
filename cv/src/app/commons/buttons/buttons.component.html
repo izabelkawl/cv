@@ -1,39 +1,36 @@
-<ng-container
-  class="buttons"
-  *ngFor="let button of buttonsConfig; trackByIndex"
->
-  <ng-container [ngSwitch]="button.type">
-    <ng-container *ngSwitchCase="'mat-raised-button'">
-      <button
-        mat-raised-button
-        [class]="button.className"
-        [color]="button.color"
-        (click)="onClick(button.id)"
-      >
-        {{ button.name }}
-      </button>
-    </ng-container>
-
-    <ng-container *ngSwitchCase="'mat-flat-button'">
-      <button
-        mat-flat-button
-        [class]="button.className"
-        [color]="button.color"
-        (click)="onClick(button.id)"
-      >
-        {{ button.name }}
-      </button>
-    </ng-container>
-
-    <ng-container *ngSwitchDefault>
-      <button
-        mat-button
-        [class]="button.className"
-        [color]="button.color"
-        (click)="onClick(button.id)"
-      >
-        {{ button.name }}
-      </button>
-    </ng-container>
-  </ng-container>
-</ng-container>
+@for (button of buttonsConfig; track $index) {
+  <div class="buttons">
+    @switch (button.type) {
+      @case ("mat-raised-button") {
+        <button
+          mat-raised-button
+          [class]="button.className"
+          [color]="button.color"
+          (click)="onClick(button.id)"
+        >
+          {{ button.name }}
+        </button>
+      }
+      @case ("mat-flat-button") {
+        <button
+          mat-flat-button
+          [class]="button.className"
+          [color]="button.color"
+          (click)="onClick(button.id)"
+        >
+          {{ button.name }}
+        </button>
+      }
+      @default {
+        <button
+          mat-button
+          [class]="button.className"
+          [color]="button.color"
+          (click)="onClick(button.id)"
+        >
+          {{ button.name }}
+        </button>
+      }
+    }
+  </div>
+}
