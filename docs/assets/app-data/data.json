@@ -5,14 +5,15 @@
       "avatar": "assets/img/avatar.png",
       "phone": "(+48) 733 253 028",
       "email": "izabelawlazlo9@gmail.com",
-      "linkedIn": "@izabelawl"
+      "linkedIn": "@izabelawl",
+      "github": "@izabelkawl"
     },
     "experience": [
       {
         "title": "ANGULAR FRONTEND DEVELOPER (10.2021 - OBECNIE)",
         "company": "Transition Technologies-Software",
         "description": [
-          "Zaawansowana rola w tworzeniu i rozwijaniu aplikacji w środowisku Angular od wersji 11 do 17.",
+          "Zaawansowana rola w tworzeniu i rozwijaniu aplikacji w środowisku Angular od wersji 11 do 17",
           "Opracowywanie i implementacja architektury oprogramowania, z naciskiem na efektywność, skalowalność i łatwość utrzymania",
           "Odgrywanie kluczowej roli w procesie diagnozy i naprawy błędów oprogramowania",
           "Wykonywanie code review, z dbałością o wysoką jakość kodu i optymalizacją wydajności",
@@ -64,18 +65,19 @@
       "avatar": "assets/img/avatar.png",
       "phone": "(+48) 733 253 028",
       "email": "izabelawlazlo9@gmail.com",
-      "linkedIn": "@izabelawl"
+      "linkedIn": "@izabelawl",
+      "github": "@izabelkawl"
     },
     "experience": [
       {
         "title": "ANGULAR FRONTEND DEVELOPER (10.2021 - CURRENTLY)",
         "company": "Transition Technologies-Software",
         "description": [
-          "Advanced role in developing applications in the Angular environment from version 11 to 17.",
-          "Designing and implementing software architecture, with a focus on efficiency, scalability, and ease of maintenance.",
-          "Playing a key role in the process of diagnosing and fixing software errors.",
-          "Conducting code reviews with a focus on high code quality and performance optimization.",
-          "Executing projects in accordance with the SCRUM methodology, ensuring effective delivery of software in accordance with business requirements and deadlines."
+          "Advanced role in developing applications in the Angular environment from version 11 to 17",
+          "Designing and implementing software architecture, with a focus on efficiency, scalability, and ease of maintenance",
+          "Playing a key role in the process of diagnosing and fixing software errors",
+          "Conducting code reviews with a focus on high code quality and performance optimization",
+          "Executing projects in accordance with the SCRUM methodology, ensuring effective delivery of software in accordance with business requirements and deadlines"
         ]
       },
       {

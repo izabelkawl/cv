@@ -42,6 +42,7 @@ describe('MainComponent', () => {
         phone: '',
         email: '',
         linkedIn: '',
+        github: '',
       },
       experience: [],
       education: [],

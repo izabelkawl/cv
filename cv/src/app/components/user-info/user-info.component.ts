@@ -14,17 +14,18 @@ export class UserInfoComponent implements AfterViewInit {
   @Input() languageState: LangType = 'pl';
 
   @Input() info!: IInfo;
-  
+
   pulse = true;
 
   hideNumber = true;
 
   ngAfterViewInit(): void {
-      this.pulse = !this.pulse;
+    this.pulse = !this.pulse;
   }
 
   get infoData(): InfoKeys[] {
-    return ['phone', 'email', 'linkedIn'];
+    const keys = Object.keys(this.info) as InfoKeys[];
+    return keys.slice(2, keys.length);
   }
 
   onClickInfo(type: InfoKeys): void {
@@ -37,6 +38,9 @@ export class UserInfoComponent implements AfterViewInit {
         break;
       case 'phone':
         this.hideNumber = !this.hideNumber;
+        break;
+      case 'github':
+        window.open('https://github.com/izabelkawl?tab=repositories', '_blank');
         break;
       default:
         break;

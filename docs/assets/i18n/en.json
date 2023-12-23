@@ -15,7 +15,8 @@
       "title": "Information",
       "phone": "Phone",
       "email": "Email",
-      "linkedIn": "LinkedIn"
+      "linkedIn": "LinkedIn",
+      "github": "Github"
     },
     "experience": "Experience",
     "education": "Education",

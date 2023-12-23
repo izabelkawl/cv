@@ -25,20 +25,20 @@ export class PdfService {
     const { person, avatar = '' } = data.info;
     const [fistName, lastName] = person.split(' ');
     const primary = getComputedStyle(document.body).getPropertyValue(
-      '--basic-color'
+      '--basic-color',
     );
     const black = '#000';
 
     pdf.addFileToVFS(`assets/font/${fontFamily}.ttf`, `${fontFamily}.ttf`);
     pdf.addFileToVFS(
       `assets/font/${fontFamilyBold}.ttf`,
-      `${fontFamilyBold}.ttf`
+      `${fontFamilyBold}.ttf`,
     );
     pdf.addFont(`./assets/font/${fontFamily}.ttf`, fontFamily, 'normal');
     pdf.addFont(
       `./assets/font/${fontFamilyBold}.ttf`,
       fontFamilyBold,
-      'normal'
+      'normal',
     );
     pdf.setFont(fontFamily);
 
@@ -84,7 +84,7 @@ export class PdfService {
               sectionY - 4,
               5,
               5,
-              'FAST'
+              'FAST',
             );
             i++;
           }
@@ -98,25 +98,23 @@ export class PdfService {
           pdf.setFontSize(8);
           description.forEach((desc: string, i: number) => {
             if (desc.length > 95) {
-              const ostatniaSpacja = desc
-                .substring(0, 95)
-                .lastIndexOf(' ');
+              const ostatniaSpacja = desc.substring(0, 95).lastIndexOf(' ');
 
               pdf.text(
                 '\u2022 ' + desc.substring(0, ostatniaSpacja),
                 70,
-                getY(i ? y : y + 2, 5)
+                getY(i ? y : y + 2, 5),
               );
               pdf.text(
                 desc.substring(ostatniaSpacja, desc.length),
                 72,
-                getY(i ? y : y, 5)
+                getY(i ? y : y, 5),
               );
 
               console.log(
                 desc.substring(0, ostatniaSpacja) +
                   ' + ' +
-                  desc.substring(ostatniaSpacja, desc.length)
+                  desc.substring(ostatniaSpacja, desc.length),
               );
             } else {
               pdf.text('\u2022 ' + desc, 70, getY(i ? y : y + 2, 5));
@@ -132,7 +130,7 @@ export class PdfService {
         geTranslation('sections.info.' + name) + ': ' + data.info[name],
         190,
         infoPosition,
-        { align: 'right' }
+        { align: 'right' },
       );
       infoPosition += 5;
     }
@@ -155,6 +153,7 @@ export class PdfService {
     getInfo('phone');
     getInfo('email');
     getInfo('linkedIn');
+    getInfo('github');
 
     y += 40;
     createSection('experience');

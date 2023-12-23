@@ -5,6 +5,7 @@ export interface IInfo {
   phone: string;
   email: string;
   linkedIn: string;
+  github: string;
 }
 
 export type InfoKeys = keyof IInfo;
