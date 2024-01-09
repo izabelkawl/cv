@@ -1,2 +1,0 @@
-# cv
- interactive cv
