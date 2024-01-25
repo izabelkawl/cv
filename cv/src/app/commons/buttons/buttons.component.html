@@ -1,21 +1,11 @@
 @for (button of buttonsConfig; track $index) {
-  <div class="buttons">
+  <div [class]="button.basicColor ? 'basicColor' : ''">
     @switch (button.type) {
       @case ("mat-raised-button") {
         <button
           mat-raised-button
           [class]="button.className"
-          [color]="button.color"
-          (click)="onClick(button.id)"
-        >
-          {{ button.name }}
-        </button>
-      }
-      @case ("mat-flat-button") {
-        <button
-          mat-flat-button
-          [class]="button.className"
-          [color]="button.color"
+          [style.backgroundColor]="button.color"
           (click)="onClick(button.id)"
         >
           {{ button.name }}
@@ -23,9 +13,10 @@
       }
       @default {
         <button
+          class="button"
           mat-button
           [class]="button.className"
-          [color]="button.color"
+          [style.backgroundColor]="button.color"
           (click)="onClick(button.id)"
         >
           {{ button.name }}

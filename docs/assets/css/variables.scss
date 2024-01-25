@@ -1,18 +1,51 @@
-$fontSizeXL: 100px;
-$fontSizeL: 66px;
-$fontSizeM: 24px;
-$fontSizeS: 20px;
-$fontSizeXS: 14px;
+$fontSizeS: var(--font-size-S);
+$fontSizeM: var(--font-size-M);
+$fontSizeL: var(--font-size-L);
 
 $letterSpacing: 0.5px;
 
 $RudaFamily: "Ruda", sans-serif;
 $SansFamily: "DM Sans", sans-serif;
+$Fantasy: "fantasy", sans-serif;
+
+$basic-color: var(--basic-color);
+$light-gray-color: var(--light-gray);
+$dark-gray-color: var(--dark-gray);
+$dark-blue-color: var(--dark-blue);
+$light-blue-color: var(--light-blue);
+$white-color: var(--white);
+
+$shadow-color: rgba(66, 68, 90, 1);
+
+$breakpoint-S: 768px;
+$breakpoint-M: 1024px;
+$breakpoint-L: 1366px;
 
 :root {
-  --basic-color: #594557;
-  --light-gray: #f0f2f4;
-  --dark-blue: #020024;
-  --light-blue: #00D4FF;
   --white: #ffffff;
+  --basic-color: #27384c;
+  --light-gray: #f0f2f4;
+  --dark-gray: #424242;
+  --dark-blue: #020024;
+  --light-blue: #00d4ff;
+
+  --font-size-S: 12px;
+  --font-size-M: 14px;
+  --font-size-L: 64px;
+}
+
+@media screen and (min-width: $breakpoint-M) {
+  body {
+    --font-size-S: 12px;
+    --font-size-M: 16px;
+    --font-size-L: 80px;
+  }
+}
+
+@media screen and (min-width: $breakpoint-L) {
+  body {
+    --font-size-S: 14px;
+    --font-size-M: 16px;
+    --font-size-L: 90px;
+  }
 }

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SkillsComponent } from './skills.component';
-import { RocketsModule } from 'src/app/commons/rockets/rockets.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('SkillsComponent', () => {
   let component: SkillsComponent;
@@ -11,7 +11,7 @@ describe('SkillsComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [SkillsComponent],
-      imports: [RocketsModule, CommonModule],
+      imports: [CommonModule, TranslateModule.forRoot()],
     });
     fixture = TestBed.createComponent(SkillsComponent);
     component = fixture.componentInstance;

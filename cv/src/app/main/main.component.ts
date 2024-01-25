@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
 import { IPersonalInformation, SectionTypes } from './main.interface';
 import { MainService } from './main.service';
 import { Observable, map } from 'rxjs';
@@ -27,7 +27,7 @@ import { LangType } from 'src/shared/services/lang/lang.interface';
 export class MainComponent implements AfterViewInit {
   color = '';
 
-  flipped = false;
+  flipped?: boolean;
 
   data!: IPersonalInformation;
 
@@ -36,18 +36,20 @@ export class MainComponent implements AfterViewInit {
   languageState: LangType = this.langService.lang;
 
   constructor(
-    private mainService: MainService,
+    private cdr: ChangeDetectorRef,
     private pdfService: PdfService,
-    private langService: LangService
+    private langService: LangService,
+    private mainService: MainService,
   ) {}
 
   ngAfterViewInit(): void {
     this.buttons = this.buttonConfig;
     this.flipped = !this.flipped;
+    this.cdr.detectChanges();
   }
 
   sectionKeys(info: IPersonalInformation): SectionTypes[] {
-    return Object.keys(info).slice(1, 4);
+    return Object.keys(info).slice(1, 3);
   }
 
   generatePdf(): void {
@@ -78,9 +80,9 @@ export class MainComponent implements AfterViewInit {
       { id: 'pdf', name: 'PDF', type: 'mat-raised-button' },
       {
         id: 'lang',
+        basicColor: true,
         name: this.langService.oppositeTranslation.toUpperCase(),
-        type: 'mat-flat-button',
-        color: 'primary',
+        type: 'mat-raised-button',
         className: 'ms-2 me-2',
         animate: true,
       },
@@ -94,7 +96,7 @@ export class MainComponent implements AfterViewInit {
       map((response: IPersonalInformation) => {
         this.data = response;
         return response;
-      })
+      }),
     );
   }
 }

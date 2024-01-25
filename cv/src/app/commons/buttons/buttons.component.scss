@@ -1,0 +1,5 @@
+@import "./../../../assets/css/variables.scss";
+
+.basicColor .mat-mdc-raised-button:not(:disabled) {
+  background-color: $basic-color;
+}

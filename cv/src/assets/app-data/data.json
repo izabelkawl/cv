@@ -1,12 +1,14 @@
 {
   "pl": {
     "info": {
-      "person": "Izabela Wlazło",
+      "firstName": "Izabela",
+      "lastName": "Wlazło",
+      "position": "Angular Developer",
       "avatar": "assets/img/avatar.png",
       "phone": "(+48) 733 253 028",
       "email": "izabelawlazlo9@gmail.com",
       "linkedIn": "@izabelawl",
-      "github": "@izabelkawl"
+      "description": "Cześć! Jestem programistką Angularową z 2,5 letnim stażem. Tworzenie dynamicznych interfejsów to moja specjalizacja! Mam solidne umiejętności w rozwijaniu aplikacji webowych i cały czas stawiam na doskonalenie się w najnowszych technologiach front-endowych."
     },
     "experience": [
       {
@@ -49,24 +51,25 @@
       }
     ],
     "skills": [
-      { "name": "html5/css3", "level": 4 },
-      { "name": "JavaScript", "level": 3 },
-      { "name": "TypeScript", "level": 3 },
-      { "name": "Angular", "level": 3 },
-      { "name": "React JS", "level": 2 },
-      { "name": "Scss", "level": 2 },
-      { "name": "Bootstrap", "level": 3 },
-      { "name": "Git", "level": 3 }
+      { "name": "Angular" },
+      { "name": "TypeScript" },
+      { "name": "JavaScript" },
+      { "name": "html5/css3" },
+      { "name": "Scss" },
+      { "name": "Bootstrap" },
+      { "name": "Git" }
     ]
   },
   "en": {
     "info": {
-      "person": "Izabela Wlazło",
+      "firstName": "Izabela",
+      "lastName": "Wlazło",
+      "position": "Angular Developer",
       "avatar": "assets/img/avatar.png",
       "phone": "(+48) 733 253 028",
       "email": "izabelawlazlo9@gmail.com",
       "linkedIn": "@izabelawl",
-      "github": "@izabelkawl"
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt ullam amet consectetur eos dolorum corporis laboriosam reiciendis. At suscipit et, sequi mollitia dolore perferendis ratione iste, excepturi corrupti estlaboriosam."
     },
     "experience": [
       {
@@ -109,14 +112,13 @@
       }
     ],
     "skills": [
-      { "name": "html5/css3", "level": 4 },
-      { "name": "JavaScript", "level": 3 },
-      { "name": "TypeScript", "level": 3 },
-      { "name": "Angular", "level": 3 },
-      { "name": "React JS", "level": 2 },
-      { "name": "Scss", "level": 2 },
-      { "name": "Bootstrap", "level": 3 },
-      { "name": "Git", "level": 3 }
+      { "name": "Angular" },
+      { "name": "TypeScript" },
+      { "name": "JavaScript" },
+      { "name": "html5/css3" },
+      { "name": "Scss" },
+      { "name": "Bootstrap" },
+      { "name": "Git" }
     ]
   }
 }

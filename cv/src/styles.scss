@@ -5,32 +5,31 @@
 
 @import "./assets/css/variables.scss";
 @import "./assets/css/scroll.scss";
-@import "./assets/css/icons.scss";
 
 html,
 body {
   margin: 0;
   padding: 0;
+  width: 100%;
   height: max-content;
 }
 
 body {
-  width: 100%;
-
   * {
     font-family: $SansFamily;
+    font-size: $fontSizeS;
     margin: 0;
     padding: 0;
   }
 }
 
-@media only screen and (min-width: 1366px) {
+@media only screen and (min-width: $breakpoint-S) {
   body {
     background: linear-gradient(
       162deg,
-      var(--dark-blue) 0%,
-      var(--basic-color) 35%,
-      var(--light-blue) 100%
+      $dark-blue-color 0%,
+      $basic-color 35%,
+      $light-blue-color 100%
     );
   }
 }

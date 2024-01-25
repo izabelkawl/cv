@@ -1,31 +1,43 @@
 @if (personalInfo | async; as personalInfoData) {
-  <div class="content" [@pulse]="flipped">
-    <div class="buttons">
+  <div class="main" [@pulse]="flipped">
+    <div class="main-buttons">
       <app-chips [@changeLanguage]="languageState" />
       <app-buttons [buttonsConfig]="buttons" (clickEvent)="onClick($event)" />
     </div>
+    <app-user [info]="personalInfoData.info" [languageState]="languageState" />
 
-    <div class="panel"></div>
-    <app-user-info
-      [info]="personalInfoData.info"
-      [languageState]="languageState"
-    />
-
-    @for (key of sectionKeys(personalInfoData); track $index) {
-      <div [@changeLanguage]="languageState" class="section">
-        <h1>{{ "sections." + key | translate | uppercase }}</h1>
-        @switch (key) {
-          @case ("experience") {
-            <app-experience-education [data]="personalInfoData.experience" />
-          }
-          @case ("education") {
-            <app-experience-education [data]="personalInfoData.education" />
-          }
-          @default {
-            <app-skills [data]="personalInfoData.skills" />
-          }
+    <div class="content">
+      <div class="content-info">
+        <app-personal-data
+          [info]="personalInfoData.info"
+          [languageState]="languageState"
+        />
+        <h1 class="content-info--title">
+          {{ "sections.skills" | translate | uppercase }}
+        </h1>
+        <app-skills [data]="personalInfoData.skills" />
+      </div>
+      <div class="content-section">
+        @for (key of sectionKeys(personalInfoData); track $index) {
+          <div [@changeLanguage]="languageState">
+            <h1 class="content-section--title">
+              {{ "sections." + key | translate | uppercase }}
+            </h1>
+            @switch (key) {
+              @case ("experience") {
+                <app-experience-education
+                  [data]="personalInfoData.experience"
+                />
+              }
+              @case ("education") {
+                <app-experience-education [data]="personalInfoData.education" />
+              }
+            }
+          </div>
+        } @empty {
+          <b>{{ "noData" | translate }}</b>
         }
       </div>
-    }
+    </div>
   </div>
 }

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ISkills } from './skills.interfaces';
+import { ISkill } from 'src/app/main/main.interface';
 
 @Component({
   selector: 'app-skills',
@@ -7,5 +7,5 @@ import { ISkills } from './skills.interfaces';
   styleUrls: ['./skills.component.scss'],
 })
 export class SkillsComponent {
-  @Input() data!: ISkills[];
+  @Input() data!: ISkill[];
 }

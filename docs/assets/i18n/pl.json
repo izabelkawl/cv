@@ -6,21 +6,17 @@
     "enterColor": "Wpisz kolor"
   },
   "chips": {
-    "primary": "Fioletowy",
-    "accent": "Zielony",
-    "basic": "Czarny"
+    "navyBlue": "Granatowy",
+    "green": "Zielony",
+    "beige": "Beżowy"
   },
   "sections": {
-    "info": {
-      "title": "Informacje",
-      "phone": "Telefon",
-      "email": "Email",
-      "linkedIn": "LinkedIn",
-      "github": "Github"
-    },
     "experience": "Doświadczenie",
     "education": "Wykształcenie",
     "skills": "Umiejętności"
+  },
+  "personalData": {
+    "aboutme": "O mnie"
   },
   "noData": "Brak danych"
 }

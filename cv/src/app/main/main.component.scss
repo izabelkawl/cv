@@ -2,84 +2,107 @@
 
 $radius: 0.5rem;
 
-.content {
-  width: 100%;
-  height: max-content;
-  background: var(--white);
-  padding: 1rem;
+%title {
+  background-color: $basic-color;
+  text-align: center;
+  min-width: 30%;
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+  color: $white-color;
+  font-size: $fontSizeM;
+  line-height: $fontSizeM;
+}
 
-  .buttons > * {
+.main {
+  background-color: $white-color;
+  height: max-content;
+  min-height: 90vh;
+  min-width: 330px;
+  overflow-x: auto;
+  width: 100%;
+  padding: 1.5rem;
+
+  &-buttons > * {
+    width: 100%;
     display: flex;
     justify-content: flex-end;
     padding-bottom: 0.5rem;
+    border-radius: 1rem;
+    height: 48px;
   }
 
-  .section {
-    display: flex;
-    flex-direction: column;
-    font-family: $SansFamily;
+  .content {
+    &-info,
+    &-section {
+      &--title {
+        @extend %title;
+      }
+    }
 
-    h1 {
-      text-align: center;
-      color: var(--basic-color);
-      font-weight: bold;
+    &-section {
+      display: flex;
+      flex-direction: column;
     }
   }
 }
 
-@media only screen and (min-width: 768px) {
-  .content {
-    padding: 2rem 4rem;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    z-index: 0;
-
-    .panel {
-      background-color: var(--basic-color);
-      border-top-left-radius: $radius;
-      border-bottom-left-radius: $radius;
-      position: absolute;
-      opacity: 0.1;
-      height: 100%;
-      width: 40vw;
-      z-index: 1;
-      left: 0;
-      top: 0;
-    }
-
-    .section h1 {
-      text-align: left;
-    }
-  }
-}
-
-@media only screen and (min-width: 1366px) {
-  .content {
-    width: 70vw;
+@media only screen and (min-width: $breakpoint-S) {
+  .main {
+    width: 85vw;
     margin: 4rem auto;
     border-radius: $radius;
+    padding: 2rem 4rem;
 
-    -webkit-box-shadow: 0px 0px 22px -13px rgba(66, 68, 90, 1);
-    -moz-box-shadow: 0px 0px 22px -13px rgba(66, 68, 90, 1);
-    box-shadow: 0px 0px 22px -13px rgba(66, 68, 90, 1);
+    -webkit-box-shadow: 0px 0px 22px -13px $shadow-color;
+    -moz-box-shadow: 0px 0px 22px -13px $shadow-color;
+    box-shadow: 0px 0px 22px -13px $shadow-color;
 
-    .panel {
-      width: 30vw;
-    }
-
-    .section {
+    .content {
       display: flex;
       flex-direction: row;
-      padding: 1rem 0 3rem 0;
+      padding-top: 1rem;
+      &-info {
+        width: 70%;
+        margin-right: 0.5rem;
+        &--title {
+          margin: 2rem 0;
+        }
+      }
 
-      h1 {
-        display: flex;
-        justify-content: center;
-        padding-right: 2rem;
-        font-size: $fontSizeM;
-        line-height: $fontSizeM;
-        min-width: 30%;
+      &-section {
+        &--title {
+          margin-bottom: 2rem;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: $breakpoint-M) {
+  .main {
+    width: 75vw;
+    .content {
+      &-info {
+        margin-right: 2rem;
+        width: 60%;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: $breakpoint-L) {
+  .main {
+    width: 65vw;
+    .content {
+      width: 80%;
+      margin: 0 auto;
+      padding-top: 2rem;
+
+      &-info,
+      &-section {
+        &--title {
+          padding: 0.8rem 0;
+        }
       }
     }
   }

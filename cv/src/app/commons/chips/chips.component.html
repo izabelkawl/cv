@@ -3,10 +3,11 @@
   cdkDropList
   cdkDropListOrientation="horizontal"
 >
-  @for (option of chipsOptions; let i = $index; track i) {
+  @for (option of chipsOptions; track i; let i = $index) {
     <mat-chip-option
       [selected]="option.selected"
-      [color]="option.name"
+      [tabIndex]="2"
+      [style.backgroundColor]="option.selected ? option.color : ''"
       (click)="toggleSelection(i, option.color)"
       >{{ "chips." + option.name | translate }}</mat-chip-option
     >

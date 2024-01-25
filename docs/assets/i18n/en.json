@@ -6,21 +6,17 @@
     "enterColor": "Enter color"
   },
   "chips": {
-    "primary": "Purple",
-    "accent": "Green",
-    "basic": "Black"
+    "navyBlue": "Navy Blue",
+    "green": "Green",
+    "beige": "Beige"
   },
   "sections": {
-    "info": {
-      "title": "Information",
-      "phone": "Phone",
-      "email": "Email",
-      "linkedIn": "LinkedIn",
-      "github": "Github"
-    },
     "experience": "Experience",
     "education": "Education",
     "skills": "Skills"
+  },
+  "personalData": {
+    "aboutme": "About me"
   },
   "noData": "No data"
 }

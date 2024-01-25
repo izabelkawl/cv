@@ -1,10 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { InfoKeys } from './user-info.interfaces';
+import { InfoKeys } from 'src/app/main/main.interface';
 
 @Pipe({ name: 'phonePipe' })
 export class PhonePipe implements PipeTransform {
   transform(value: any, key: InfoKeys, hidden: boolean) {
-    return hidden && key === 'phone'
+    return hidden && key === 'phone' && value
       ? value
           .split('')
           .map((x: string, index: number) => {

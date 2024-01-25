@@ -1,10 +1,7 @@
 @if (data) {
   <div class="skills">
     @for (skill of data; track $index) {
-      <div class="item">
-        <span class="name">{{ skill.name }}</span>
-        <app-rockets [level]="skill.level" />
-      </div>
+        <span class="skills-name">{{ skill.name }}</span>
     } @empty {
       <ng-container *ngTemplateOutlet="noData" />
     }

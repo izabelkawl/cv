@@ -2,37 +2,11 @@
 
 .skills {
   display: flex;
-  flex-wrap: wrap;
-  margin: 0 auto;
+  flex-direction: column;
+  align-items: center;
 
-  .item {
-    width: 50%;
-    padding-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
-
-    .name {
-      font-weight: bold;
-      padding-bottom: 0.5rem;
-    }
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .skills .item {
-    width: 33%;
-  }
-}
-
-@media only screen and (min-width: 1366px) {
-  .skills .item {
-    padding: 0 5rem 5rem 0;
-    width: max-content;
-
-    .name {
-      font-size: $fontSizeM;
-      line-height: $fontSizeM;
-      padding-bottom: 1rem;
-    }
+  &-name {
+    font-weight: bold;
+    line-height: 1.5;
   }
 }

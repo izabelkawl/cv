@@ -1,32 +1,24 @@
 @import "./../../../assets/css/variables.scss";
 
-h4, h5 {
-  color: var(--basic-color);
-  font-weight: bold;
-}
+.company {
+  margin: 0 1rem;
 
-ul {
-  padding: 0 0 3rem 2rem;
-  width: 80%;
-}
-
-@media only screen and (min-width: 1366px) {
-  h4 {
-    font-size: $fontSizeM;
-    line-height: $fontSizeM;
+  &-position,
+  &-name {
+    color: $basic-color;
+    font-weight: bold;
   }
 
-  h5 {
-    font-size: $fontSizeXS;
-    line-height: $fontSizeM;
+  &-tasks {
+    line-height: 1.5;
+    padding: 0 0 2rem 2rem;
   }
+}
 
-  ul {
-    padding-bottom: 3rem;
-
-    li {
-      font-size: $fontSizeXS;
-      line-height: $fontSizeM;
+@media only screen and (min-width: $breakpoint-M) {
+  .company {
+    &-tasks {
+      padding-bottom: 3rem;
     }
   }
 }

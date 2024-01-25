@@ -1,22 +1,22 @@
 import { TranslateModule } from '@ngx-translate/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserInfoComponent } from './user-info.component';
+import { PersonalDataComponent } from './personal-data.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from 'src/shared/modules/material.module';
-import { PhonePipe } from './user-info.pipe';
+import { PhonePipe } from './phone.pipe';
 
-describe('UserInfoComponent', () => {
-  let component: UserInfoComponent;
-  let fixture: ComponentFixture<UserInfoComponent>;
+describe('PersonalDataComponent', () => {
+  let component: PersonalDataComponent;
+  let fixture: ComponentFixture<PersonalDataComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [UserInfoComponent, PhonePipe],
-      imports: [MaterialModule, TranslateModule, BrowserModule, CommonModule],
+      declarations: [PersonalDataComponent, PhonePipe],
+      imports: [MaterialModule, TranslateModule.forRoot(), BrowserModule, CommonModule],
     });
-    fixture = TestBed.createComponent(UserInfoComponent);
+    fixture = TestBed.createComponent(PersonalDataComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

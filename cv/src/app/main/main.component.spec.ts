@@ -37,18 +37,20 @@ describe('MainComponent', () => {
   it('it should return the correct keys', () => {
     const info: IPersonalInformation = {
       info: {
-        person: '',
+        firstName: '',
+        lastName: '',
+        position: '',
         avatar: '',
         phone: '',
         email: '',
         linkedIn: '',
-        github: '',
+        description: '',
       },
       experience: [],
       education: [],
       skills: [],
     };
-    const expected = ['experience', 'education', 'skills'];
+    const expected = ['experience', 'education'];
     const result = fixture.componentInstance.sectionKeys(info);
     expect(result).toEqual(expected);
   });
