@@ -18,9 +18,6 @@ export class PdfService {
 
   geratePdf(data: IPersonalInformation): void {
     const pdf = new jsPDF();
-    const fontFamily: string = 'Ruda-Regular';
-    const fontFamilyBold: string = 'Ruda-Bold';
-
     const translateService = this.translateService;
     const {
       firstName,
@@ -29,29 +26,44 @@ export class PdfService {
       position,
       description,
     } = data.info;
+    const colors = {
+      black: '#000000',
+      white: '#ffffff',
+      gray: getComputedStyle(document.body).getPropertyValue('--light-gray'),
+      primary: getComputedStyle(document.body).getPropertyValue(
+        '--basic-color',
+      ),
+    };
+    const userFont: string = 'Impact';
+    const fontFamily: string = 'OpenSans';
+    const fontFamilyBold: string = 'OpenSans-Bold';
 
-    const primaryColor = getComputedStyle(document.body).getPropertyValue(
-      '--basic-color',
-    );
-    const blackColor = '#000';
+    pdf.addFileToVFS(`assets/font/${userFont}.ttf`, `${userFont}.ttf`);
+    pdf.addFont(`./assets/font/${userFont}.ttf`, userFont, 'normal');
 
     pdf.addFileToVFS(`assets/font/${fontFamily}.ttf`, `${fontFamily}.ttf`);
+    pdf.addFont(`./assets/font/${fontFamily}.ttf`, fontFamily, 'normal');
+
     pdf.addFileToVFS(
       `assets/font/${fontFamilyBold}.ttf`,
       `${fontFamilyBold}.ttf`,
     );
-    pdf.addFont(`./assets/font/${fontFamily}.ttf`, fontFamily, 'normal');
     pdf.addFont(
       `./assets/font/${fontFamilyBold}.ttf`,
       fontFamilyBold,
       'normal',
     );
+
     pdf.setFont(fontFamily);
 
     let y = 20;
+    let x = 50;
+    const contentPosition = { y: 82 };
+    const infoPosition = { x, y: 150 };
+    const section = { x: x + 35, width: 100 };
 
-    function getY(i: number, step: number = 10): number {
-      y = i + step;
+    function getY(value: number): number {
+      y = value + 10;
       return y;
     }
 
@@ -59,49 +71,50 @@ export class PdfService {
       return translateService.instant(name as string);
     }
 
-    let infoPosition = { x: 40, y: 160 };
-
     function getInfo(name: InfoKeys): void {
+      pdf.setFont(fontFamilyBold);
       pdf.text(data.info[name], infoPosition.x, infoPosition.y, {
         align: 'center',
       });
-      infoPosition.y += 10;
+      infoPosition.y += 5;
     }
 
     function createAboutMeSection(): void {
       pdf.setFontSize(12);
       pdf.setFont(fontFamilyBold);
-      pdf.setTextColor(primaryColor);
-      pdf.text(getTranslation('personalData.aboutme'), 40, 80, {
+      pdf.setTextColor(colors.black);
+      y = contentPosition.y;
+      pdf.text(getTranslation('personalData.aboutMe'), x, y, {
         align: 'center',
       });
       pdf.setFontSize(8);
-      const array = description.split(' ');
-      const chunk = _.chunk(array, 3);
-      let yyy = 90;
-      chunk.forEach((cut) => {
-        pdf.text(cut.join(' '), 40, yyy, {
-          align: 'center',
-        });
-        yyy += 5;
+      pdf.setTextColor(colors.black);
+      pdf.setFont(fontFamily);
+      pdf.text(description, x, getY(y), {
+        maxWidth: 50,
+        align: 'center',
+        lineHeightFactor: 2,
       });
     }
 
     function createSkillSection(): void {
       const { skills } = data;
-      const skillsPosition = { x: 25, y: 200 };
+      const skillsPosition = { x, y: 190 };
 
-      pdf.setFontSize(12);
+      pdf.setFontSize(10);
       pdf.setFont(fontFamilyBold);
-      pdf.setTextColor(primaryColor);
+      pdf.setFillColor(colors.primary);
+      pdf.rect(skillsPosition.x - 25, skillsPosition.y - 6, 50, 9, 'F');
+
+      pdf.setTextColor(colors.white);
       pdf.text(
         getTranslation('sections.skills').toUpperCase(),
         skillsPosition.x,
         skillsPosition.y,
+        { align: 'center' },
       );
+      pdf.setTextColor(colors.black);
       skillsPosition.y += 10;
-      pdf.setFont(fontFamilyBold);
-      skillsPosition.x += 15;
       skills.forEach(({ name }) => {
         pdf.setFontSize(8);
         pdf.text(name, skillsPosition.x, skillsPosition.y, { align: 'center' });
@@ -110,66 +123,85 @@ export class PdfService {
     }
 
     function createSection(type: SectionTypes): void {
-      pdf.setFontSize(12);
+      pdf.setFillColor(colors.primary);
+      pdf.rect(section.x, getY(y - 16), section.width, 9, 'F');
+
+      pdf.setFontSize(10);
       pdf.setFont(fontFamilyBold);
-      pdf.setTextColor(primaryColor);
-      pdf.text(getTranslation(type).toUpperCase(), 120, getY(y));
+      pdf.setTextColor(colors.white);
+      pdf.text(
+        getTranslation(`sections.${type}`).toUpperCase(),
+        section.x + 50,
+        getY(y - 4),
+        { align: 'center', maxWidth: section.width },
+      );
 
       data[type].map((item: IExperienceEducation & ISkill) => {
         const { title, company, description } = item;
-        pdf.setFontSize(12);
-        pdf.setTextColor(primaryColor);
-        pdf.text(title, 65, getY(y));
+        const sectionX = section.x + 5;
+
+        pdf.setFont(fontFamilyBold);
+        pdf.setFontSize(10);
+        pdf.setTextColor(colors.black);
+        pdf.text(title, sectionX, getY(y + 2));
 
         pdf.setFontSize(10);
-        pdf.text(company, 65, getY(y));
+        pdf.text(company, sectionX, getY(y - 3));
 
         if (description) {
           const dot = '\u2022';
 
-          pdf.setFont(fontFamily);
-          pdf.setTextColor(blackColor);
-          pdf.setFontSize(8);
-          
+          pdf.setFontSize(9);
+
           description.forEach((desc: string, i: number) => {
-            if (desc.length > 95) {
-              const lastSpace = desc.substring(0, 95).lastIndexOf(' ');
-              pdf.text(`${dot} ${desc.substring(0, lastSpace)}`+ 
-                dot + desc.substring(0, lastSpace),
-                70,
-                getY(i ? y : y + 2, 5),
-              );
-              pdf.text(desc.substring(lastSpace, desc.length), 72, getY(y, 5));
+            if (i) {
+              const { length } = description[i - 1];
+              getY(length < 60 ? y - 5 : length > 100 ? y + 3 : y);
             } else {
-              pdf.text(`${dot} ${desc}`, 70, getY(i ? y : y + 2, 5));
+              getY(y);
             }
+
+            pdf.setFont(fontFamilyBold);
+            pdf.text(dot, sectionX, y);
+
+            pdf.setFont(fontFamily);
+            pdf.text(desc, sectionX + 3, y, {
+              maxWidth: section.width - 10,
+              lineHeightFactor: 1.2,
+            });
           });
         }
       });
-      y += 5;
+      y += 10;
     }
 
-    pdf.addImage(avatar, 'JPEG', 40, getY(y) - 5, 40, 40);
+    pdf.addImage(avatar, 'JPEG', 50, getY(y) - 5, 40, 40);
 
-    pdf.setTextColor(primaryColor);
-    pdf.setFont(fontFamilyBold);
+    pdf.setLineDashPattern([2, 1], 0);
+    pdf.setLineWidth(1.5);
+    pdf.setDrawColor(colors.gray);
+    pdf.circle(70, getY(y) + 5, 23);
 
-    pdf.setFontSize(40);
+    pdf.setFontSize(45);
+    pdf.setFont(userFont);
+    pdf.setTextColor(colors.primary);
     pdf.text(firstName.toUpperCase(), 100, 40);
-    pdf.text(lastName.toUpperCase(), 105, 52);
+    pdf.text(lastName.toUpperCase(), 110, 55);
+
+    pdf.setFont(fontFamilyBold);
+    pdf.setTextColor(colors.black);
+    pdf.setFontSize(12);
+    pdf.text(position, 120, 60);
 
     pdf.setFontSize(10);
-    pdf.text(position.toUpperCase(), 125, 57);
 
-    pdf.setFont(fontFamily);
-    pdf.setFontSize(10);
     createAboutMeSection();
     getInfo('phone');
     getInfo('email');
     getInfo('linkedIn');
     createSkillSection();
 
-    y += 40;
+    y = contentPosition.y;
     createSection('experience');
     createSection('education');
 

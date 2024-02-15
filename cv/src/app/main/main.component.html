@@ -1,5 +1,6 @@
+
 @if (personalInfo | async; as personalInfoData) {
-  <div class="main" [@pulse]="flipped">
+  <div class="main">
     <div class="main-buttons">
       <app-chips [@changeLanguage]="languageState" />
       <app-buttons [buttonsConfig]="buttons" (clickEvent)="onClick($event)" />

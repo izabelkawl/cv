@@ -1,15 +1,15 @@
 @if (info) {
   <div class="user">
-    <img
-      class="user-image"
-      [src]="info.avatar"
-      [@rubberBand]="pulse"
-      alt="avatar"
-    />
+      <img
+        class="user-image"
+        [src]="info.avatar"
+        [@rubberBand]="rubberBand"
+        alt="avatar"
+      />
     <div class="user-name">
-      <h1 class="user-name--firstName" >{{ info.firstName | uppercase }}</h1>
+      <h1 class="user-name--firstName">{{ info.firstName | uppercase }}</h1>
       <h1 class="user-name--lastName">{{ info.lastName | uppercase }}</h1>
-      <h6 class="user-name--position">{{ info.position | uppercase }}</h6>
+      <h6 class="user-name--position">{{ info.position }}</h6>
     </div>
   </div>
 }

@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { rubberBandAnimation } from 'angular-animations';
 import { IInfo, InfoKeys } from 'src/app/main/main.interface';
 import { changeLanguage } from 'src/shared/animations/animations';
 import { LangType } from 'src/shared/services/lang/lang.interface';
@@ -8,7 +7,7 @@ import { LangType } from 'src/shared/services/lang/lang.interface';
   selector: 'app-personal-data',
   templateUrl: './personal-data.component.html',
   styleUrls: ['./personal-data.component.scss'],
-  animations: [rubberBandAnimation(), changeLanguage],
+  animations: [changeLanguage],
 })
 export class PersonalDataComponent {
   @Input() languageState: LangType = 'pl';

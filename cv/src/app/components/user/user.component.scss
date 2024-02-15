@@ -11,6 +11,7 @@
     border: 5px dashed $light-gray-color;
     border-radius: 50%;
     padding: 0.5rem;
+    margin: $gap-S;
   }
 
   &-name {
@@ -20,21 +21,22 @@
 
     &--firstName,
     &--lastName {
-      color: $basic-color;
-      font-family: $Fantasy;
+      font-family: $Impact;
       font-size: $fontSizeL;
-      font-weight: 900;
-      transform: scale(0.8, 0.8);
+      font-weight: 500;
+      color: $basic-color;
+      padding-bottom: $gap-S;
     }
 
     &--lastName {
-      padding-left: 5rem;
+      padding-left: calc($gap-L * 1.5);
     }
 
     &--position {
-      font-size: $fontSizeM;
+      font-size: calc($fontSizeM * 1.5);
       color: $dark-gray-color;
-      padding-left: 10rem;
+      font-weight: 900;
+      padding-left: calc($gap-L * 3);
     }
   }
 }
@@ -44,20 +46,33 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-  }
-}
 
-@media only screen and (min-width: $breakpoint-L) {
-  .user {
     &-image {
       width: 250px;
       height: 250px;
     }
 
     &-name {
+      text-align: left;
       &--firstName,
       &--lastName {
-        line-height: 0.5;
+        padding-bottom: $gap-M;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: $breakpoint-L) {
+  .user {
+    &-image {
+      width: 300px;
+      height: 300px;
+    }
+
+    &-name {
+      &--firstName,
+      &--lastName {
+        padding-bottom: $gap-L;
       }
     }
   }

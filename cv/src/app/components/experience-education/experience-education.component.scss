@@ -1,24 +1,23 @@
 @import "./../../../assets/css/variables.scss";
 
 .company {
-  margin: 0 1rem;
+  margin: 0 $gap-M;
 
   &-position,
   &-name {
-    color: $basic-color;
     font-weight: bold;
   }
 
   &-tasks {
     line-height: 1.5;
-    padding: 0 0 2rem 2rem;
+    padding: 0 0 $gap-M $gap-M;
   }
 }
 
 @media only screen and (min-width: $breakpoint-M) {
   .company {
     &-tasks {
-      padding-bottom: 3rem;
+      padding-bottom: $gap-L;
     }
   }
 }

@@ -15,7 +15,7 @@ import { MaterialModule } from 'src/shared/modules/material.module';
     TranslateModule.forRoot(),
     ComponentsModule,
     ButtonsModule,
-    ChipsModule
+    ChipsModule,
   ],
   exports: [MainComponent],
 })

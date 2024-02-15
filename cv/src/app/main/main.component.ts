@@ -5,11 +5,6 @@ import { Observable, map } from 'rxjs';
 import { PdfService } from 'src/shared/services/pdf/pdf-generator.service';
 import { LangService } from 'src/shared/services/lang/lang.service';
 import { IButton } from '../commons/buttons/buttons.interfaces';
-import {
-  flipAnimation,
-  rubberBandAnimation,
-  pulseAnimation,
-} from 'angular-animations';
 import { changeLanguage } from 'src/shared/animations/animations';
 import { LangType } from 'src/shared/services/lang/lang.interface';
 
@@ -17,17 +12,10 @@ import { LangType } from 'src/shared/services/lang/lang.interface';
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
-  animations: [
-    flipAnimation(),
-    rubberBandAnimation(),
-    pulseAnimation(),
-    changeLanguage,
-  ],
+  animations: [changeLanguage],
 })
 export class MainComponent implements AfterViewInit {
   color = '';
-
-  flipped?: boolean;
 
   data!: IPersonalInformation;
 
@@ -44,7 +32,6 @@ export class MainComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.buttons = this.buttonConfig;
-    this.flipped = !this.flipped;
     this.cdr.detectChanges();
   }
 

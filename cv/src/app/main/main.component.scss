@@ -1,13 +1,13 @@
 @import "./../../assets/css/variables.scss";
 
-$radius: 0.5rem;
+$radius: $gap-M;
 
 %title {
   background-color: $basic-color;
   text-align: center;
   min-width: 30%;
-  padding: 0.5rem 0;
-  margin-bottom: 1rem;
+  padding: $gap-S 0;
+  margin-bottom: $gap-M;
   color: $white-color;
   font-size: $fontSizeM;
   line-height: $fontSizeM;
@@ -20,14 +20,14 @@ $radius: 0.5rem;
   min-width: 330px;
   overflow-x: auto;
   width: 100%;
-  padding: 1.5rem;
+  padding: $gap-M;
 
   &-buttons > * {
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    padding-bottom: 0.5rem;
-    border-radius: 1rem;
+    padding-bottom: $gap-M;
+    border-radius: $gap-M;
     height: 48px;
   }
 
@@ -49,9 +49,9 @@ $radius: 0.5rem;
 @media only screen and (min-width: $breakpoint-S) {
   .main {
     width: 85vw;
-    margin: 4rem auto;
+    margin: $gap-L auto;
     border-radius: $radius;
-    padding: 2rem 4rem;
+    padding: $gap-L $gap-L;
 
     -webkit-box-shadow: 0px 0px 22px -13px $shadow-color;
     -moz-box-shadow: 0px 0px 22px -13px $shadow-color;
@@ -60,18 +60,18 @@ $radius: 0.5rem;
     .content {
       display: flex;
       flex-direction: row;
-      padding-top: 1rem;
+      padding-top: $gap-M;
       &-info {
         width: 70%;
-        margin-right: 0.5rem;
+        margin-right: $gap-M;
         &--title {
-          margin: 2rem 0;
+          margin: $gap-L 0;
         }
       }
 
       &-section {
         &--title {
-          margin-bottom: 2rem;
+          margin-bottom: $gap-L;
         }
       }
     }
@@ -83,7 +83,7 @@ $radius: 0.5rem;
     width: 75vw;
     .content {
       &-info {
-        margin-right: 2rem;
+        margin-right: $gap-L;
         width: 60%;
       }
     }
@@ -96,7 +96,7 @@ $radius: 0.5rem;
     .content {
       width: 80%;
       margin: 0 auto;
-      padding-top: 2rem;
+      padding-top: $gap-L;
 
       &-info,
       &-section {
