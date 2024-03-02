@@ -1,3 +1,5 @@
+@import "./mixins";
+
 $fontSizeS: var(--font-size-S);
 $fontSizeM: var(--font-size-M);
 $fontSizeL: var(--font-size-L);
@@ -17,10 +19,6 @@ $black-color: var(--black);
 
 $shadow-color: rgba(66, 68, 90, 1);
 
-$breakpoint-S: 768px;
-$breakpoint-M: 992px;
-$breakpoint-L: 1366px;
-
 $gap-S: var(--gap-S);
 $gap-M: var(--gap-M);
 $gap-L: var(--gap-L);
@@ -38,20 +36,18 @@ $gap-L: var(--gap-L);
   --font-size-M: 14px;
   --font-size-L: 64px;
 
-  --gap-S: .5rem;
+  --gap-S: 0.5rem;
   --gap-M: 1rem;
   --gap-L: 3rem;
 }
 
-@media screen and (min-width: $breakpoint-M) {
-  body {
+body {
+  @include mq-min-width(medium) {
     --font-size-M: 16px;
     --font-size-L: 72px;
   }
-}
 
-@media screen and (min-width: $breakpoint-L) {
-  body {
+  @include mq-min-width(large) {
     --font-size-S: 14px;
     --font-size-L: 94px;
   }

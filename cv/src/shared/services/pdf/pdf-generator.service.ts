@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { jsPDF } from 'jspdf';
-import * as _ from 'lodash';
 import { IExperienceEducation } from 'src/app/components/experience-education/experience-education.interface';
 import {
   IPersonalInformation,
@@ -9,6 +8,9 @@ import {
   InfoKeys,
   SectionTypes,
 } from 'src/app/main/main.interface';
+import { Colors } from 'src/shared/enums/variables';
+
+const { BASIC, GRAY, WHITE, BLACK } = Colors;
 
 @Injectable({
   providedIn: 'root',
@@ -27,13 +29,12 @@ export class PdfService {
       description,
     } = data.info;
     const colors = {
-      black: '#000000',
-      white: '#ffffff',
-      gray: getComputedStyle(document.body).getPropertyValue('--light-gray'),
-      primary: getComputedStyle(document.body).getPropertyValue(
-        '--basic-color',
-      ),
+      black: getDocumentColor(BLACK),
+      white: getDocumentColor(WHITE),
+      gray: getDocumentColor(GRAY),
+      basic: getDocumentColor(BASIC),
     };
+
     const userFont: string = 'Impact';
     const fontFamily: string = 'OpenSans';
     const fontFamilyBold: string = 'OpenSans-Bold';
@@ -61,6 +62,10 @@ export class PdfService {
     const contentPosition = { y: 82 };
     const infoPosition = { x, y: 150 };
     const section = { x: x + 35, width: 100 };
+
+    function getDocumentColor(color: string): string {
+      return getComputedStyle(document.body).getPropertyValue(color);
+    }
 
     function getY(value: number): number {
       y = value + 10;
@@ -103,7 +108,7 @@ export class PdfService {
 
       pdf.setFontSize(10);
       pdf.setFont(fontFamilyBold);
-      pdf.setFillColor(colors.primary);
+      pdf.setFillColor(colors.basic);
       pdf.rect(skillsPosition.x - 25, skillsPosition.y - 6, 50, 9, 'F');
 
       pdf.setTextColor(colors.white);
@@ -123,7 +128,7 @@ export class PdfService {
     }
 
     function createSection(type: SectionTypes): void {
-      pdf.setFillColor(colors.primary);
+      pdf.setFillColor(colors.basic);
       pdf.rect(section.x, getY(y - 16), section.width, 9, 'F');
 
       pdf.setFontSize(10);
@@ -184,7 +189,7 @@ export class PdfService {
 
     pdf.setFontSize(45);
     pdf.setFont(userFont);
-    pdf.setTextColor(colors.primary);
+    pdf.setTextColor(colors.basic);
     pdf.text(firstName.toUpperCase(), 100, 40);
     pdf.text(lastName.toUpperCase(), 110, 55);
 

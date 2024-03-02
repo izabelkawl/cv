@@ -1,4 +1,5 @@
-@import "./../../../assets/css/variables.scss";
+@import "./../../../assets/css/mixins";
+@import "./../../../assets/css/variables";
 
 .company {
   margin: 0 $gap-M;
@@ -12,10 +13,8 @@
     line-height: 1.5;
     padding: 0 0 $gap-M $gap-M;
   }
-}
 
-@media only screen and (min-width: $breakpoint-M) {
-  .company {
+  @include mq-min-width(medium) {
     &-tasks {
       padding-bottom: $gap-L;
     }

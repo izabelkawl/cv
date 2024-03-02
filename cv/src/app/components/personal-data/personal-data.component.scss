@@ -1,3 +1,4 @@
+@import "./../../../assets/css/mixins.scss";
 @import "./../../../assets/css/variables.scss";
 
 .content {
@@ -29,10 +30,8 @@
       font-weight: bold;
     }
   }
-}
 
-@media only screen and (min-width: $breakpoint-L) {
-  .content {
+  @include mq-min-width(large) {
     &-description {
       padding-bottom: $gap-L;
       width: 100%;

@@ -36,7 +36,8 @@
               "jspdf",
               "core-js",
               "raf",
-              "rgbcolor"
+              "rgbcolor",
+              "dompurify"
             ]
           },
           "configurations": {

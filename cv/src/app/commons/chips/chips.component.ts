@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { IChips } from './chips.interfaces';
-import * as _ from 'lodash';
+import { Colors } from 'src/shared/enums/variables';
+import { Observable, of } from 'rxjs';
+
+const { BASIC } = Colors;
 
 @Component({
   selector: 'app-chips',
@@ -15,12 +18,12 @@ export class ChipsComponent implements OnInit {
     },
     {
       name: 'green',
-      color: '#214a36',
+      color: '#89A666',
       selected: false,
     },
     {
-      name: 'beige',
-      color: '#A5A692',
+      name: 'orange',
+      color: '#F25D27',
       selected: false,
     },
   ];
@@ -34,17 +37,14 @@ export class ChipsComponent implements OnInit {
   setColor(): void {
     const chipsIndex: string | null = sessionStorage?.getItem('chipsIndex');
     const basicColor: string = getComputedStyle(document.body).getPropertyValue(
-      '--basic-color',
+      BASIC,
     );
     this.chipsOptions.forEach((option, index) => {
       option.selected = (chipsIndex ?? 0).toString() === index.toString();
       const { selected, color } = option;
 
       if (selected) {
-        document.documentElement.style.setProperty(
-          '--basic-color',
-          color ?? basicColor,
-        );
+        document.documentElement.style.setProperty(BASIC, color ?? basicColor);
       }
     });
   }
@@ -54,11 +54,11 @@ export class ChipsComponent implements OnInit {
       ...option,
       selected: index === i,
     }));
-     const prevChipsOptions = Object.assign([], this.chipsOptions);
-    this.chipsOptions = [];
-    setTimeout(() => {
-      this.chipsOptions = prevChipsOptions;
-    });
-    document.documentElement.style.setProperty('--basic-color', hex);
+    document.documentElement.style.setProperty(BASIC, hex);
+    sessionStorage?.setItem('chipsIndex', index.toString());
+  }
+
+  get options(): Observable<IChips[]> {
+    return of(this.chipsOptions);
   }
 }

@@ -7,7 +7,9 @@ import { LangService } from 'src/shared/services/lang/lang.service';
 import { IButton } from '../commons/buttons/buttons.interfaces';
 import { changeLanguage } from 'src/shared/animations/animations';
 import { LangType } from 'src/shared/services/lang/lang.interface';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -80,6 +82,7 @@ export class MainComponent implements AfterViewInit {
     const { lang } = this.langService;
 
     return this.mainService.getInfo(lang).pipe(
+      untilDestroyed(this),
       map((response: IPersonalInformation) => {
         this.data = response;
         return response;

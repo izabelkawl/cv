@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MainModule } from './main/main.module';
+import { StarsModule } from './commons/stars/stars.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,6 +14,7 @@ import { MainModule } from './main/main.module';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    StarsModule,
     MainModule,
     TranslateModule.forRoot({
       loader: {

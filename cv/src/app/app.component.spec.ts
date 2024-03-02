@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { HttpLoaderFactory } from './app.module';
+import { StarsModule } from './commons/stars/stars.module';
 
 describe('AppComponent', () => {
   beforeEach(() =>
@@ -15,6 +16,7 @@ describe('AppComponent', () => {
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
+        StarsModule,
         MainModule,
         TranslateModule.forRoot({
           loader: {
