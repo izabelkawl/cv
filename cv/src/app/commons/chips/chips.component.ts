@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { IChips } from './chips.interfaces';
-import { Colors } from 'src/shared/enums/variables';
+import { ColorHexTypes, IChips } from './chips.interfaces';
+import { Colors, SessionStorageKeys } from 'src/shared/enums/variables';
 import { Observable, of } from 'rxjs';
 
 const { BASIC } = Colors;
+const { CHIPS_INDEX } = SessionStorageKeys;
 
 @Component({
   selector: 'app-chips',
@@ -11,21 +12,9 @@ const { BASIC } = Colors;
 })
 export class ChipsComponent implements OnInit {
   chipsOptions: IChips[] = [
-    {
-      name: 'navyBlue',
-      color: '#27384c',
-      selected: true,
-    },
-    {
-      name: 'green',
-      color: '#89A666',
-      selected: false,
-    },
-    {
-      name: 'orange',
-      color: '#F25D27',
-      selected: false,
-    },
+    { name: 'navyBlue', color: '#27384c', selected: true },
+    { name: 'green', color: '#89A666', selected: false },
+    { name: 'orange', color: '#F25D27', selected: false },
   ];
 
   ngOnInit(): void {
@@ -35,27 +24,26 @@ export class ChipsComponent implements OnInit {
   }
 
   setColor(): void {
-    const chipsIndex: string | null = sessionStorage?.getItem('chipsIndex');
+    const chipsIndex: string = sessionStorage?.getItem(CHIPS_INDEX) ?? '0';
     const basicColor: string = getComputedStyle(document.body).getPropertyValue(
       BASIC,
     );
     this.chipsOptions.forEach((option, index) => {
-      option.selected = (chipsIndex ?? 0).toString() === index.toString();
+      option.selected = chipsIndex === index.toString();
       const { selected, color } = option;
 
-      if (selected) {
+      selected &&
         document.documentElement.style.setProperty(BASIC, color ?? basicColor);
-      }
     });
   }
 
-  toggleSelection(index: number, hex: string): void {
+  toggleSelection(index: number, hex: ColorHexTypes): void {
     this.chipsOptions = this.chipsOptions.map((option: IChips, i: number) => ({
       ...option,
       selected: index === i,
     }));
     document.documentElement.style.setProperty(BASIC, hex);
-    sessionStorage?.setItem('chipsIndex', index.toString());
+    sessionStorage?.setItem(CHIPS_INDEX, index.toString());
   }
 
   get options(): Observable<IChips[]> {

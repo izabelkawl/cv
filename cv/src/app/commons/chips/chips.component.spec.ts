@@ -4,6 +4,7 @@ import { ChipsComponent } from './chips.component';
 import { MaterialModule } from 'src/shared/modules/material.module';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { IChips } from './chips.interfaces';
 
 describe('ChipsComponent', () => {
   let component: ChipsComponent;
@@ -21,5 +22,25 @@ describe('ChipsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should change selected chips with index 2', () => {
+    const expected: IChips[] = [
+      { name: 'navyBlue', color: '#27384c', selected: false },
+      { name: 'green', color: '#89A666', selected: false },
+      { name: 'orange', color: '#F25D27', selected: true },
+    ];
+    fixture.componentInstance.toggleSelection(2, '#F25D27');
+    const result = fixture.componentInstance.chipsOptions;
+
+    expect(result).toEqual(expected);
+  });
+
+  it('should change session storage value chipsIndex to 2', () => {
+    const expectedIndex = 2;
+    fixture.componentInstance.toggleSelection(expectedIndex, '#F25D27');
+    const result = Number(sessionStorage.getItem('chipsIndex'));
+
+    expect(expectedIndex).toEqual(result);
   });
 });

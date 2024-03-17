@@ -4,3 +4,8 @@ export enum Colors {
   WHITE = '--white',
   BLACK = '--black',
 }
+
+export enum SessionStorageKeys {
+  CHIPS_INDEX = 'sessionStorage',
+  LANG = 'lang',
+}

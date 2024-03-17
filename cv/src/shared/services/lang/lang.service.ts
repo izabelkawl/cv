@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LangType } from './lang.interface';
+import { SessionStorageKeys } from 'src/shared/enums/variables';
+
+const { LANG } = SessionStorageKeys;
 
 @Injectable({
   providedIn: 'root',
@@ -18,13 +21,13 @@ export class LangService {
     this.translate.setDefaultLang(this.selectedLang);
 
     try {
-      sessionStorage?.setItem('lang', this.selectedLang);
+      sessionStorage?.setItem(LANG, this.selectedLang);
     } catch (e) {}
   }
 
   get lang(): LangType {
     try {
-      return (sessionStorage?.getItem('lang') ?? 'pl') as LangType;
+      return (sessionStorage?.getItem(LANG) ?? 'pl') as LangType;
     } catch (e) {
       return this.selectedLang ?? 'pl';
     }
