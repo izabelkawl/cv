@@ -14,7 +14,7 @@ export class ChipsComponent implements OnInit {
   chipsOptions: IChips[] = [
     { name: 'navyBlue', color: '#27384c', selected: true },
     { name: 'green', color: '#89A666', selected: false },
-    { name: 'orange', color: '#F25D27', selected: false },
+    { name: 'red', color: '#F2055C', selected: false },
   ];
 
   ngOnInit(): void {

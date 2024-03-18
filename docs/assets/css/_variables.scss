@@ -1,22 +1,25 @@
 @import "./mixins";
 
+// font
 $fontSizeS: var(--font-size-S);
 $fontSizeM: var(--font-size-M);
 $fontSizeL: var(--font-size-L);
 
 $letterSpacing: 0.5px;
 
-$SansFamily: "Archivo ExtraCondensed Black", Arial;
-$Impact: "Impact", Arial;
+$CommonFontFamily: 'Roboto', Arial;
+$Caveat: "Caveat", Arial;
 
+// colors
+$white-color: var(--white);
 $basic-color: var(--basic-color);
 $light-gray-color: var(--light-gray);
-$dark-gray-color: var(--dark-gray);
 $dark-blue-color: var(--dark-blue);
-$light-blue-color: var(--light-blue);
-$white-color: var(--white);
+$orange-color: var(--orange);
+$blue-color: var(--blue);
 $black-color: var(--black);
 
+// shadow
 $shadow-color: rgba(66, 68, 90, 1);
 
 $gap-S: var(--gap-S);
@@ -27,9 +30,10 @@ $gap-L: var(--gap-L);
   --white: #ffffff;
   --basic-color: #27384c;
   --light-gray: #f0f2f4;
-  --dark-gray: #424242;
   --dark-blue: #020024;
   --light-blue: #00d4ff;
+  --orange: #FFC897;
+  --blue: #1b318a;
   --black: #000000;
 
   --font-size-S: 12px;

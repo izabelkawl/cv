@@ -6,11 +6,13 @@
 
   &-position,
   &-name {
+    color: $blue-color;
     font-weight: bold;
   }
 
   &-tasks {
     line-height: 1.5;
+    color: $blue-color !important;
     padding: 0 0 $gap-M $gap-M;
   }
 

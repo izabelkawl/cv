@@ -1,5 +1,5 @@
 @for (button of buttonsConfig; track $index) {
-  <div [class]="button.basicColor ? 'basicColor' : ''">
+  <div [ngClass]="[button.basicColor ? 'basicColor' : '', 'buttonCLass']">
     @switch (button.type) {
       @case ("mat-raised-button") {
         <button
@@ -13,7 +13,6 @@
       }
       @default {
         <button
-          class="button"
           mat-button
           [class]="button.className"
           [style.backgroundColor]="button.color"

@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ChipsComponent } from './chips.component';
 import { MaterialModule } from 'src/shared/modules/material.module';
 import { CommonModule } from '@angular/common';
@@ -28,9 +27,9 @@ describe('ChipsComponent', () => {
     const expected: IChips[] = [
       { name: 'navyBlue', color: '#27384c', selected: false },
       { name: 'green', color: '#89A666', selected: false },
-      { name: 'orange', color: '#F25D27', selected: true },
+      { name: 'red', color: '#F2055C', selected: true },
     ];
-    fixture.componentInstance.toggleSelection(2, '#F25D27');
+    fixture.componentInstance.toggleSelection(2, '#F2055C');
     const result = fixture.componentInstance.chipsOptions;
 
     expect(result).toEqual(expected);
@@ -38,7 +37,7 @@ describe('ChipsComponent', () => {
 
   it('should change session storage value chipsIndex to 2', () => {
     const expectedIndex = 2;
-    fixture.componentInstance.toggleSelection(expectedIndex, '#F25D27');
+    fixture.componentInstance.toggleSelection(expectedIndex, '#F2055C');
     const result = Number(sessionStorage.getItem('chipsIndex'));
 
     expect(expectedIndex).toEqual(result);

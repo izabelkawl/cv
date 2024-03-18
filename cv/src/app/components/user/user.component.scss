@@ -22,7 +22,7 @@
 
     &--firstName,
     &--lastName {
-      font-family: $Impact;
+      font-family: $Caveat;
       font-size: $fontSizeL;
       font-weight: 500;
       color: $basic-color;
@@ -35,9 +35,9 @@
 
     &--position {
       font-size: calc($fontSizeM * 1.5);
-      color: $dark-gray-color;
       font-weight: 900;
       padding-left: calc($gap-L * 3);
+      color: $blue-color;
     }
   }
 
@@ -60,11 +60,6 @@
     }
   }
   @include mq-min-width(large) {
-    &-image {
-      width: 300px;
-      height: 300px;
-    }
-
     &-name {
       &--firstName,
       &--lastName {

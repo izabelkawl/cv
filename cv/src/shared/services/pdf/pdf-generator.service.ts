@@ -10,7 +10,7 @@ import {
 } from 'src/app/main/main.interface';
 import { Colors } from 'src/shared/enums/variables';
 
-const { BASIC, GRAY, WHITE, BLACK } = Colors;
+const { BASIC, GRAY, WHITE, BLACK, ORANGE, BLUE } = Colors;
 
 @Injectable({
   providedIn: 'root',
@@ -33,11 +33,13 @@ export class PdfService {
       white: getDocumentColor(WHITE),
       gray: getDocumentColor(GRAY),
       basic: getDocumentColor(BASIC),
+      blue: getDocumentColor(BLUE),
+      orange: getDocumentColor(ORANGE),
     };
 
-    const userFont: string = 'Impact';
-    const fontFamily: string = 'OpenSans';
-    const fontFamilyBold: string = 'OpenSans-Bold';
+    const userFont: string = 'Caveat-Bold';
+    const fontFamily: string = 'Roboto-Light';
+    const fontFamilyBold: string = 'Roboto-Bold';
 
     pdf.addFileToVFS(`assets/font/${userFont}.ttf`, `${userFont}.ttf`);
     pdf.addFont(`./assets/font/${userFont}.ttf`, userFont, 'normal');
@@ -77,24 +79,25 @@ export class PdfService {
     }
 
     function getInfo(name: InfoKeys): void {
+      pdf.setTextColor(colors.blue);
       pdf.setFont(fontFamilyBold);
       pdf.text(data.info[name], infoPosition.x, infoPosition.y, {
         align: 'center',
       });
-      infoPosition.y += 5;
+      infoPosition.y += 7;
     }
 
     function createAboutMeSection(): void {
       pdf.setFontSize(12);
       pdf.setFont(fontFamilyBold);
-      pdf.setTextColor(colors.black);
+      pdf.setTextColor(colors.blue);
       y = contentPosition.y;
       pdf.text(getTranslation('personalData.aboutMe'), x, y, {
         align: 'center',
       });
       pdf.setFontSize(8);
-      pdf.setTextColor(colors.black);
       pdf.setFont(fontFamily);
+      pdf.setTextColor(colors.black);
       pdf.text(description, x, getY(y), {
         maxWidth: 50,
         align: 'center',
@@ -111,19 +114,19 @@ export class PdfService {
       pdf.setFillColor(colors.basic);
       pdf.rect(skillsPosition.x - 25, skillsPosition.y - 6, 50, 9, 'F');
 
-      pdf.setTextColor(colors.white);
+      pdf.setTextColor(colors.orange);
       pdf.text(
         getTranslation('sections.skills').toUpperCase(),
         skillsPosition.x,
         skillsPosition.y,
         { align: 'center' },
       );
-      pdf.setTextColor(colors.black);
+      pdf.setTextColor(colors.blue);
       skillsPosition.y += 10;
       skills.forEach(({ name }) => {
         pdf.setFontSize(8);
         pdf.text(name, skillsPosition.x, skillsPosition.y, { align: 'center' });
-        skillsPosition.y += 5;
+        skillsPosition.y += 7;
       });
     }
 
@@ -133,7 +136,7 @@ export class PdfService {
 
       pdf.setFontSize(10);
       pdf.setFont(fontFamilyBold);
-      pdf.setTextColor(colors.white);
+      pdf.setTextColor(colors.orange);
       pdf.text(
         getTranslation(`sections.${type}`).toUpperCase(),
         section.x + 50,
@@ -147,12 +150,13 @@ export class PdfService {
 
         pdf.setFont(fontFamilyBold);
         pdf.setFontSize(10);
-        pdf.setTextColor(colors.black);
+        pdf.setTextColor(colors.blue);
         pdf.text(title, sectionX, getY(y + 2));
 
         pdf.setFontSize(10);
         pdf.text(company, sectionX, getY(y - 3));
 
+        pdf.setTextColor(colors.black);
         if (description) {
           const dot = '\u2022';
 
@@ -190,11 +194,11 @@ export class PdfService {
     pdf.setFontSize(45);
     pdf.setFont(userFont);
     pdf.setTextColor(colors.basic);
-    pdf.text(firstName.toUpperCase(), 100, 40);
-    pdf.text(lastName.toUpperCase(), 110, 55);
+    pdf.text(firstName, 100, 40);
+    pdf.text(lastName, 110, 55);
 
     pdf.setFont(fontFamilyBold);
-    pdf.setTextColor(colors.black);
+    pdf.setTextColor(colors.blue);
     pdf.setFontSize(12);
     pdf.text(position, 120, 60);
 

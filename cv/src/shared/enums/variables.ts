@@ -3,6 +3,8 @@ export enum Colors {
   GRAY = '--light-gray',
   WHITE = '--white',
   BLACK = '--black',
+  ORANGE = '--orange',
+  BLUE = '--blue',
 }
 
 export enum SessionStorageKeys {

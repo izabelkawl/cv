@@ -4,14 +4,16 @@
 $radius: $gap-M;
 
 %title {
-  background-color: $basic-color;
+  background-color:$basic-color;
   text-align: center;
   min-width: 30%;
   padding: $gap-S 0;
-  margin-bottom: $gap-M;
-  color: $white-color;
+  margin-bottom: $gap-S;
+  color: $orange-color;
   font-size: $fontSizeM;
   line-height: $fontSizeM;
+  font-weight: bold;
+  letter-spacing: 3px;
 }
 
 .main {
