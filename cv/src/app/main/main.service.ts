@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, delay, of } from 'rxjs';
 import { LangType } from 'src/shared/services/lang/lang.interface';
 import { IPersonalInformation } from './main.interface';
 import * as app_data from '../../assets/app-data/data.json';

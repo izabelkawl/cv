@@ -1,13 +1,20 @@
-import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+} from '@angular/core';
 import { IPersonalInformation, SectionTypes } from './main.interface';
 import { MainService } from './main.service';
-import { Observable, map } from 'rxjs';
+import { Observable, map, take } from 'rxjs';
 import { PdfService } from 'src/shared/services/pdf/pdf-generator.service';
 import { LangService } from 'src/shared/services/lang/lang.service';
 import { IButton } from '../commons/buttons/buttons.interfaces';
 import { changeLanguage } from 'src/shared/animations/animations';
 import { LangType } from 'src/shared/services/lang/lang.interface';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Store, select } from '@ngrx/store';
+import { AppStateInterface } from '../types/appState.interface';
+import { isLoadingSelector } from './store/selectors';
 
 @UntilDestroy()
 @Component({
@@ -17,20 +24,23 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
   animations: [changeLanguage],
 })
 export class MainComponent implements AfterViewInit {
-  color = '';
-
   data!: IPersonalInformation;
 
   buttons: IButton[] = [];
 
   languageState: LangType = this.langService.lang;
 
+  isLoading$: Observable<boolean>;
+
   constructor(
     private cdr: ChangeDetectorRef,
     private pdfService: PdfService,
     private langService: LangService,
     private mainService: MainService,
-  ) {}
+    private store: Store<AppStateInterface>,
+  ) {
+    this.isLoading$ = this.store.pipe(select(isLoadingSelector));
+  }
 
   ngAfterViewInit(): void {
     this.buttons = this.buttonConfig;
@@ -83,8 +93,11 @@ export class MainComponent implements AfterViewInit {
 
     return this.mainService.getInfo(lang).pipe(
       untilDestroyed(this),
+      take(1),
       map((response: IPersonalInformation) => {
         this.data = response;
+
+        // this.store.dispatch(InfoAction.getInfo());
         return response;
       }),
     );

@@ -1,7 +1,8 @@
 $breakpoints: (
-  small: 768px,
-  medium: 992px,
-  large: 1366px,
+  extra-small: 768px,
+  small: 992px,
+  medium: 1366px,
+  large: 1920px
 );
 
 @mixin mq-min-width($point) {

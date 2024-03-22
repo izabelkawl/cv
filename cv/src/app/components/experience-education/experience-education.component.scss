@@ -12,11 +12,10 @@
 
   &-tasks {
     line-height: 1.5;
-    color: $blue-color !important;
     padding: 0 0 $gap-M $gap-M;
   }
 
-  @include mq-min-width(medium) {
+  @include mixins.mq-min-width(small) {
     &-tasks {
       padding-bottom: $gap-L;
     }

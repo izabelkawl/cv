@@ -8,6 +8,12 @@ import { ButtonsModule } from '../commons/buttons/buttons.module';
 import { ChipsModule } from '../commons/chips/chips.module';
 import { MaterialModule } from 'src/shared/modules/material.module';
 import { IPersonalInformation } from './main.interface';
+import {
+  StoreModule,
+} from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { reducers } from './store/reducer';
+import { InfoEffects } from './store/effects';
 
 describe('MainComponent', () => {
   let component: MainComponent;
@@ -23,6 +29,8 @@ describe('MainComponent', () => {
         ComponentsModule,
         ButtonsModule,
         ChipsModule,
+        StoreModule.forFeature('info', reducers),
+        EffectsModule.forFeature([InfoEffects]),
       ],
     });
     fixture = TestBed.createComponent(MainComponent);

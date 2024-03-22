@@ -2,12 +2,12 @@ import { Component, Input } from '@angular/core';
 import { StarColor } from '../stars.enums';
 
 @Component({
-  selector: 'app-star-with-rings',
+  selector: 'app-exploding-star',
   standalone: true,
-  templateUrl: './star-with-rings.svg',
+  templateUrl: './exploding-star.svg',
 })
-export class StarWithRingsComponent {
-  @Input() color: string = StarColor.BLUE;
+export class ExplodingStarComponent {
+  @Input() color: string = StarColor.WHITE;
 
   @Input() size?: string;
 }

@@ -33,7 +33,7 @@
     }
   }
 
-  @include mq-min-width(large) {
+  @include mixins.mq-min-width(medium) {
     &-description {
       padding-bottom: $gap-L;
       width: 100%;

@@ -1,7 +1,7 @@
 @if (data) {
   <div class="skills">
     @for (skill of data; track $index) {
-        <span class="skills-name">{{ skill.name }}</span>
+      <span class="skills-name">{{ skill.name }}</span>
     } @empty {
       <ng-container *ngTemplateOutlet="noData" />
     }

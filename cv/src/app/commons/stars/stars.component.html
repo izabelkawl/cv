@@ -1,26 +1,41 @@
 <div class="stars">
   @for (item of iterate; track index; let index = $index) {
-  <div *ngIf="!item.hidden" [ngClass]="['star', index % 4 === 0 ? 'animate-star-infinite' : '']"
-    (click)="hideStar(index)" (mouseover)="addAnimaton(index)">
-    <ng-container *ngTemplateOutlet="
-            starTypes;
-            context: { iconType: item.iconType, size: item.size }
-          " />
-  </div>
-  <div *ngIf="item.hidden" [style.width]="item.size"></div>
+    <div
+      *ngIf="!item.hidden"
+      [ngClass]="['star', index % 4 === 0 ? 'animate-star-infinite' : '']"
+      (click)="hideStar(index)"
+      (mouseover)="addAnimaton(index)"
+    >
+      <ng-container
+        *ngTemplateOutlet="
+          starTypes;
+          context: {
+            iconType: item.iconType,
+            size: item.size,
+            colored: item.colored
+          }
+        "
+      />
+    </div>
+    <div *ngIf="item.hidden" [style.width]="item.size"></div>
   }
 </div>
 
-<ng-template #starTypes let-iconType="iconType" let-size="size">
+<ng-template
+  #starTypes
+  let-iconType="iconType"
+  let-size="size"
+  let-colored="colored"
+>
   @switch (iconType) {
-  @case (0) {
-  <app-star [color]="'var(--white)'" [size]="size" />
-  }
-  @case (1) {
-  <app-star-with-rings [color]="'var(--dark-blue)'" [size]="size" />
-  }
-  @default {
-  <app-star-with-tail [size]="size" />
-  }
+    @case (0) {
+      <app-star [color]="setTransparenColor(colored)" [size]="size" />
+    }
+    @case (1) {
+      <app-skinny-star [color]="setTransparenColor(colored)" [size]="size" />
+    }
+    @default {
+      <app-exploding-star [color]="setTransparenColor(colored)" [size]="size" />
+    }
   }
 </ng-template>

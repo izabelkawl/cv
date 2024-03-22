@@ -12,9 +12,9 @@ const { CHIPS_INDEX } = SessionStorageKeys;
 })
 export class ChipsComponent implements OnInit {
   chipsOptions: IChips[] = [
-    { name: 'navyBlue', color: '#27384c', selected: true },
-    { name: 'green', color: '#89A666', selected: false },
-    { name: 'red', color: '#F2055C', selected: false },
+    { name: 'navyBlue', color: '#345B89', selected: true },
+    { name: 'orange', color: '#F27405', selected: false },
+    { name: 'purple', color: '#6E52C3', selected: false },
   ];
 
   ngOnInit(): void {

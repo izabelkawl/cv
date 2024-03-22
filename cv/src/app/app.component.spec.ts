@@ -5,9 +5,17 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateModule,
+  TranslateLoader,
+  TranslateService,
+} from '@ngx-translate/core';
 import { HttpLoaderFactory } from './app.module';
 import { StarsModule } from './commons/stars/stars.module';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from './environments/environment';
 
 describe('AppComponent', () => {
   beforeEach(() =>
@@ -25,10 +33,17 @@ describe('AppComponent', () => {
             deps: [HttpClient],
           },
         }),
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot({}),
+        StoreDevtoolsModule.instrument({
+          maxAge: 25,
+          logOnly: environment.production,
+          autoPause: true,
+        }),
       ],
       declarations: [AppComponent],
-      providers: [TranslateService]
-    })
+      providers: [TranslateService],
+    }),
   );
 
   it('should create the app', () => {

@@ -4,104 +4,98 @@
 $radius: $gap-M;
 
 %title {
-  background-color:$basic-color;
-  text-align: center;
+  background-color: $basic-color;
+  color: $orange-color;
   min-width: 30%;
   padding: $gap-S 0;
   margin-bottom: $gap-S;
-  color: $orange-color;
-  font-size: $fontSizeM;
   line-height: $fontSizeM;
+  font-size: $fontSizeM;
+  text-align: center;
   font-weight: bold;
   letter-spacing: 3px;
 }
 
 .main {
   background-color: $white-color;
-  height: -webkit-max-content;
-  height: -moz-max-content;
-  height: max-content;
-  min-height: 90vh;
   min-width: 330px;
-  overflow-x: auto;
-  width: 100%;
   padding: $gap-M;
-  display: block;
   position: relative;
-  z-index: 2;
 
   &-buttons > * {
-    width: 100%;
     display: flex;
     justify-content: flex-end;
-    padding-bottom: $gap-M;
-    border-radius: $gap-M;
-    height: 48px;
+    margin-bottom: 4px;
   }
 
   .content {
+    padding: $gap-M;
+
     &-info,
     &-section {
       &--title {
         @extend %title;
       }
     }
-
-    &-section {
-      display: flex;
-      flex-direction: column;
-    }
   }
 
-  @include mq-min-width(small) {
+  @include mixins.mq-min-width(extra-small) {
     width: 85vw;
     margin: $gap-L auto;
+    padding: $gap-L;
     border-radius: $radius;
-    padding: $gap-L $gap-L;
     box-shadow: 0px 0px 22px -13px $shadow-color;
 
     .content {
       display: flex;
       flex-direction: row;
-      padding-top: $gap-M;
-      &-info {
-        width: 70%;
-        margin-right: $gap-M;
-        &--title {
-          margin: $gap-L 0;
-        }
-      }
+      margin: $gap-S;
+      padding: 0 $gap-S;
 
+      &-info {
+        width: 40%;
+      }
       &-section {
-        &--title {
-          margin-bottom: $gap-L;
-        }
-      }
-    }
-  }
-
-  @include mq-min-width(medium) {
-    width: 700px;
-    display: block;
-    .content {
-      &-info {
-        margin-right: $gap-L;
         width: 60%;
       }
-    }
-  }
-
-  @include mq-min-width(medium) {
-    width: 65vw;
-    .content {
-      width: 80%;
-      margin: 0 auto;
-      padding-top: $gap-L;
 
       &-info,
       &-section {
+        padding: $gap-S;
+
         &--title {
-          padding: 0.8rem 0;
+          margin-bottom: $gap-M;
+        }
+      }
+    }
+  }
+
+  @include mixins.mq-min-width(small) {
+    width: 75vw;
+
+    .content {
+      margin: $gap-M;
+      padding: 0 $gap-M;
+    }
+  }
+
+  @include mixins.mq-min-width(medium) {
+    width: 65vw;
+
+    .content {
+      margin: $gap-L;
+      padding: 0 $gap-L;
+    }
+  }
+
+  @include mixins.mq-min-width(large) {
+    width: 55vw;
+
+    .content {
+      &-info,
+      &-section {
+        &--title {
+          margin-bottom: $gap-L;
         }
       }
     }

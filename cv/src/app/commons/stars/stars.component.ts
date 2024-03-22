@@ -12,12 +12,14 @@ export class StarsComponent implements AfterViewInit {
 
   iterate: {
     iconType: number;
+    colored: boolean;
     size: string;
     hidden: boolean;
   }[] = new Array(180).fill(null).map(() => {
     return {
-      iconType: this.randomValue,
-      size: (this.randomValue ?? '') + '0px',
+      iconType: this.randomValue(3),
+      colored: !!this.randomValue(2),
+      size: (this.randomValue(4) ?? '') + '0px',
       hidden: false,
     };
   });
@@ -42,7 +44,11 @@ export class StarsComponent implements AfterViewInit {
     }
   }
 
-  get randomValue(): number {
-    return Math.floor(Math.random() * 4);
+  setTransparenColor(colored: boolean): string {
+    return colored ? 'var(--white)' : 'transparent';
+  }
+
+  randomValue(number: number): number {
+    return Math.floor(Math.random() * number);
   }
 }

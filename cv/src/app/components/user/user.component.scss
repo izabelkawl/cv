@@ -9,9 +9,9 @@
   &-image {
     width: 200px;
     height: 200px;
-    border: 5px dashed $light-gray-color;
+    border: 6px dashed $light-gray-color;
     border-radius: 50%;
-    padding: 0.5rem;
+    padding: $gap-S;
     margin: $gap-S;
   }
 
@@ -24,9 +24,7 @@
     &--lastName {
       font-family: $Caveat;
       font-size: $fontSizeL;
-      font-weight: 500;
       color: $basic-color;
-      padding-bottom: $gap-S;
     }
 
     &--lastName {
@@ -35,13 +33,13 @@
 
     &--position {
       font-size: calc($fontSizeM * 1.5);
-      font-weight: 900;
       padding-left: calc($gap-L * 3);
+      font-weight: bold;
       color: $blue-color;
     }
   }
 
-  @include mq-min-width(small) {
+  @include mixins.mq-min-width(extra-small) {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -53,13 +51,15 @@
 
     &-name {
       text-align: left;
+      
       &--firstName,
       &--lastName {
         padding-bottom: $gap-M;
       }
     }
   }
-  @include mq-min-width(large) {
+  
+  @include mixins.mq-min-width(medium) {
     &-name {
       &--firstName,
       &--lastName {

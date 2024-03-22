@@ -4,7 +4,7 @@
 .stars {
   display: none;
 
-  @include mq-min-width(small) {
+  @include mixins.mq-min-width(extra-small) {
     width: 100%;
     height: 100%;
     display: flex;
@@ -49,7 +49,7 @@
     animation-iteration-count: infinite;
   }
 
-  @include mq-min-width(medium) {
+  @include mixins.mq-min-width(small) {
     .stars {
       height: 150%;
     }

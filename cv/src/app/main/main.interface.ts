@@ -26,3 +26,9 @@ export interface IInfo {
 }
 
 export type InfoKeys = keyof IInfo;
+
+export interface InfoStateInterface {
+  isLoading: boolean;
+  info: IInfo | undefined;
+  error: string | null;
+}

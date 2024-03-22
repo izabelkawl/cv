@@ -4,4 +4,4 @@ export interface IChips {
   selected?: boolean;
 }
 
-export type ColorHexTypes = '#27384c' | '#89A666' | '#F2055C';
+export type ColorHexTypes = '#F27405' | '#345B89' | '#6E52C3';

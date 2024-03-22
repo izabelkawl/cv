@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StarWithTailComponent } from './star-with-tail/star-with-tail.component';
+import { ExplodingStarComponent } from './exploding-star/exploding-star.component';
 import { StarComponent } from './star/star.component';
 import { StarsComponent } from './stars.component';
-import { StarWithRingsComponent } from './star-with-rings/star-with-rings.component';
+import { SkinnyStarComponent } from './skinny-star/skinny-star.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const starsModules = [
-  StarWithTailComponent,
+  ExplodingStarComponent,
   StarComponent,
-  StarWithRingsComponent,
+  SkinnyStarComponent,
 ];
 
 @NgModule({

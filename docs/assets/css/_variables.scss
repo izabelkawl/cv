@@ -1,4 +1,4 @@
-@import "./mixins";
+@use "./mixins";
 
 // font
 $fontSizeS: var(--font-size-S);
@@ -7,7 +7,7 @@ $fontSizeL: var(--font-size-L);
 
 $letterSpacing: 0.5px;
 
-$CommonFontFamily: 'Roboto', Arial;
+$CommonFontFamily: "Roboto", Arial;
 $Caveat: "Caveat", Arial;
 
 // colors
@@ -18,40 +18,33 @@ $dark-blue-color: var(--dark-blue);
 $orange-color: var(--orange);
 $blue-color: var(--blue);
 $black-color: var(--black);
-
-// shadow
 $shadow-color: rgba(66, 68, 90, 1);
 
-$gap-S: var(--gap-S);
-$gap-M: var(--gap-M);
-$gap-L: var(--gap-L);
+$gap-S: 0.5rem;
+$gap-M: 1rem;
+$gap-L: 3rem;
 
 :root {
   --white: #ffffff;
-  --basic-color: #27384c;
+  --basic-color: #F27405;
   --light-gray: #f0f2f4;
   --dark-blue: #020024;
-  --light-blue: #00d4ff;
-  --orange: #FFC897;
+  --orange: #ffc897;
   --blue: #1b318a;
   --black: #000000;
 
   --font-size-S: 12px;
   --font-size-M: 14px;
   --font-size-L: 64px;
-
-  --gap-S: 0.5rem;
-  --gap-M: 1rem;
-  --gap-L: 3rem;
 }
 
 body {
-  @include mq-min-width(medium) {
+  @include mixins.mq-min-width(small) {
     --font-size-M: 16px;
     --font-size-L: 72px;
   }
 
-  @include mq-min-width(large) {
+  @include mixins.mq-min-width(medium) {
     --font-size-S: 14px;
     --font-size-L: 94px;
   }

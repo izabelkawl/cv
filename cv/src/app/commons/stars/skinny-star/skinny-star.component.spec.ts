@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StarWithTailComponent } from './star-with-tail.component';
+import { SkinnyStarComponent } from './skinny-star.component';
 
-describe('StarWithTailComponent', () => {
-  let component: StarWithTailComponent;
-  let fixture: ComponentFixture<StarWithTailComponent>;
+describe('SkinnyStarComponent', () => {
+  let component: SkinnyStarComponent;
+  let fixture: ComponentFixture<SkinnyStarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [StarWithTailComponent]
+      imports: [SkinnyStarComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(StarWithTailComponent);
+    fixture = TestBed.createComponent(SkinnyStarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
