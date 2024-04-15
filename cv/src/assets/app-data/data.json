@@ -8,7 +8,7 @@
       "phone": "(+48) 733 253 028",
       "email": "izabelawlazlo9@gmail.com",
       "linkedIn": "@izabelawl",
-      "description": "Cześć! Jestem programistką Angularową z 2,5 letnim stażem. Tworzenie dynamicznych interfejsów to moja specjalizacja! Mam solidne umiejętności w rozwijaniu aplikacji webowych i cały czas stawiam na doskonalenie się w najnowszych technologiach front-endowych."
+      "description": "Cześć! Jestem programistką Angularową z ponad 2 i pół letnim stażem. Tworzenie dynamicznych interfejsów to moja specjalizacja! Mam doświadczenie w tworzeniu aplikacji webowych i cały czas stawiam na doskonalenie się w najnowszych technologiach front-endowych."
     },
     "experience": [
       {
@@ -16,9 +16,10 @@
         "company": "Transition Technologies-Software",
         "description": [
           "Tworzenie i rozwijanie aplikacji w środowisku Angular od wersji 11 do 17",
-          "Opracowywanie i implementacja architektury oprogramowania, z naciskiem na efektywność, skalowalność i łatwość utrzymania",
+          "Opracowywanie i implementacja architektury oprogramowania",
+          "Dbanie o wysoką jakość kodu oraz o optymalizację wydajności",
           "Odgrywanie kluczowej roli w procesie diagnozy i naprawy błędów oprogramowania",
-          "Wykonywanie code review, z dbałością o wysoką jakość kodu i optymalizacją wydajności",
+          "Wykonywanie code review",
           "Realizacja projektów zgodnie z metodyką SCRUM"
         ]
       },
