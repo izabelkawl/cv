@@ -8,7 +8,7 @@
       "phone": "(+48) 733 253 028",
       "email": "izabelawlazlo9@gmail.com",
       "linkedIn": "@izabelawl",
-      "description": "Cześć! Jestem programistką Angularową z ponad 2 i pół letnim stażem. Tworzenie dynamicznych interfejsów to moja specjalizacja! Mam doświadczenie w tworzeniu aplikacji webowych i cały czas stawiam na doskonalenie się w najnowszych technologiach front-endowych."
+      "description": "Cześć! Jestem Iza i od 3 lat nieprzerwanie pracuje w angularze.\n Mam na swoim koncie z sukcesem ukończone 3 duże projekty.\n W pracy zawsze staram się być na bieżąco z nowoczesnymi technologiami i stosować najlepsze techniki programowania."
     },
     "experience": [
       {
@@ -34,7 +34,7 @@
       },
       {
         "title": "PRAKTYKANT (12.2020 - 01.2021)",
-        "company": "ZETO RZESZÓW",
+        "company": "ZETO-RZESZÓW",
         "description": [
           "Projektowanie, implementacja, utrzymanie funkcjonalności frontendowych opartych o Vue.js",
           "Dokonywanie naprawy błędów aplikacji"
@@ -59,7 +59,8 @@
       { "name": "Scss" },
       { "name": "Bootstrap" },
       { "name": "Git" }
-    ]
+    ],
+    "clause": "Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji (zgodnie z ustawą z dnia 10 maja 2018 roku o ochronie danych osobowych (Dz. Ustaw z 2018, poz. 1000) oraz zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (RODO)."
   },
   "en": {
     "info": {
@@ -70,7 +71,7 @@
       "phone": "(+48) 733 253 028",
       "email": "izabelawlazlo9@gmail.com",
       "linkedIn": "@izabelawl",
-      "description": "Hi! I'm an Angular programmer with 2.5 years of experience. Creating dynamic interfaces is my specialization! I have solid skills in developing web applications and constantly strive to improve in the latest front-end technologies."
+      "description": "Hi! I'm Iza, and I have been working continuously with Angular for 3 years.\n I have successfully completed 3 large projects.\n At work, I always strive to stay up-to-date with modern technologies and apply the best programming techniques."
     },
     "experience": [
       {
@@ -95,7 +96,7 @@
       },
       {
         "title": "INTERN (12.2020 - 01.2021)",
-        "company": "ZETO RZESZÓW",
+        "company": "ZETO-RZESZÓW",
         "description": [
           "Design, implementation, and maintenance of Vue.js-based frontend functionalities",
           "Application bug fixes"
@@ -120,6 +121,7 @@
       { "name": "Scss" },
       { "name": "Bootstrap" },
       { "name": "Git" }
-    ]
+    ],
+    "clause": "I consent to the processing of my personal data for the purposes necessary for the recruitment process (in accordance with the Act of May 10, 2018, on the protection of personal data (Journal of Laws of 2018, item 1000) and in accordance with Regulation (EU) 2016/679 of the European Parliament and of the Council of April 27, 2016, on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (GDPR)."
   }
 }

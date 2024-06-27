@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ColorHexTypes, IChips } from './chips.interfaces';
+import { IChips } from './chips.interfaces';
 import { Colors, SessionStorageKeys } from 'src/shared/enums/variables';
 import { Observable, of } from 'rxjs';
 
@@ -12,9 +12,9 @@ const { CHIPS_INDEX } = SessionStorageKeys;
 })
 export class ChipsComponent implements OnInit {
   chipsOptions: IChips[] = [
+    { name: 'purple', color: '#5E2D79', selected: false },
     { name: 'navyBlue', color: '#345B89', selected: true },
     { name: 'orange', color: '#F27405', selected: false },
-    { name: 'purple', color: '#6E52C3', selected: false },
   ];
 
   ngOnInit(): void {
@@ -37,7 +37,7 @@ export class ChipsComponent implements OnInit {
     });
   }
 
-  toggleSelection(index: number, hex: ColorHexTypes): void {
+  toggleSelection(index: number, hex: string): void {
     this.chipsOptions = this.chipsOptions.map((option: IChips, i: number) => ({
       ...option,
       selected: index === i,

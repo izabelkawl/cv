@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { TranslateModule } from '@ngx-translate/core';
 import { MaterialModule } from 'src/shared/modules/material.module';
 import { UserComponent } from './user.component';
-import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [UserComponent],

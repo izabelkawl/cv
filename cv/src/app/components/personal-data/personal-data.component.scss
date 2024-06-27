@@ -19,6 +19,7 @@
     text-align: center;
     width: 80%;
     font-size: $fontSizeS;
+    white-space: pre-line;
   }
 
   &-contact {
@@ -33,7 +34,8 @@
     }
   }
 
-  @include mixins.mq-min-width(medium) {
+  @include mixins.mq-min-width(extra-small) {
+    &-contact,
     &-description {
       padding-bottom: $gap-L;
       width: 100%;

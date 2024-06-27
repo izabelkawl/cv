@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { SkillsComponent } from './skills.component';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { SkillsComponent } from './skills.component';
 
 @NgModule({
   declarations: [SkillsComponent],

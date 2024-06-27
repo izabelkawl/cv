@@ -1,19 +1,19 @@
 import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
+    AfterViewInit,
+    ChangeDetectorRef,
+    Component
 } from '@angular/core';
-import { IPersonalInformation, SectionTypes } from './main.interface';
-import { MainService } from './main.service';
-import { Observable, map, take } from 'rxjs';
-import { PdfService } from 'src/shared/services/pdf/pdf-generator.service';
-import { LangService } from 'src/shared/services/lang/lang.service';
-import { IButton } from '../commons/buttons/buttons.interfaces';
-import { changeLanguage } from 'src/shared/animations/animations';
-import { LangType } from 'src/shared/services/lang/lang.interface';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store, select } from '@ngrx/store';
+import { Observable, map, take } from 'rxjs';
+import { changeLanguage } from 'src/shared/animations/animations';
+import { LangType } from 'src/shared/services/lang/lang.interface';
+import { LangService } from 'src/shared/services/lang/lang.service';
+import { PdfService } from 'src/shared/services/pdf/pdf-generator.service';
+import { IButton } from '../commons/buttons/buttons.interfaces';
 import { AppStateInterface } from '../types/appState.interface';
+import { IPersonalInformation, SectionTypes } from './main.interface';
+import { MainService } from './main.service';
 import { isLoadingSelector } from './store/selectors';
 
 @UntilDestroy()
@@ -52,7 +52,7 @@ export class MainComponent implements AfterViewInit {
   }
 
   generatePdf(): void {
-    this.pdfService.geratePdf({ ...this.data });
+    this.pdfService.generatePdf({ ...this.data }, this.languageState);
   }
 
   changeLang(): void {

@@ -39,6 +39,14 @@ $radius: $gap-M;
     }
   }
 
+  .footer {
+    font-size: calc($fontSizeS * 3 / 4);
+    text-align: justify;
+    color: darkgray;
+    line-height: 1.5;
+    padding: $gap-M;
+  }
+
   @include mixins.mq-min-width(extra-small) {
     width: 85vw;
     margin: $gap-L auto;

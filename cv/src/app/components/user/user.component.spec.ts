@@ -1,10 +1,10 @@
-import { TranslateModule } from '@ngx-translate/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
-import { UserComponent } from './user.component';
-import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
 import { MaterialModule } from 'src/shared/modules/material.module';
+import { UserComponent } from './user.component';
 
 describe('UserComponent', () => {
   let component: UserComponent;

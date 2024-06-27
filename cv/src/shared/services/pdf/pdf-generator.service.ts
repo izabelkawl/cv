@@ -9,6 +9,7 @@ import {
   SectionTypes,
 } from 'src/app/main/main.interface';
 import { Colors } from 'src/shared/enums/variables';
+import { LangType } from '../lang/lang.interface';
 
 const { BASIC, GRAY, WHITE, BLACK, ORANGE, BLUE } = Colors;
 
@@ -18,7 +19,7 @@ const { BASIC, GRAY, WHITE, BLACK, ORANGE, BLUE } = Colors;
 export class PdfService {
   constructor(private translateService: TranslateService) {}
 
-  geratePdf(data: IPersonalInformation): void {
+  generatePdf(data: IPersonalInformation, lang: LangType): void {
     const pdf = new jsPDF();
     const translateService = this.translateService;
     const {
@@ -35,7 +36,16 @@ export class PdfService {
       basic: getDocumentColor(BASIC),
       blue: getDocumentColor(BLUE),
       orange: getDocumentColor(ORANGE),
+      darkGray: 'darkgray',
     };
+
+    let y = 10;
+    let x = 50;
+    const contentPosition = { y: 72 };
+    const contactPosition = { x, y: 170 };
+    const skillsPosition = { x, y: 205 };
+    const footerPosition = { x: 105, y: 285 };
+    const section = { x: x + 35, width: 100 };
 
     const userFont: string = 'Caveat-Bold';
     const fontFamily: string = 'Roboto-Light';
@@ -57,14 +67,6 @@ export class PdfService {
       'normal',
     );
 
-    pdf.setFont(fontFamily);
-
-    let y = 20;
-    let x = 50;
-    const contentPosition = { y: 82 };
-    const infoPosition = { x, y: 150 };
-    const section = { x: x + 35, width: 100 };
-
     function getDocumentColor(color: string): string {
       return getComputedStyle(document.body).getPropertyValue(color);
     }
@@ -81,10 +83,10 @@ export class PdfService {
     function getInfo(name: InfoKeys): void {
       pdf.setTextColor(colors.blue);
       pdf.setFont(fontFamilyBold);
-      pdf.text(data.info[name], infoPosition.x, infoPosition.y, {
+      pdf.text(data.info[name], contactPosition.x, contactPosition.y, {
         align: 'center',
       });
-      infoPosition.y += 7;
+      contactPosition.y += 7;
     }
 
     function createAboutMeSection(): void {
@@ -95,7 +97,7 @@ export class PdfService {
       pdf.text(getTranslation('personalData.aboutMe'), x, y, {
         align: 'center',
       });
-      pdf.setFontSize(8);
+      pdf.setFontSize(10);
       pdf.setFont(fontFamily);
       pdf.setTextColor(colors.black);
       pdf.text(description, x, getY(y), {
@@ -106,9 +108,6 @@ export class PdfService {
     }
 
     function createSkillSection(): void {
-      const { skills } = data;
-      const skillsPosition = { x, y: 190 };
-
       pdf.setFontSize(10);
       pdf.setFont(fontFamilyBold);
       pdf.setFillColor(colors.basic);
@@ -123,8 +122,8 @@ export class PdfService {
       );
       pdf.setTextColor(colors.blue);
       skillsPosition.y += 10;
-      skills.forEach(({ name }) => {
-        pdf.setFontSize(8);
+      data.skills.forEach(({ name }) => {
+        pdf.setFontSize(10);
         pdf.text(name, skillsPosition.x, skillsPosition.y, { align: 'center' });
         skillsPosition.y += 7;
       });
@@ -143,31 +142,28 @@ export class PdfService {
         getY(y - 4),
         { align: 'center', maxWidth: section.width },
       );
-
-      data[type].map((item: IExperienceEducation & ISkill) => {
+      data[type].map((item: IExperienceEducation & ISkill, index: number) => {
         const { title, company, description } = item;
         const sectionX = section.x + 5;
 
         pdf.setFont(fontFamilyBold);
         pdf.setFontSize(10);
         pdf.setTextColor(colors.blue);
-        pdf.text(title, sectionX, getY(y + 2));
+        pdf.text(title, sectionX, getY(y + 3));
 
         pdf.setFontSize(10);
-        pdf.text(company, sectionX, getY(y - 3));
+        pdf.text(company, sectionX, getY(y - 5));
 
         pdf.setTextColor(colors.black);
         if (description) {
           const dot = '\u2022';
-
           pdf.setFontSize(9);
-
           description.forEach((desc: string, i: number) => {
             if (i) {
               const { length } = description[i - 1];
-              getY(length < 60 ? y - 5 : length > 100 ? y + 3 : y);
+              getY(length < 60 ? y - 5 : y);
             } else {
-              getY(y);
+              getY(y - 2);
             }
 
             pdf.setFont(fontFamilyBold);
@@ -176,44 +172,58 @@ export class PdfService {
             pdf.setFont(fontFamily);
             pdf.text(desc, sectionX + 3, y, {
               maxWidth: section.width - 10,
-              lineHeightFactor: 1.2,
+              lineHeightFactor: 1.6,
             });
           });
+          if (index === data[type].length - 2) {
+            getY(y - 5);
+          }
         }
       });
-      y += 10;
+      getY(y + 5);
     }
 
-    pdf.addImage(avatar, 'JPEG', 50, getY(y) - 5, 40, 40);
+    // avatar
+    pdf.addImage(avatar, 'JPEG', 50, getY(y) - 5, 40, 40, '', 'FAST');
 
     pdf.setLineDashPattern([2, 1], 0);
     pdf.setLineWidth(1.5);
     pdf.setDrawColor(colors.gray);
     pdf.circle(70, getY(y) + 5, 23);
 
+    // user-name
     pdf.setFontSize(45);
     pdf.setFont(userFont);
     pdf.setTextColor(colors.basic);
-    pdf.text(firstName, 100, 40);
-    pdf.text(lastName, 110, 55);
+    pdf.text(firstName, 100, 30);
+    pdf.text(lastName, 110, 45);
 
     pdf.setFont(fontFamilyBold);
     pdf.setTextColor(colors.blue);
     pdf.setFontSize(12);
-    pdf.text(position, 120, 60);
+    pdf.text(position, 120, 55);
 
-    pdf.setFontSize(10);
-
+    // about-me
     createAboutMeSection();
     getInfo('phone');
     getInfo('email');
     getInfo('linkedIn');
     createSkillSection();
 
+    // content
     y = contentPosition.y;
     createSection('experience');
     createSection('education');
 
-    pdf.save(`${firstName} ${lastName} CV.pdf`);
+    // footer
+    pdf.setFontSize(6);
+    pdf.setTextColor(colors.darkGray);
+    pdf.text(data.clause, footerPosition.x, footerPosition.y, {
+      maxWidth: 180,
+      align: 'center',
+      lineHeightFactor: 1.5,
+    });
+
+    pdf.save(`${firstName} ${lastName} CV ${lang.toUpperCase()}.pdf`);
   }
 }

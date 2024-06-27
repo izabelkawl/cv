@@ -5,6 +5,7 @@ export interface IPersonalInformation {
   experience: IExperienceEducation[];
   education: IExperienceEducation[];
   skills: ISkill[];
+  clause: string;
   [name: string]: any;
 }
 

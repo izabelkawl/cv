@@ -19,6 +19,7 @@
         </h1>
         <app-skills [data]="personalInfoData.skills" />
       </div>
+
       <div class="content-section">
         @for (key of sectionKeys(personalInfoData); track $index) {
           <div [@changeLanguage]="languageState">
@@ -40,6 +41,9 @@
           <b>{{ "noData" | translate }}</b>
         }
       </div>
+    </div>
+    <div class="footer">
+      {{ personalInfoData.clause }}
     </div>
   </div>
 }

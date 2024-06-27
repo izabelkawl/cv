@@ -1,10 +1,10 @@
-import { TranslateModule } from '@ngx-translate/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
-import { PersonalDataComponent } from './personal-data.component';
-import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
 import { MaterialModule } from 'src/shared/modules/material.module';
+import { PersonalDataComponent } from './personal-data.component';
 import { PhonePipe } from './phone.pipe';
 
 describe('PersonalDataComponent', () => {

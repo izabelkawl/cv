@@ -1,10 +1,11 @@
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { IButton } from './buttons.interfaces';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-buttons',
   templateUrl: './buttons.component.html',
   styleUrl: './buttons.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonsComponent {
   @Input() buttonsConfig!: IButton[];
