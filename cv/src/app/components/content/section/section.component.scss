@@ -1,0 +1,29 @@
+@use "../../../../assets/css/mixins";
+@import "../../../../assets/css/variables";
+
+.section {
+  margin: 0 1rem;
+
+  .centered {
+    display: flex;
+    justify-content: center;
+  }
+
+  &-title,
+  &-subTitle {
+    color: $blue-color;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+
+  &-description {
+    line-height: 1.8;
+    padding: 0 0 1rem 1rem;
+  }
+
+  @include mixins.mq-min-width(small) {
+    &-description {
+      padding-bottom: 2rem;
+    }
+  }
+}

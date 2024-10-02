@@ -1,11 +1,5 @@
 @import "./../../../assets/css/variables";
 
-.buttonCLass {
-  .mdc-button__label {
-    color: red !important;
-  }
-}
-
-.basicColor .mat-mdc-raised-button:not(:disabled) {
+.basicColor:not(:disabled) {
   background-color: $basic-color;
 }

@@ -1,20 +1,26 @@
+import { AsyncPipe, NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { IChips } from './chips.interfaces';
-import { Colors, SessionStorageKeys } from 'src/shared/enums/variables';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { Colors, SessionStorageKeys } from '@app/shared/enums/variables';
+import { TranslateModule } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
-
-const { BASIC } = Colors;
-const { CHIPS_INDEX } = SessionStorageKeys;
 
 @Component({
   selector: 'app-chips',
   templateUrl: './chips.component.html',
+  standalone: true,
+  imports: [TranslateModule, AsyncPipe, NgFor, MatChipsModule, MatIconModule, 
+    MatFormFieldModule,
+    MatInputModule,],
 })
 export class ChipsComponent implements OnInit {
-  chipsOptions: IChips[] = [
-    { name: 'purple', color: '#5E2D79', selected: false },
-    { name: 'navyBlue', color: '#345B89', selected: true },
-    { name: 'orange', color: '#F27405', selected: false },
+  private chipsOptions: IChips[] = [
+    { name: 'navyBlue', color: '#345B89', selected: false },
+    { name: 'orange', color: '#FF7272', selected: false },
+    { name: 'purple', color: '#ff1abf', selected: false },
   ];
 
   ngOnInit(): void {
@@ -23,30 +29,40 @@ export class ChipsComponent implements OnInit {
     } catch (e) {}
   }
 
-  setColor(): void {
-    const chipsIndex: string = sessionStorage?.getItem(CHIPS_INDEX) ?? '0';
+  private setColor(): void {
+    const chipsIndex: string =
+      sessionStorage?.getItem(SessionStorageKeys.CHIPS_INDEX) ?? '0';
     const basicColor: string = getComputedStyle(document.body).getPropertyValue(
-      BASIC,
+      Colors.BASIC,
     );
     this.chipsOptions.forEach((option, index) => {
       option.selected = chipsIndex === index.toString();
       const { selected, color } = option;
 
       selected &&
-        document.documentElement.style.setProperty(BASIC, color ?? basicColor);
+        document.documentElement.style.setProperty(
+          Colors.BASIC,
+          color ?? basicColor,
+        );
     });
   }
 
-  toggleSelection(index: number, hex: string): void {
+  public toggleSelection(index: number, hex: string): void {
     this.chipsOptions = this.chipsOptions.map((option: IChips, i: number) => ({
       ...option,
       selected: index === i,
     }));
-    document.documentElement.style.setProperty(BASIC, hex);
-    sessionStorage?.setItem(CHIPS_INDEX, index.toString());
+    document.documentElement.style.setProperty(Colors.BASIC, hex);
+    sessionStorage?.setItem(SessionStorageKeys.CHIPS_INDEX, index.toString());
   }
 
-  get options(): Observable<IChips[]> {
+  public get options(): Observable<IChips[]> {
     return of(this.chipsOptions);
   }
+}
+
+interface IChips {
+  name: string;
+  color: string;
+  selected?: boolean;
 }

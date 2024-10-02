@@ -1,0 +1,27 @@
+<div class="section">
+  @for (item of data; track $index) {
+    <div [ngClass]="{ centered: !item.subTitle }">
+      <h3 class="section-title">{{ item.title }}</h3>
+    </div>
+
+    @if (item.subTitle) {
+      <h4 class="section-subTitle">{{ item.subTitle }}</h4>
+    }
+    
+    @if (item.period) {
+      <h4 class="section-subTitle">{{ item.period }}</h4>
+    }
+
+    @if (item?.description?.length) {
+      <ul class="section-description">
+        @for (task of item?.description; track $index) {
+          <li>{{ task }}</li>
+        } @empty {
+          <b>{{ "noData" | translate }}</b>
+        }
+      </ul>
+    }
+  } @empty {
+    <b>{{ "noData" | translate }}</b>
+  }
+</div>

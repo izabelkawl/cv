@@ -1,7 +1,7 @@
 <svg
-  [attr.width]="size"
-  [attr.height]="size"
-  [attr.fill]="color"
+  [attr.width]="config.size"
+  [attr.height]="config.size"
+  [attr.fill]="config.color"
   version="1.1"
   id="Capa_1"
   xmlns="http://www.w3.org/2000/svg"

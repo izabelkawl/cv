@@ -1,0 +1,44 @@
+@use "../../../../assets/css/mixins";
+@import "../../../../assets/css/variables";
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 1rem;
+  line-height: 2;
+
+  &-title {
+    color: $blue-color;
+    font-size: calc($fontSizeM * 1.5);
+    font-weight: bold;
+    letter-spacing: 3px;
+  }
+
+  &-description {
+    text-align: center;
+    width: 80%;
+    font-size: $fontSizeS;
+    white-space: pre-line;
+  }
+
+  &-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &--link {
+      color: $blue-color;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  }
+
+  @include mixins.mq-min-width(extra-small) {
+    &-contact,
+    &-description {
+      padding-bottom: 2rem;
+      width: 100%;
+    }
+  }
+}

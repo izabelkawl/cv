@@ -7,7 +7,5 @@ import { StarColor } from '../stars.enums';
   templateUrl: './exploding-star.svg',
 })
 export class ExplodingStarComponent {
-  @Input() color: string = StarColor.WHITE;
-
-  @Input() size?: string;
+  @Input() config: { color: string; size? : string } = { color: StarColor.WHITE }
 }

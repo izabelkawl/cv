@@ -7,7 +7,5 @@ import { StarColor } from '../stars.enums';
   templateUrl: './skinny-star.svg',
 })
 export class SkinnyStarComponent {
-  @Input() color: string = StarColor.WHITE;
-
-  @Input() size?: string;
+  @Input() config: { color: string; size? : string } = { color: StarColor.WHITE }
 }

@@ -1,18 +1,28 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { IButton } from './buttons.interfaces';
+import { NgClass, NgFor } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-buttons',
   templateUrl: './buttons.component.html',
   styleUrl: './buttons.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  standalone: true,
+  imports: [NgClass, NgFor, MatButtonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonsComponent {
   @Input() buttonsConfig!: IButton[];
 
   @Output() clickEvent: EventEmitter<string> = new EventEmitter<string>();
 
-  onClick(id?: string) {
+  public onClick(id?: string) {
     this.clickEvent.emit(id);
   }
 }

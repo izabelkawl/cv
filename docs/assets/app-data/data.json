@@ -3,48 +3,43 @@
     "info": {
       "firstName": "Izabela",
       "lastName": "Wlazło",
-      "position": "Angular Developer",
+      "position": "Front-end Developer",
       "avatar": "assets/img/avatar.png",
       "phone": "(+48) 733 253 028",
       "email": "izabelawlazlo9@gmail.com",
       "linkedIn": "@izabelawl",
-      "description": "Cześć! Jestem Iza i od 3 lat nieprzerwanie pracuje w angularze.\n Mam na swoim koncie z sukcesem ukończone 3 duże projekty.\n W pracy zawsze staram się być na bieżąco z nowoczesnymi technologiami i stosować najlepsze techniki programowania."
+      "description": "Cześć! Jestem Iza i od 3 lat pracuje\nw angularze. Mam na swoim koncie z sukcesem ukończone 3 duże projekty.\nW pracy zawsze staram się być na bieżąco z nowoczesnymi technologiami i stosować najlepsze techniki programowania."
     },
     "experience": [
       {
-        "title": "ANGULAR FRONTEND DEVELOPER (10.2021 - OBECNIE)",
-        "company": "Transition Technologies-Software",
+        "title": "PROGRAMISTA",
+        "subTitle": "Transition Technologies-Software",
+        "period": "10.2021 - 09.2024",
         "description": [
-          "Tworzenie i rozwijanie aplikacji w środowisku Angular od wersji 11 do 17",
+          "Tworzenie i rozwijanie aplikacji w Angularze (v.11-17)",
           "Opracowywanie i implementacja architektury oprogramowania",
           "Dbanie o wysoką jakość kodu oraz o optymalizację wydajności",
-          "Odgrywanie kluczowej roli w procesie diagnozy i naprawy błędów oprogramowania",
+          "Diagnoza i naprawa błędów",
           "Wykonywanie code review",
           "Realizacja projektów zgodnie z metodyką SCRUM"
         ]
       },
       {
-        "title": "PRAKTYKANT (07-09.2021)",
-        "company": "Transition Technologies-Software",
+        "title": "PRAKTYKANT",
+        "subTitle": "Transition Technologies-Software",
+        "period": "07-09.2021",
         "description": [
           "Projektowanie, implementacja, utrzymanie funkcjonalności frontendowych opartych o Angular",
           "Dokonywanie naprawy błędów aplikacji",
           "Praca z zespołem programistycznym z wykorzystaniem metodyki SCRUM"
         ]
-      },
-      {
-        "title": "PRAKTYKANT (12.2020 - 01.2021)",
-        "company": "ZETO-RZESZÓW",
-        "description": [
-          "Projektowanie, implementacja, utrzymanie funkcjonalności frontendowych opartych o Vue.js",
-          "Dokonywanie naprawy błędów aplikacji"
-        ]
       }
     ],
     "education": [
       {
-        "title": "INFORMATYKA I EKONOMETRIA (2017- 2021)",
-        "company": "Uniwersytet Rzeszowski",
+        "title": "INFORMATYKA I EKONOMETRIA",
+        "subTitle": "Uniwersytet Rzeszowski",
+        "period": "2017- 2021",
         "description": [
           "Specjalizacja: Systemy informatyczne w zarządzaniu",
           "Uzyskany tytuł: Inżynier"
@@ -52,61 +47,57 @@
       }
     ],
     "skills": [
-      { "name": "Angular" },
-      { "name": "TypeScript" },
-      { "name": "JavaScript" },
-      { "name": "html5/css3" },
-      { "name": "Scss" },
-      { "name": "Bootstrap" },
-      { "name": "Git" }
+      { "title": "Angular" },
+      { "title": "TypeScript" },
+      { "title": "JavaScript" },
+      { "title": "html5/css3" },
+      { "title": "Scss" },
+      { "title": "Bootstrap" },
+      { "title": "Git" }
     ],
+    "languages": [{ "title": "Polski" }, { "title": "Angielski (B1/B2)" }],
     "clause": "Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji (zgodnie z ustawą z dnia 10 maja 2018 roku o ochronie danych osobowych (Dz. Ustaw z 2018, poz. 1000) oraz zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (RODO)."
   },
   "en": {
     "info": {
       "firstName": "Izabela",
       "lastName": "Wlazło",
-      "position": "Angular Developer",
+      "position": "Front-end Developer",
       "avatar": "assets/img/avatar.png",
       "phone": "(+48) 733 253 028",
       "email": "izabelawlazlo9@gmail.com",
       "linkedIn": "@izabelawl",
-      "description": "Hi! I'm Iza, and I have been working continuously with Angular for 3 years.\n I have successfully completed 3 large projects.\n At work, I always strive to stay up-to-date with modern technologies and apply the best programming techniques."
+      "description": "I'm Iza, and I've been working with Angular\nfor 3 years now. I have successfully completed 3 major projects during this time.\nAt work, I always strive to stay upto-date with nmodern technologies and apply the best programming practices."
     },
     "experience": [
       {
-        "title": "ANGULAR FRONTEND DEVELOPER (10.2021 - CURRENTLY)",
-        "company": "Transition Technologies-Software",
+        "title": "PROGRAMMER",
+        "subTitle": "Transition Technologies-Software",
+        "period": "10.2021 - 09.2024",
         "description": [
-          "Creating and developing applications in the Angular environment from version 11 to 17",
-          "Designing and implementing software architecture, with a focus on efficiency, scalability, and ease of maintenance",
-          "Playing a key role in the process of diagnosing and fixing software errors",
-          "Conducting code reviews with a focus on high code quality and performance optimization",
-          "Executing projects in accordance with the SCRUM methodology"
+          "Developed applications in the Angular environment (v.11-17)",
+          "Designed and implemented software architecture",
+          "Diagnosed and resolved software errors",
+          "Conducted code reviews",
+          "Executed projects following SCRUM methodology"
         ]
       },
       {
-        "title": "INTERN (07-09.2021)",
-        "company": "Transition Technologies-Software",
+        "title": "INTERN",
+        "subTitle": "Transition Technologies-Software",
+        "period": "07-09.2021",
         "description": [
           "Design, implementation, and maintenance of Angular-based frontend functionalities",
           "Application bug fixes",
           "Collaboration with a development team using SCRUM methodology"
         ]
-      },
-      {
-        "title": "INTERN (12.2020 - 01.2021)",
-        "company": "ZETO-RZESZÓW",
-        "description": [
-          "Design, implementation, and maintenance of Vue.js-based frontend functionalities",
-          "Application bug fixes"
-        ]
       }
     ],
     "education": [
       {
-        "title": "COMPUTER SCIENCE AND ECONOMETRICS (2017- 2021)",
-        "company": "University of Rzeszów",
+        "title": "COMPUTER SCIENCE AND ECONOMETRICS",
+        "subTitle": "University of Rzeszów",
+        "period": "2017- 2021",
         "description": [
           "Specialization: Information Systems in Management",
           "Degree obtained: Engineer"
@@ -114,14 +105,15 @@
       }
     ],
     "skills": [
-      { "name": "Angular" },
-      { "name": "TypeScript" },
-      { "name": "JavaScript" },
-      { "name": "html5/css3" },
-      { "name": "Scss" },
-      { "name": "Bootstrap" },
-      { "name": "Git" }
+      { "title": "Angular" },
+      { "title": "TypeScript" },
+      { "title": "JavaScript" },
+      { "title": "html5/css3" },
+      { "title": "Scss" },
+      { "title": "Bootstrap" },
+      { "title": "Git" }
     ],
+    "languages": [{ "title": "Polish" }, { "title": "English (B1/B2)" }],
     "clause": "I consent to the processing of my personal data for the purposes necessary for the recruitment process (in accordance with the Act of May 10, 2018, on the protection of personal data (Journal of Laws of 2018, item 1000) and in accordance with Regulation (EU) 2016/679 of the European Parliament and of the Council of April 27, 2016, on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (GDPR)."
   }
 }

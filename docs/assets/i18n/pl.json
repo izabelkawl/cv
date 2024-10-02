@@ -13,10 +13,11 @@
   "sections": {
     "experience": "Doświadczenie",
     "education": "Wykształcenie",
-    "skills": "Umiejętności"
+    "skills": "Umiejętności",
+    "languages": "Języki"
   },
   "personalData": {
-    "aboutMe": "O mnie"
+    "profile": "Profil"
   },
   "noData": "Brak danych"
 }

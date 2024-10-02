@@ -1,16 +1,27 @@
-import { AfterViewInit, Component, Input } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
+import { ExplodingStarComponent } from './exploding-star/exploding-star.component';
+import { StarComponent } from './star/star.component';
+import { SkinnyStarComponent } from './skinny-star/skinny-star.component';
+import { NgClass, NgIf, NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-stars',
   templateUrl: './stars.component.html',
   styleUrl: './stars.component.scss',
+  standalone: true,
+  imports: [
+    ExplodingStarComponent,
+    StarComponent,
+    SkinnyStarComponent,
+    NgClass,
+    NgIf,
+    NgTemplateOutlet,
+  ],
 })
 export class StarsComponent implements AfterViewInit {
-  @Input() config?: any[];
+  #stars?: NodeListOf<Element>;
 
-  array?: NodeListOf<Element>;
-
-  iterate: {
+  public iterate: {
     iconType: number;
     colored: boolean;
     size: string;
@@ -25,30 +36,30 @@ export class StarsComponent implements AfterViewInit {
   });
 
   ngAfterViewInit(): void {
-    this.array = document.querySelectorAll('.star');
-    this.array.forEach((item: any) => {
+    this.#stars = document.querySelectorAll('.star');
+    this.#stars.forEach((item: any) => {
       item.onanimationend = () => {
         item.classList.remove('animate-star');
       };
     });
   }
 
-  hideStar(index: number): void {
+  public hideStar(index: number): void {
     this.iterate[index].hidden = true;
   }
 
-  addAnimaton(index: number) {
-    if (this.array) {
-      const { classList } = this.array?.[index] || {};
+  public addAnimation(index: number) {
+    if (this.#stars) {
+      const { classList } = this.#stars?.[index] || {};
       classList.add('animate-star');
     }
   }
 
-  setTransparenColor(colored: boolean): string {
+  public getTransparentColor(colored: boolean): string {
     return colored ? 'var(--white)' : 'transparent';
   }
 
-  randomValue(number: number): number {
+  private randomValue(number: number): number {
     return Math.floor(Math.random() * number);
   }
 }

@@ -13,24 +13,20 @@ $Caveat: "Caveat", Arial;
 // colors
 $white-color: var(--white);
 $basic-color: var(--basic-color);
-$light-gray-color: var(--light-gray);
+$lilac-color: var(--lilac);
 $dark-blue-color: var(--dark-blue);
 $orange-color: var(--orange);
 $blue-color: var(--blue);
 $black-color: var(--black);
 $shadow-color: rgba(66, 68, 90, 1);
 
-$gap-S: 0.5rem;
-$gap-M: 1rem;
-$gap-L: 3rem;
-
 :root {
   --white: #ffffff;
   --basic-color: #F27405;
-  --light-gray: #f0f2f4;
+  --lilac: #D7BCFD;
   --dark-blue: #020024;
   --orange: #ffc897;
-  --blue: #1b318a;
+  --blue: #2946bf;
   --black: #000000;
 
   --font-size-S: 12px;

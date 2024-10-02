@@ -1,0 +1,41 @@
+@if (personalInfo | async; as personalInfo) {
+  <div class="main">
+    <div class="main-buttons">
+      <app-chips [@changeLanguage]="languageState" />
+      <app-buttons [buttonsConfig]="buttons" (clickEvent)="onClick($event)" />
+    </div>
+    <app-user [info]="personalInfo.info" [languageState]="languageState" />
+
+    <div class="content" [@changeLanguage]="languageState">
+      <div class="content-info">
+        <app-personal-data [info]="personalInfo.info" [languageState]="languageState" />
+
+        <ng-container
+          *ngTemplateOutlet="section; context: { title: 'skills' }"
+        />
+        <ng-container
+          *ngTemplateOutlet="section; context: { title: 'languages' }"
+        />
+      </div>
+
+      <div class="content-section">
+        <ng-container
+          *ngTemplateOutlet="section; context: { title: 'experience' }"
+        />
+        <ng-container
+          *ngTemplateOutlet="section; context: { title: 'education' }"
+        />
+      </div>
+    </div>
+    <div class="footer">
+      {{ personalInfo.clause }}
+    </div>
+  </div>
+
+  <ng-template #section let-title="title">
+    <h1 class="content-info--title">
+      {{ "sections." + title | translate | uppercase }}
+    </h1>
+    <app-section [data]="personalInfo[title]" />
+  </ng-template>
+}

@@ -1,26 +1,9 @@
 @for (button of buttonsConfig; track $index) {
-  <div [ngClass]="[button.basicColor ? 'basicColor' : '', 'buttonCLass']">
-    @switch (button.type) {
-      @case ("mat-raised-button") {
-        <button
-          mat-raised-button
-          [class]="button.className"
-          [style.backgroundColor]="button.color"
-          (click)="onClick(button.id)"
-        >
-          {{ button.name }}
-        </button>
-      }
-      @default {
-        <button
-          mat-button
-          [class]="button.className"
-          [style.backgroundColor]="button.color"
-          (click)="onClick(button.id)"
-        >
-          {{ button.name }}
-        </button>
-      }
-    }
-  </div>
+  <button
+    mat-raised-button
+    [ngClass]="{ basicColor: button.basicColor, 'me-2': true }"
+    (click)="onClick(button.id)"
+  >
+    {{ button.name }}
+  </button>
 }
