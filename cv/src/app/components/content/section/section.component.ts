@@ -1,15 +1,16 @@
-import { NgClass, NgFor } from '@angular/common';
+import { NgClass, NgFor, UpperCasePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { IExperienceEducation } from './section.interface';
+import { ISection } from './section.interface';
 
 @Component({
   selector: 'app-section',
   templateUrl: './section.component.html',
   styleUrls: ['./section.component.scss'],
   standalone: true,
-  imports: [TranslateModule, NgFor, NgClass],
+  imports: [TranslateModule, NgFor, NgClass, UpperCasePipe],
 })
 export class SectionComponent {
-  @Input() data!: IExperienceEducation[];
+  @Input() data!: ISection[];
+  @Input() heading: string = '';
 }

@@ -5,10 +5,10 @@
       "lastName": "Wlazło",
       "position": "Front-end Developer",
       "avatar": "assets/img/avatar.png",
-      "phone": "(+48) 733 253 028",
+      "phone": "733 253 028",
       "email": "izabelawlazlo9@gmail.com",
       "linkedIn": "@izabelawl",
-      "description": "Cześć! Jestem Iza i od 3 lat pracuje\nw angularze. Mam na swoim koncie z sukcesem ukończone 3 duże projekty.\nW pracy zawsze staram się być na bieżąco z nowoczesnymi technologiami i stosować najlepsze techniki programowania."
+      "description": "Cześć! Jestem Iza i od 3 lat pracuje\nw angularze.\nW pracy zawsze staram się być na bieżąco\nz nowoczesnymi technologiami i stosować najlepsze techniki programowania."
     },
     "experience": [
       {
@@ -42,20 +42,31 @@
         "period": "2017- 2021",
         "description": [
           "Specjalizacja: Systemy informatyczne w zarządzaniu",
-          "Uzyskany tytuł: Inżynier"
+          "Uzyskany tytuł: <b>Inżynier</b>"
         ]
       }
     ],
-    "skills": [
-      { "title": "Angular" },
-      { "title": "TypeScript" },
-      { "title": "JavaScript" },
-      { "title": "html5/css3" },
-      { "title": "Scss" },
-      { "title": "Bootstrap" },
-      { "title": "Git" }
+    "specializations": [
+      {
+        "description": [
+          "Znajomość <b>JavaScript</b>, <b>TypeScript</b>, <b>HTML</b>, <b>CSS</b>",
+          "Praca z <b>Angular</b> na wersjach 11-17",
+          "Znajomość <b>SCSS</b> <b>Bootstrap</b>",
+          "Praca z wykorzystaniem <b>PrimeNg</b> oraz <b>NgZorro</b>",
+          "Doświadczenie w pracy z <b>OpenLayers</b>",
+          "Tworzenie responsywnych stron",
+          "Znajomośc narzędzi <b>Jira</b>, <b>Confluence</b>, <b>Git</b>"
+        ]
+      }
     ],
-    "languages": [{ "title": "Polski" }, { "title": "Angielski (B1/B2)" }],
+    "otherSkills": [
+      {
+        "description": [
+          "Umiejętnośc pracy w oparciu o metodyki <b>Scrum</b> oraz <b>Kanban</b>",
+          "Znajomość <b>j. angielskiego</b> - średnio zaawansowany B1"
+        ]
+      }
+    ],
     "clause": "Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji (zgodnie z ustawą z dnia 10 maja 2018 roku o ochronie danych osobowych (Dz. Ustaw z 2018, poz. 1000) oraz zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (RODO)."
   },
   "en": {
@@ -64,10 +75,10 @@
       "lastName": "Wlazło",
       "position": "Front-end Developer",
       "avatar": "assets/img/avatar.png",
-      "phone": "(+48) 733 253 028",
+      "phone": "733 253 028",
       "email": "izabelawlazlo9@gmail.com",
       "linkedIn": "@izabelawl",
-      "description": "I'm Iza, and I've been working with Angular\nfor 3 years now. I have successfully completed 3 major projects during this time.\nAt work, I always strive to stay upto-date with nmodern technologies and apply the best programming practices."
+      "description": "I'm Iza, and I've been working with Angular\nfor 3 years now.\nAt work, I always strive to stay upto-date with nmodern technologies and apply the best programming practices."
     },
     "experience": [
       {
@@ -100,20 +111,31 @@
         "period": "2017- 2021",
         "description": [
           "Specialization: Information Systems in Management",
-          "Degree obtained: Engineer"
+          "Degree obtained: <b>Engineer</b>"
         ]
       }
     ],
-    "skills": [
-      { "title": "Angular" },
-      { "title": "TypeScript" },
-      { "title": "JavaScript" },
-      { "title": "html5/css3" },
-      { "title": "Scss" },
-      { "title": "Bootstrap" },
-      { "title": "Git" }
+    "specializations": [
+      {
+        "description": [
+          "Proficiency in <b>JavaScript</b>, <b>TypeScript</b>, <b>HTML</b>, <b>CSS</b>",
+          "Working with <b>Angular</b> versions 11-17",
+          "Knowledge of <b>SCSS</b>, <b>Bootstrap</b>",
+          "Experience with <b>PrimeNg</b> and <b>NgZorro</b>",
+          "Experience working with <b>OpenLayers</b>",
+          "Creating responsive websites",
+          "Familiarity with tools like <b>Jira</b>, <b>Confluence</b>, <b>Git</b>"
+        ]
+      }
     ],
-    "languages": [{ "title": "Polish" }, { "title": "English (B1/B2)" }],
+    "otherSkills": [
+      {
+        "description": [
+          "Ability to work based on <b>Scrum</b> and <b>Kanban</b> methodologies",
+          "<b>English</b> proficiency - intermediate (B1 level)"
+        ]
+      }
+    ],
     "clause": "I consent to the processing of my personal data for the purposes necessary for the recruitment process (in accordance with the Act of May 10, 2018, on the protection of personal data (Journal of Laws of 2018, item 1000) and in accordance with Regulation (EU) 2016/679 of the European Parliament and of the Council of April 27, 2016, on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (GDPR)."
   }
 }

@@ -18,9 +18,9 @@ import { Observable, of } from 'rxjs';
 })
 export class ChipsComponent implements OnInit {
   private chipsOptions: IChips[] = [
-    { name: 'navyBlue', color: '#345B89', selected: false },
-    { name: 'orange', color: '#FF7272', selected: false },
-    { name: 'purple', color: '#ff1abf', selected: false },
+    { name: 'ORANGE', color: '#FF7272', selected: false },
+    { name: 'NAVY_BLUE', color: '#345B89', selected: false },
+    { name: 'PURPLE', color: '#ff1abf', selected: false },
   ];
 
   ngOnInit(): void {

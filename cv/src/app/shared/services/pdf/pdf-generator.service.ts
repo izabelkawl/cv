@@ -3,8 +3,8 @@ import {
   InfoKeys,
   IPersonalInformation,
   SectionTypes,
-} from '@app/base-layout/base-layout.interface';
-import { IExperienceEducation } from '@app/components/content/section/section.interface';
+} from '@app/components/base-layout/base-layout.interface';
+import { ISection } from '@app/components/content/section/section.interface';
 import { TranslateService } from '@ngx-translate/core';
 import { jsPDF } from 'jspdf';
 import { LangType } from '../lang/lang.interface';
@@ -90,7 +90,7 @@ export class PdfService {
       pdf.setFontSize(15);
       pdf.setFont(fontFamilyBold);
       y = contentPosition.y;
-      pdf.text(getTranslation('personalData.profile').toUpperCase(), x, y, {
+      pdf.text(getTranslation('PERSONAL_DATA.PROFILE').toUpperCase(), x, y, {
         align: 'center',
       });
       pdf.setFontSize(9);
@@ -116,9 +116,9 @@ export class PdfService {
       );
       pdf.setTextColor(colors.blue);
       skills.y += 10;
-      data[type].forEach(({ title }) => {
+      data[type].forEach(({ title }: { title: string |undefined}) => {
         pdf.setFontSize(10);
-        pdf.text(title, skills.x, skills.y, {
+        title && pdf.text(title, skills.x, skills.y, {
           align: 'center',
         });
         skills.y += 7;
@@ -133,12 +133,12 @@ export class PdfService {
 
       pdf.setTextColor(colors.orange);
       pdf.text(
-        getTranslation(`sections.${type}`).toUpperCase(),
+        getTranslation(`SECTIONS.${type}`.toUpperCase()).toUpperCase(),
         section.x + 40,
         getY(y - 4),
         { align: 'center', maxWidth: section.width },
       );
-      data[type].map((item: IExperienceEducation, index: number) => {
+      data[type].map((item: ISection, index: number) => {
         const { title, subTitle, period, description } = item;
         const sectionX = section.x;
 
@@ -186,7 +186,7 @@ export class PdfService {
     pdf.setLineDashPattern([1, 0], 0);
     pdf.setLineWidth(1);
     pdf.setDrawColor(colors.lilac);
-    pdf.circle(x +5, getY(y) + 15, 25);
+    pdf.circle(x + 5, getY(y) + 15, 25);
 
     // user-name
     pdf.setFontSize(40);

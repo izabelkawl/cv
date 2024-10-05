@@ -14,9 +14,11 @@ body {
 }
 
 body {
+  background-color: $basic-color;
+  
   * {
     font-family: $CommonFontFamily;
-    font-size: $fontSizeS;
+    font-size: 12px;
     margin: 0;
     padding: 0;
   }

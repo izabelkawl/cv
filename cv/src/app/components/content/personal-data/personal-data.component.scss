@@ -8,35 +8,41 @@
   padding-bottom: 1rem;
   line-height: 2;
 
-  &-title {
-    color: $blue-color;
-    font-size: calc($fontSizeM * 1.5);
+  &__title {
+    font-size: 20px;
     font-weight: bold;
     letter-spacing: 3px;
   }
 
-  &-description {
+  &__description {
     text-align: center;
     width: 80%;
-    font-size: $fontSizeS;
+    font-size: 12px;
     white-space: pre-line;
   }
 
-  &-contact {
+  &__contact {
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    &--link {
-      color: $blue-color;
+    &-link {
       text-decoration: none;
       font-weight: bold;
+      color: inherit;
+      font-size: 14px;
+      cursor: pointer;
+
+      &--colored {
+        color: $basic-color;
+        font-size: 14px;
+      }
     }
   }
 
   @include mixins.mq-min-width(extra-small) {
-    &-contact,
-    &-description {
+    &__contact,
+    &__description {
       padding-bottom: 2rem;
       width: 100%;
     }

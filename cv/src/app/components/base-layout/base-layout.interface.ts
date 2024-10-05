@@ -1,11 +1,11 @@
-import { IExperienceEducation } from '../components/content/section/section.interface';
+import { ISection } from '../content/section/section.interface';
 
 export interface IPersonalInformation {
   info: IInfo;
-  experience: IExperienceEducation[];
-  education: IExperienceEducation[];
-  skills: IExperienceEducation[];
-  languages: IExperienceEducation[];
+  experience: ISection[];
+  education: ISection[];
+  specializations: ISection[];
+  otherSkills: ISection[];
   clause: string;
   [name: string]: any;
 }

@@ -2,27 +2,36 @@
 @import "../../../../assets/css/variables";
 
 .section {
-  margin: 0 1rem;
-
-  .centered {
-    display: flex;
-    justify-content: center;
-  }
-
-  &-title,
-  &-subTitle {
-    color: $blue-color;
+  &__heading {
+    background-color: $blue-color;
+    color: $orange-color;
+    min-width: 30%;
+    padding: 10px 0;
+    margin-bottom: 16px;
+    line-height: 14px;
+    font-size: 14px;
+    text-align: center;
     font-weight: bold;
-    margin-bottom: 0;
+    letter-spacing: 3px;
   }
 
-  &-description {
-    line-height: 1.8;
-    padding: 0 0 1rem 1rem;
+  &__title {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.3;
+
+    &--bold {
+      font-weight: bold;
+    }
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0 0 16px 26px;
   }
 
   @include mixins.mq-min-width(small) {
-    &-description {
+    &__list {
       padding-bottom: 2rem;
     }
   }

@@ -1,14 +1,9 @@
 @use "./mixins";
 
 // font
-$fontSizeS: var(--font-size-S);
-$fontSizeM: var(--font-size-M);
-$fontSizeL: var(--font-size-L);
-
-$letterSpacing: 0.5px;
-
 $CommonFontFamily: "Roboto", Arial;
 $Caveat: "Caveat", Arial;
+$letterSpacing: 0.5px;
 
 // colors
 $white-color: var(--white);
@@ -28,20 +23,9 @@ $shadow-color: rgba(66, 68, 90, 1);
   --orange: #ffc897;
   --blue: #2946bf;
   --black: #000000;
-
-  --font-size-S: 12px;
-  --font-size-M: 14px;
-  --font-size-L: 64px;
 }
 
-body {
-  @include mixins.mq-min-width(small) {
-    --font-size-M: 16px;
-    --font-size-L: 72px;
-  }
-
-  @include mixins.mq-min-width(medium) {
-    --font-size-S: 14px;
-    --font-size-L: 94px;
-  }
+@font-face {
+  font-family: Caveat;
+  src: url("./../font/Caveat-Bold.ttf");
 }

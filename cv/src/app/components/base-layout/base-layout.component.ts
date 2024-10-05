@@ -1,9 +1,4 @@
-import {
-  AsyncPipe,
-  NgIf,
-  NgTemplateOutlet,
-  UpperCasePipe,
-} from '@angular/common';
+import { AsyncPipe, NgIf, NgTemplateOutlet } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -12,20 +7,19 @@ import {
   OnInit,
 } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { TranslateModule } from '@ngx-translate/core';
 import { Observable, map, take } from 'rxjs';
-import { PersonalDataComponent } from '../components/content/personal-data/personal-data.component';
-import { SectionComponent } from '../components/content/section/section.component';
-import { UserComponent } from '../components/content/user/user.component';
-import { IPersonalInformation } from './base-layout.interface';
-import { BaseLayoutService } from './base-layout.service';
 import { changeLanguage } from '@app/shared/animations/animations';
 import { PdfService } from '@app/shared/services/pdf/pdf-generator.service';
 import { LangService } from '@app/shared/services/lang/lang.service';
 import { LangType } from '@app/shared/services/lang/lang.interface';
-import { ButtonsComponent } from '@app/commons/buttons/buttons.component';
-import { IButton } from '@app/commons/buttons/buttons.interfaces';
-import { ChipsComponent } from '@app/commons/chips/chips.component';
+import { ButtonsComponent } from '@app/components/commons/buttons/buttons.component';
+import { IButton } from '@app/components/commons/buttons/buttons.interfaces';
+import { ChipsComponent } from '@app/components/commons/chips/chips.component';
+import { PersonalDataComponent } from '@app/components/content/personal-data/personal-data.component';
+import { SectionComponent } from '@app/components/content/section/section.component';
+import { UserComponent } from '@app/components/content/user/user.component';
+import { IPersonalInformation } from './base-layout.interface';
+import { BaseLayoutService } from './base-layout.service';
 
 @UntilDestroy()
 @Component({
@@ -35,10 +29,8 @@ import { ChipsComponent } from '@app/commons/chips/chips.component';
   animations: [changeLanguage],
   standalone: true,
   imports: [
-    TranslateModule,
     NgIf,
     AsyncPipe,
-    UpperCasePipe,
     NgTemplateOutlet,
     ButtonsComponent,
     SectionComponent,
