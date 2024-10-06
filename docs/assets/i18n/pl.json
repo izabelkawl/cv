@@ -1,23 +1,18 @@
 {
-  "buttons": {
-    "theme": "Motyw"
+  "CHIPS": {
+    "NAVY_BLUE": "Granat",
+    "PURPLE": "Fiolet",
+    "ORANGE": "Pomarańcz"
   },
-  "input": {
-    "enterColor": "Wpisz kolor"
+  "SECTIONS": {
+    "EXPERIENCE": "Doświadczenie",
+    "EDUCATION": "Wykształcenie",
+    "SPECIALIZATION": "Specjalizacje",
+    "OTHER_SKILLS": "Inne Umiejętności"
   },
-  "chips": {
-    "navyBlue": "Granat",
-    "purple": "Fiolet",
-    "orange": "Pomarańcz"
+  "PERSONAL_DATA": {
+    "PROFILE": "Profil",
+    "PHONE": "tel."
   },
-  "sections": {
-    "experience": "Doświadczenie",
-    "education": "Wykształcenie",
-    "skills": "Umiejętności",
-    "languages": "Języki"
-  },
-  "personalData": {
-    "profile": "Profil"
-  },
-  "noData": "Brak danych"
+  "NO_DATA": "Brak danych"
 }

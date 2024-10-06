@@ -1,23 +1,18 @@
 {
-  "buttons": {
-    "theme": "Theme"
+  "CHIPS": {
+    "NAVY_BLUE": "Navy Blue",
+    "PURPLE": "Purple",
+    "ORANGE": "Orange"
   },
-  "input": {
-    "enterColor": "Enter color"
+  "SECTIONS": {
+    "SPECIALIZATION": "Specializations",
+    "OTHER_SKILLS": "Other skills",
+    "EXPERIENCE": "Experience",
+    "EDUCATION": "Education"
   },
-  "chips": {
-    "navyBlue": "Navy Blue",
-    "purple": "Purple",
-    "orange": "Orange"
+  "PERSONAL_DATA": {
+    "PROFILE": "Profile",
+    "PHONE": "tel."
   },
-  "sections": {
-    "experience": "Experience",
-    "education": "Education",
-    "skills": "Skills",
-    "languages": "Languages"
-  },
-  "personalData": {
-    "profile": "Profile"
-  },
-  "noData": "No data"
+  "NO_DATA": "No data"
 }
