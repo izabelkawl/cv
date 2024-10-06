@@ -13,4 +13,8 @@ import { ISection } from './section.interface';
 export class SectionComponent {
   @Input() data!: ISection[];
   @Input() heading: string = '';
+
+  getPartialText(task: string): string[] {
+    return task.split('**');
+  }
 }

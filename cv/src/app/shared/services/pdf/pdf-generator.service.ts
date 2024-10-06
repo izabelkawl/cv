@@ -17,7 +17,7 @@ export class PdfService {
   readonly #translateService = inject(TranslateService);
 
   public generatePdf(data: IPersonalInformation, lang: LangType): void {
-    const { BASIC, LILAC, WHITE, ORANGE, BLUE } = Colors;
+    const { BASIC, LILAC, WHITE, ORANGE, TEXT_COLOR } = Colors;
     const pdf = new jsPDF();
     const translateService = this.#translateService;
     const {
@@ -31,14 +31,14 @@ export class PdfService {
       white: getDocumentColor(WHITE),
       lilac: getDocumentColor(LILAC),
       basic: getDocumentColor(BASIC),
-      blue: getDocumentColor(BLUE),
+      textColor: getDocumentColor(TEXT_COLOR),
       orange: getDocumentColor(ORANGE),
       darkGray: 'darkgray',
     };
 
     let y = 10;
-    let x = 50;
-    const contentPosition = { y: 80 };
+    let x = 60;
+    const contentPosition = { y: 85 };
     const contactPosition = { x, y: 140 };
     const skills = { x, y: 175, width: 65 };
     const section = { x: x + 40, width: 80 };
@@ -78,7 +78,6 @@ export class PdfService {
     }
 
     function getInfo(name: InfoKeys): void {
-      pdf.setTextColor(colors.blue);
       pdf.setFont(fontFamilyBold);
       pdf.text(data.info[name], contactPosition.x, contactPosition.y, {
         align: 'center',
@@ -102,86 +101,110 @@ export class PdfService {
       });
     }
 
-    function createSkillSection(type: 'skills' | 'languages'): void {
+    function splitTextsOnLength(texts: any, maxLength: number) {
+      const result: string[] = [];
+
+      texts.forEach((txt: string) => {
+        let text = `\u2022  ${txt}`;
+        while (text.length > maxLength) {
+          let splitIndex = text.lastIndexOf(' ', maxLength);
+          if (splitIndex === -1) splitIndex = maxLength;
+          result.push(text.slice(0, splitIndex).trim());
+          text = text.slice(splitIndex).trim();
+        }
+        if (text.length) result.push(text);
+      });
+
+      return result;
+    }
+
+    function createSkillSection(translate: string, type: SectionTypes): void {
       pdf.setFontSize(12);
       pdf.setFont(fontFamilyBold);
       pdf.rect(skills.x - 30, skills.y - 6, skills.width, 9, 'F');
-
       pdf.setTextColor(colors.orange);
-      pdf.text(
-        getTranslation(`sections.${type}`).toUpperCase(),
-        skills.x,
-        skills.y,
-        { align: 'center' },
-      );
-      pdf.setTextColor(colors.blue);
-      skills.y += 10;
-      data[type].forEach(({ title }: { title: string |undefined}) => {
-        pdf.setFontSize(10);
-        title && pdf.text(title, skills.x, skills.y, {
-          align: 'center',
-        });
-        skills.y += 7;
+      pdf.text(getTranslation(translate).toUpperCase(), skills.x, skills.y, {
+        align: 'center',
       });
+      pdf.setTextColor(colors.textColor);
+      skills.y += 10;
+
+      pdf.setFont(fontFamily);
+      splitTextsOnLength(data[type][0].description, 48).forEach(
+        (title: string) => {
+          pdf.setFontSize(9);
+          let startX = skills.x - 29;
+          const arrayOfNormalAndBoldText = title.split('**');
+          arrayOfNormalAndBoldText.map((text, i) => {
+            pdf.setFont(fontFamilyBold);
+            pdf.setFont(i % 2 ? fontFamilyBold : fontFamily);
+
+            pdf.text(text, startX, skills.y);
+            startX = startX + pdf.getStringUnitWidth(text) * 3.2;
+          });
+
+          skills.y += 5;
+        },
+      );
       skills.y += 5;
     }
 
-    function createSection(type: SectionTypes): void {
+    function createSection(
+      translate: string,
+      type: SectionTypes,
+      sectionX: number,
+      sectionWidth: number,
+    ): void {
       pdf.setFontSize(12);
       pdf.setFont(fontFamilyBold);
-      pdf.rect(section.x, getY(y - 16), section.width, 9, 'F');
-
+      pdf.rect(sectionX, getY(y - 16), sectionWidth, 9, 'F');
       pdf.setTextColor(colors.orange);
       pdf.text(
-        getTranslation(`SECTIONS.${type}`.toUpperCase()).toUpperCase(),
-        section.x + 40,
+        getTranslation(translate).toUpperCase(),
+        sectionX + 40,
         getY(y - 4),
-        { align: 'center', maxWidth: section.width },
+        { align: 'center', maxWidth: sectionWidth },
       );
-      data[type].map((item: ISection, index: number) => {
-        const { title, subTitle, period, description } = item;
-        const sectionX = section.x;
 
-        pdf.setFont(fontFamilyBold);
-        pdf.setFontSize(10);
-        pdf.setTextColor(colors.blue);
-        pdf.text(title, sectionX, getY(y + 3));
+      data[type].map((item: ISection) => {
+        const { title, subTitle, period, description } = item;
+
+        if (title) {
+          pdf.setFont(fontFamilyBold);
+          pdf.setFontSize(10);
+          pdf.setTextColor(colors.textColor);
+          pdf.text(title, sectionX, getY(y + 3));
+        }
 
         pdf.setFontSize(10);
         subTitle && pdf.text(subTitle, sectionX, getY(y - 5));
         period && pdf.text(period, sectionX, getY(y - 5));
 
-        pdf.setTextColor(colors.blue);
+        pdf.setTextColor(colors.textColor);
         if (description) {
-          const dot = '\u2022';
           pdf.setFontSize(9);
-          description.forEach((desc: string, i: number) => {
-            if (i) {
-              const { length } = description[i - 1];
-              getY(length < 55 ? y - 5 : y);
-            } else {
-              getY(y - 2);
-            }
-
-            pdf.setFont(fontFamilyBold);
-            pdf.text(dot, sectionX, y);
-
+          let descY = getY(y - 5);
+          splitTextsOnLength(description, 55).forEach((desc: string) => {
             pdf.setFont(fontFamily);
-            pdf.text(desc, sectionX + 3, y, {
-              maxWidth: section.width,
-              lineHeightFactor: 1.6,
+            let startX = section.x;
+            const arrayOfNormalAndBoldText = desc.split('**');
+            arrayOfNormalAndBoldText.map((text, i) => {
+              pdf.setFont(fontFamilyBold);
+              pdf.setFont(i % 2 ? fontFamilyBold : fontFamily);
+
+              pdf.text(text, startX, descY);
+              startX = startX + pdf.getStringUnitWidth(text) * 3.2;
             });
+            descY += 5;
+            getY(y - 6);
           });
-          if (index === data[type].length - 2) {
-            getY(y - 5);
-          }
         }
       });
       getY(y + 5);
     }
 
     // avatar
-    pdf.addImage(avatar, 'JPEG', 30, getY(y), 50, 50, '', 'FAST');
+    pdf.addImage(avatar, 'JPEG', x - 20, getY(y), 50, 50, '', 'FAST');
 
     pdf.setLineDashPattern([1, 0], 0);
     pdf.setLineWidth(1);
@@ -189,14 +212,14 @@ export class PdfService {
     pdf.circle(x + 5, getY(y) + 15, 25);
 
     // user-name
-    pdf.setFontSize(40);
+    pdf.setFontSize(50);
     pdf.setFont(userFont);
     pdf.setTextColor(colors.basic);
-    pdf.text(firstName, 90, 40);
-    pdf.text(lastName, 110, 52);
+    pdf.text(firstName, x + 30, 40);
+    pdf.text(lastName, x + 40, 55);
 
     pdf.setFont(fontFamilyBold);
-    pdf.setTextColor(colors.blue);
+    pdf.setTextColor(colors.textColor);
     pdf.setFontSize(15);
     pdf.text(position.toUpperCase(), 105, 62, {
       lineHeightFactor: 0.8,
@@ -204,16 +227,23 @@ export class PdfService {
 
     // profile
     createProfileSection();
+    pdf.setTextColor(colors.basic);
     getInfo('phone');
+    pdf.setTextColor(colors.textColor);
     getInfo('email');
     getInfo('linkedIn');
-    createSkillSection('skills');
-    createSkillSection('languages');
+    createSkillSection('SECTIONS.SPECIALIZATION', 'specializations');
+    createSkillSection('SECTIONS.OTHER_SKILLS', 'otherSkills');
 
     // content
     y = contentPosition.y;
-    createSection('experience');
-    createSection('education');
+    createSection(
+      'SECTIONS.EXPERIENCE',
+      'experience',
+      section.x,
+      section.width,
+    );
+    createSection('SECTIONS.EDUCATION', 'education', section.x, section.width);
 
     // footer
     pdf.setFontSize(6);

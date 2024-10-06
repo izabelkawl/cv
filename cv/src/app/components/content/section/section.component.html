@@ -13,7 +13,15 @@
     @if (item?.description?.length) {
       <ul class="section__list">
         @for (task of item?.description; track $index) {
-          <li [innerHTML]="task"></li>
+          <li>
+            @for (part of getPartialText(task); track index; let index = $index) {
+              @if (index % 2 !== 0) {
+                <b>{{ part }}</b>
+              } @else {
+                <span>{{ part }}</span>
+              }
+            }
+          </li>
         }
       </ul>
     }

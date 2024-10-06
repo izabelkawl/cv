@@ -9,19 +9,17 @@ $letterSpacing: 0.5px;
 $white-color: var(--white);
 $basic-color: var(--basic-color);
 $lilac-color: var(--lilac);
-$dark-blue-color: var(--dark-blue);
 $orange-color: var(--orange);
-$blue-color: var(--blue);
+$text-color: var(--text);
 $black-color: var(--black);
-$shadow-color: rgba(66, 68, 90, 1);
+$shadow-color: rgba(200, 200, 200, 0.5);
 
 :root {
   --white: #ffffff;
   --basic-color: #F27405;
   --lilac: #D7BCFD;
-  --dark-blue: #020024;
   --orange: #ffc897;
-  --blue: #2946bf;
+  --text: #2946bf;
   --black: #000000;
 }
 

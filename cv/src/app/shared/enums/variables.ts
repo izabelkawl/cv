@@ -4,7 +4,7 @@ export enum Colors {
   WHITE = '--white',
   BLACK = '--black',
   ORANGE = '--orange',
-  BLUE = '--blue',
+  TEXT_COLOR = '--text',
 }
 
 export enum SessionStorageKeys {

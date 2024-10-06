@@ -42,28 +42,28 @@
         "period": "2017- 2021",
         "description": [
           "Specjalizacja: Systemy informatyczne w zarządzaniu",
-          "Uzyskany tytuł: <b>Inżynier</b>"
+          "Uzyskany tytuł: **Inżynier**"
         ]
       }
     ],
     "specializations": [
       {
         "description": [
-          "Znajomość <b>JavaScript</b>, <b>TypeScript</b>, <b>HTML</b>, <b>CSS</b>",
-          "Praca z <b>Angular</b> na wersjach 11-17",
-          "Znajomość <b>SCSS</b> <b>Bootstrap</b>",
-          "Praca z wykorzystaniem <b>PrimeNg</b> oraz <b>NgZorro</b>",
-          "Doświadczenie w pracy z <b>OpenLayers</b>",
+          "Znajomość **JavaScript**, **TypeScript**, **HTML**, **CSS**",
+          "Praca z **Angular** na wersjach 11-17",
+          "Znajomość **SCSS** **Bootstrap**",
+          "Praca z wykorzystaniem **PrimeNg** oraz **NgZorro**",
+          "Doświadczenie w pracy z **OpenLayers**",
           "Tworzenie responsywnych stron",
-          "Znajomośc narzędzi <b>Jira</b>, <b>Confluence</b>, <b>Git</b>"
+          "Znajomośc narzędzi **Jira**, **Confluence**, **Git**"
         ]
       }
     ],
     "otherSkills": [
       {
         "description": [
-          "Umiejętnośc pracy w oparciu o metodyki <b>Scrum</b> oraz <b>Kanban</b>",
-          "Znajomość <b>j. angielskiego</b> - średnio zaawansowany B1"
+          "Umiejętnośc pracy w oparciu o metodyki **Scrum** oraz **Kanban**",
+          "Znajomość **j. angielskiego** - średnio zaawansowany B1"
         ]
       }
     ],
@@ -111,28 +111,28 @@
         "period": "2017- 2021",
         "description": [
           "Specialization: Information Systems in Management",
-          "Degree obtained: <b>Engineer</b>"
+          "Degree obtained: **Engineer**"
         ]
       }
     ],
     "specializations": [
       {
         "description": [
-          "Proficiency in <b>JavaScript</b>, <b>TypeScript</b>, <b>HTML</b>, <b>CSS</b>",
-          "Working with <b>Angular</b> versions 11-17",
-          "Knowledge of <b>SCSS</b>, <b>Bootstrap</b>",
-          "Experience with <b>PrimeNg</b> and <b>NgZorro</b>",
-          "Experience working with <b>OpenLayers</b>",
+          "Proficiency in **JavaScript**, **TypeScript**, **HTML**, **CSS**",
+          "Working with **Angular** versions 11-17",
+          "Knowledge of **SCSS**, **Bootstrap**",
+          "Experience with **PrimeNg** and **NgZorro**",
+          "Experience working with **OpenLayers**",
           "Creating responsive websites",
-          "Familiarity with tools like <b>Jira</b>, <b>Confluence</b>, <b>Git</b>"
+          "Familiarity with tools like **Jira**, **Confluence**, **Git**"
         ]
       }
     ],
     "otherSkills": [
       {
         "description": [
-          "Ability to work based on <b>Scrum</b> and <b>Kanban</b> methodologies",
-          "<b>English</b> proficiency - intermediate (B1 level)"
+          "Ability to work based on **Scrum** and **Kanban** methodologies",
+          "**English** proficiency - intermediate (B1 level)"
         ]
       }
     ],

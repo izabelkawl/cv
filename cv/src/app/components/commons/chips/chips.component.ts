@@ -12,13 +12,20 @@ import { Observable, of } from 'rxjs';
   selector: 'app-chips',
   templateUrl: './chips.component.html',
   standalone: true,
-  imports: [TranslateModule, AsyncPipe, NgFor, MatChipsModule, MatIconModule, 
+  imports: [
+    TranslateModule,
+    AsyncPipe,
+    NgFor,
+    MatChipsModule,
+    MatIconModule,
     MatFormFieldModule,
-    MatInputModule,],
+    MatInputModule,
+  ],
 })
 export class ChipsComponent implements OnInit {
   private chipsOptions: IChips[] = [
-    { name: 'ORANGE', color: '#FF7272', selected: false },
+    { name: 'ORANGE', color: '#ff7272', selected: true },
+    { name: 'GREEN', color: '#b2d8d8', selected: false },
     { name: 'NAVY_BLUE', color: '#345B89', selected: false },
     { name: 'PURPLE', color: '#ff1abf', selected: false },
   ];
