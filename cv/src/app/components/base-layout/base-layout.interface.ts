@@ -1,4 +1,5 @@
 import { ISection } from '../content/section/section.interface';
+import { FormControl, FormGroup } from '@angular/forms';
 
 export interface IPersonalInformation {
   info: IInfo;
@@ -8,6 +9,24 @@ export interface IPersonalInformation {
   otherSkills: ISection[];
   clause: string;
   [name: string]: any;
+}
+
+export interface IPersonalInformationForm {
+  info: FormGroup<{
+    firstName: FormControl;
+    lastName: FormControl;
+    position: FormControl;
+    avatar: FormControl;
+    phone: FormControl;
+    email: FormControl;
+    linkedIn: FormControl;
+    description: FormControl;
+  }>;
+  experience: FormControl;
+  education: FormControl;
+  specializations: FormControl;
+  otherSkills: FormControl;
+  clause: FormControl;
 }
 
 export type SectionTypes = keyof IPersonalInformation;

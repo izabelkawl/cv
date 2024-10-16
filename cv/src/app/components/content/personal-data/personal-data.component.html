@@ -2,23 +2,25 @@
   <h1 class="content__title">
     {{ "PERSONAL_DATA.PROFILE" | translate | uppercase }}
   </h1>
+{{ form.value.phone }}
+  <form [formGroup]="form" *ngIf="form">
+    @if (form.value) {
+      <p class="content__description"></p>
 
-  @if (personalInfo) {
-    <p class="content__description">{{ personalInfo.description }}</p>
-
-    <div class="content__contact">
-      <a class="content__contact-link" (click)="showPhoneNumber()"
-        >{{ "PERSONAL_DATA.PHONE" | translate }}
-        <span class="content__contact-link--colored">
-          {{ personalInfo.phone | phonePipe: hideNumber }}
-        </span>
-      </a>
-      <a class="content__contact-link" (click)="openMail()"
-        >{{ personalInfo.email }}
-      </a>
-      <a class="content__contact-link" (click)="openLinkedIn()"
-        >{{ personalInfo.linkedIn }}
-      </a>
-    </div>
-  }
+      <div class="content__contact">
+        <a class="content__contact-link"
+          >{{ "PERSONAL_DATA.PHONE" | translate }}
+          <span class="content__contact-link--colored">
+            <app-input formControlName="phone" />
+          </span>
+        </a>
+        <a class="content__contact-link" (click)="openMail()"
+          ><app-input formControlName="email" />
+        </a>
+        <a class="content__contact-link" (click)="openLinkedIn()"
+          ><app-input formControlName="linkedIn" />
+        </a>
+      </div>
+    }
+  </form>
 </div>

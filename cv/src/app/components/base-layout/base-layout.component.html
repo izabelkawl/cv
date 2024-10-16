@@ -9,7 +9,7 @@
 
     <div class="main__content" [@changeLanguage]="languageState"> 
       <div class="main__content-left-side">
-        <app-personal-data [personalInfo]="personalInfo.info" />
+        <app-personal-data [form]="form.get('info')" />
         <app-section
           heading="SECTIONS.SPECIALIZATION"
           [data]="personalInfo.specializations"

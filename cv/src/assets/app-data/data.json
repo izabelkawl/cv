@@ -3,12 +3,12 @@
     "info": {
       "firstName": "Izabela",
       "lastName": "Wlazło",
-      "position": "Front-end Developer",
+      "position": "Programista Front-end",
       "avatar": "assets/img/avatar.png",
       "phone": "733 253 028",
       "email": "izabelawlazlo9@gmail.com",
       "linkedIn": "@izabelawl",
-      "description": "Cześć! Jestem Iza i od 3 lat pracuje\nw angularze.\nW pracy zawsze staram się być na bieżąco\nz nowoczesnymi technologiami i stosować najlepsze techniki programowania."
+      "description": "Cześć! Jestem Iza i posiadam ponad trzyletnie doświadczenie w tworzeniu aplikacji webowych. Zawsze staram się być na bieżąco z nowoczesnymi technologiami i stosować najlepsze techniki programowania."
     },
     "experience": [
       {
@@ -16,12 +16,13 @@
         "subTitle": "Transition Technologies-Software",
         "period": "10.2021 - 09.2024",
         "description": [
-          "Tworzenie i rozwijanie aplikacji w Angularze (v.11-17)",
-          "Opracowywanie i implementacja architektury oprogramowania",
+          "Tworzenie i rozwijanie rozbudowanych aplikacji dla sektora publicznego do zarządzania danymi",
+          "Opracowywanie i implementacja architektury",
+          "Udział w projektach od etapu rozpoczęcia do zakończenia",
           "Dbanie o wysoką jakość kodu oraz o optymalizację wydajności",
           "Diagnoza i naprawa błędów",
-          "Wykonywanie code review",
-          "Realizacja projektów zgodnie z metodyką SCRUM"
+          "Wykonywanie code review oraz weryfikacji",
+          "Realizacja projektów zgodnie z metodyką Agile (Scrum, Kanban)"
         ]
       },
       {
@@ -29,9 +30,8 @@
         "subTitle": "Transition Technologies-Software",
         "period": "07-09.2021",
         "description": [
-          "Projektowanie, implementacja, utrzymanie funkcjonalności frontendowych opartych o Angular",
-          "Dokonywanie naprawy błędów aplikacji",
-          "Praca z zespołem programistycznym z wykorzystaniem metodyki SCRUM"
+          "Projektowanie oraz implementacja aplikacji w Angularze na potrzeby wewnętrze firmy",
+          "Praca z zespołem programistycznym z wykorzystaniem metodyki Scrum"
         ]
       }
     ],
@@ -39,7 +39,7 @@
       {
         "title": "INFORMATYKA I EKONOMETRIA",
         "subTitle": "Uniwersytet Rzeszowski",
-        "period": "2017- 2021",
+        "period": "2017 - 2021",
         "description": [
           "Specjalizacja: Systemy informatyczne w zarządzaniu",
           "Uzyskany tytuł: **Inżynier**"
@@ -63,6 +63,7 @@
       {
         "description": [
           "Umiejętnośc pracy w oparciu o metodyki **Scrum** oraz **Kanban**",
+          "Doświadczenie w pracy z **Docker**, **Jenkins**, **Postman**, **GitLab**",
           "Znajomość **j. angielskiego** - średnio zaawansowany B1"
         ]
       }
@@ -78,7 +79,7 @@
       "phone": "733 253 028",
       "email": "izabelawlazlo9@gmail.com",
       "linkedIn": "@izabelawl",
-      "description": "I'm Iza, and I've been working with Angular\nfor 3 years now.\nAt work, I always strive to stay upto-date with nmodern technologies and apply the best programming practices."
+      "description": "Hi! I'm Iza, and I have over three years of experience in creating web applications. I always strive to stay updated with modern technologies and apply the best programming techniques."
     },
     "experience": [
       {
@@ -86,11 +87,13 @@
         "subTitle": "Transition Technologies-Software",
         "period": "10.2021 - 09.2024",
         "description": [
-          "Developed applications in the Angular environment (v.11-17)",
-          "Designed and implemented software architecture",
-          "Diagnosed and resolved software errors",
-          "Conducted code reviews",
-          "Executed projects following SCRUM methodology"
+          "Creating and developing complex applications for the public sector for data management",
+          "Designing and implementing architecture",
+          "Participating in projects from initiation to completion",
+          "Ensuring high code quality and performance optimization",
+          "Diagnosing and fixing bugs",
+          "Conducting code reviews and verification",
+          "Executing projects in accordance with Agile methodology (Scrum, Kanban)"
         ]
       },
       {
@@ -98,9 +101,8 @@
         "subTitle": "Transition Technologies-Software",
         "period": "07-09.2021",
         "description": [
-          "Design, implementation, and maintenance of Angular-based frontend functionalities",
-          "Application bug fixes",
-          "Collaboration with a development team using SCRUM methodology"
+          "Designing and implementing applications in Angular for the company's internal needs",
+          "Working with the development team using the Scrum methodology"
         ]
       }
     ],
@@ -108,7 +110,7 @@
       {
         "title": "COMPUTER SCIENCE AND ECONOMETRICS",
         "subTitle": "University of Rzeszów",
-        "period": "2017- 2021",
+        "period": "2017 - 2021",
         "description": [
           "Specialization: Information Systems in Management",
           "Degree obtained: **Engineer**"
@@ -132,6 +134,7 @@
       {
         "description": [
           "Ability to work based on **Scrum** and **Kanban** methodologies",
+          "Experience with **Docker**, **Jenkins**, **Postman**, and **GitLab**",
           "**English** proficiency - intermediate (B1 level)"
         ]
       }

@@ -18,8 +18,12 @@ import { ChipsComponent } from '@app/components/commons/chips/chips.component';
 import { PersonalDataComponent } from '@app/components/content/personal-data/personal-data.component';
 import { SectionComponent } from '@app/components/content/section/section.component';
 import { UserComponent } from '@app/components/content/user/user.component';
-import { IPersonalInformation } from './base-layout.interface';
+import {
+  IPersonalInformation,
+  IPersonalInformationForm,
+} from './base-layout.interface';
 import { BaseLayoutService } from './base-layout.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @UntilDestroy()
 @Component({
@@ -51,6 +55,24 @@ export class BaseLayoutComponent implements OnInit, AfterViewInit {
 
   #data!: IPersonalInformation;
 
+  form: FormGroup<IPersonalInformationForm> = new FormGroup({
+    info: new FormGroup({
+      firstName: new FormControl(null),
+      lastName: new FormControl(null),
+      position: new FormControl(null),
+      avatar: new FormControl(null),
+      phone: new FormControl(null),
+      email: new FormControl(null),
+      linkedIn: new FormControl(null),
+      description: new FormControl(null),
+    }),
+    experience: new FormControl(null),
+    education: new FormControl(null),
+    specializations: new FormControl(null),
+    otherSkills: new FormControl(null),
+    clause: new FormControl(null),
+  });
+
   ngOnInit(): void {
     this.#langService.setDefaultLang();
   }
@@ -74,7 +96,10 @@ export class BaseLayoutComponent implements OnInit, AfterViewInit {
   }
 
   private generatePdf(): void {
-    this.#pdfService.generatePdf({ ...this.#data }, this.languageState);
+    this.form.updateValueAndValidity();
+    console.log(this.form.value);
+    
+    // this.#pdfService.generatePdf(this.form.value as any, this.languageState);
   }
 
   private changeLang(): void {
@@ -88,8 +113,8 @@ export class BaseLayoutComponent implements OnInit, AfterViewInit {
       { id: 'pdf', name: 'PDF' },
       {
         id: 'lang',
-        basicColor: true,
         name: this.#langService.oppositeTranslation.toUpperCase(),
+        basicColor: true,
       },
     ];
   }
@@ -101,6 +126,7 @@ export class BaseLayoutComponent implements OnInit, AfterViewInit {
       untilDestroyed(this),
       take(1),
       map((response: IPersonalInformation) => {
+        this.form.patchValue(response);
         this.#data = response;
 
         return response;
