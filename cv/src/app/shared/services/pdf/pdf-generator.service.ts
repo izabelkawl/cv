@@ -17,22 +17,14 @@ export class PdfService {
   readonly #translateService = inject(TranslateService);
 
   public generatePdf(data: IPersonalInformation, lang: LangType): void {
-    const { BASIC, LILAC, WHITE, ORANGE, TEXT_COLOR } = Colors;
+    const { BASIC, WHITE, TEXT_COLOR } = Colors;
     const pdf = new jsPDF();
     const translateService = this.#translateService;
-    const {
-      firstName,
-      lastName,
-      avatar = '',
-      position,
-      description,
-    } = data.info;
+    const { firstName, lastName, position, description } = data.info;
     const colors = {
       white: getDocumentColor(WHITE),
-      lilac: getDocumentColor(LILAC),
       basic: getDocumentColor(BASIC),
       textColor: getDocumentColor(TEXT_COLOR),
-      orange: getDocumentColor(ORANGE),
       darkGray: 'darkgray',
     };
 
@@ -44,25 +36,22 @@ export class PdfService {
     const section = { x: x + 40, width: 80 };
     const footerPosition = { x: 105, y: 285 };
 
-    const userFont: string = 'Caveat-Bold';
-    const fontFamily: string = 'Roboto-Regular';
-    const fontFamilyBold: string = 'Roboto-Black';
+    const montserratLight: string = 'Montserrat-Light';
+    const montserratMedium: string = 'Montserrat-Medium';
+    const montserratBold: string = 'Montserrat-Bold';
+    const montserratSemiBold: string = 'Montserrat-SemiBold';
+    const montserratExtraBold: string = 'Montserrat-ExtraBold';
 
-    pdf.addFileToVFS(`assets/font/${userFont}.ttf`, `${userFont}.ttf`);
-    pdf.addFont(`./assets/font/${userFont}.ttf`, userFont, 'normal');
-
-    pdf.addFileToVFS(`assets/font/${fontFamily}.ttf`, `${fontFamily}.ttf`);
-    pdf.addFont(`./assets/font/${fontFamily}.ttf`, fontFamily, 'normal');
-
-    pdf.addFileToVFS(
-      `assets/font/${fontFamilyBold}.ttf`,
-      `${fontFamilyBold}.ttf`,
-    );
-    pdf.addFont(
-      `./assets/font/${fontFamilyBold}.ttf`,
-      fontFamilyBold,
-      'normal',
-    );
+    [
+      montserratLight,
+      montserratMedium,
+      montserratBold,
+      montserratSemiBold,
+      montserratExtraBold,
+    ].forEach((font: string) => {
+      pdf.addFileToVFS(`assets/font/${font}.ttf`, `${font}.ttf`);
+      pdf.addFont(`./assets/font/${font}.ttf`, font, 'normal');
+    });
 
     function getDocumentColor(color: string): string {
       return getComputedStyle(document.body).getPropertyValue(color);
@@ -78,7 +67,7 @@ export class PdfService {
     }
 
     function getInfo(name: InfoKeys): void {
-      pdf.setFont(fontFamilyBold);
+      pdf.setFont(montserratBold);
       pdf.text(data.info[name], contactPosition.x, contactPosition.y, {
         align: 'center',
       });
@@ -87,13 +76,13 @@ export class PdfService {
 
     function createProfileSection(): void {
       pdf.setFontSize(15);
-      pdf.setFont(fontFamilyBold);
+      pdf.setFont(montserratBold);
       y = contentPosition.y;
       pdf.text(getTranslation('PERSONAL_DATA.PROFILE').toUpperCase(), x, y, {
         align: 'center',
       });
       pdf.setFontSize(9);
-      pdf.setFont(fontFamily);
+      pdf.setFont(montserratLight);
       pdf.text(description, x, getY(y - 2), {
         maxWidth: 50,
         align: 'center',
@@ -120,24 +109,23 @@ export class PdfService {
 
     function createSkillSection(translate: string, type: SectionTypes): void {
       pdf.setFontSize(12);
-      pdf.setFont(fontFamilyBold);
-      pdf.rect(skills.x - 30, skills.y - 6, skills.width, 9, 'F');
-      pdf.setTextColor(colors.orange);
+      pdf.setFont(montserratBold);
+      pdf.setTextColor(colors.textColor);
       pdf.text(getTranslation(translate).toUpperCase(), skills.x, skills.y, {
         align: 'center',
       });
       pdf.setTextColor(colors.textColor);
       skills.y += 10;
 
-      pdf.setFont(fontFamily);
+      pdf.setFont(montserratLight);
       splitTextsOnLength(data[type][0].description, 48).forEach(
         (title: string) => {
           pdf.setFontSize(9);
           let startX = skills.x - 29;
           const arrayOfNormalAndBoldText = title.split('**');
           arrayOfNormalAndBoldText.map((text, i) => {
-            pdf.setFont(fontFamilyBold);
-            pdf.setFont(i % 2 ? fontFamilyBold : fontFamily);
+            pdf.setFont(montserratBold);
+            pdf.setFont(i % 2 ? montserratBold : montserratLight);
 
             pdf.text(text, startX, skills.y);
             startX = startX + pdf.getStringUnitWidth(text) * 3.2;
@@ -156,9 +144,8 @@ export class PdfService {
       sectionWidth: number,
     ): void {
       pdf.setFontSize(12);
-      pdf.setFont(fontFamilyBold);
-      pdf.rect(sectionX, getY(y - 16), sectionWidth, 9, 'F');
-      pdf.setTextColor(colors.orange);
+      pdf.setFont(montserratBold);
+      pdf.setTextColor(colors.textColor);
       pdf.text(
         getTranslation(translate).toUpperCase(),
         sectionX + 40,
@@ -170,7 +157,7 @@ export class PdfService {
         const { title, subTitle, period, description } = item;
 
         if (title) {
-          pdf.setFont(fontFamilyBold);
+          pdf.setFont(montserratBold);
           pdf.setFontSize(10);
           pdf.setTextColor(colors.textColor);
           pdf.text(title, sectionX, getY(y + 3));
@@ -185,12 +172,12 @@ export class PdfService {
           pdf.setFontSize(9);
           let descY = getY(y - 5);
           splitTextsOnLength(description, 55).forEach((desc: string) => {
-            pdf.setFont(fontFamily);
+            pdf.setFont(montserratLight);
             let startX = section.x;
             const arrayOfNormalAndBoldText = desc.split('**');
-            arrayOfNormalAndBoldText.map((text, i) => {
-              pdf.setFont(fontFamilyBold);
-              pdf.setFont(i % 2 ? fontFamilyBold : fontFamily);
+            arrayOfNormalAndBoldText.forEach((text, i) => {
+              pdf.setFont(montserratBold);
+              pdf.setFont(i % 2 ? montserratBold : montserratLight);
 
               pdf.text(text, startX, descY);
               startX = startX + pdf.getStringUnitWidth(text) * 3.2;
@@ -203,25 +190,25 @@ export class PdfService {
       getY(y + 5);
     }
 
-    // avatar
-    pdf.addImage(avatar, 'JPEG', x - 20, getY(y), 50, 50, '', 'FAST');
-
-    pdf.setLineDashPattern([1, 0], 0);
-    pdf.setLineWidth(1);
-    pdf.setDrawColor(colors.lilac);
-    pdf.circle(x + 5, getY(y) + 15, 25);
-
     // user-name
-    pdf.setFontSize(50);
-    pdf.setFont(userFont);
     pdf.setTextColor(colors.basic);
-    pdf.text(firstName, x + 30, 40);
-    pdf.text(lastName, x + 40, 55);
 
-    pdf.setFont(fontFamilyBold);
+    pdf.setFontSize(35);
+    pdf.setFont(montserratMedium);
+    pdf.text(firstName.toUpperCase(), section.x, 40, {
+      lineHeightFactor: 0.8,
+    });
+
+    pdf.setFontSize(40);
+    pdf.setFont(montserratBold);
+    pdf.text(lastName.toUpperCase(), section.x, 55, {
+      lineHeightFactor: 0.8,
+    });
+
+    pdf.setFont(montserratMedium);
     pdf.setTextColor(colors.textColor);
-    pdf.setFontSize(15);
-    pdf.text(position.toUpperCase(), 105, 62, {
+    pdf.setFontSize(18);
+    pdf.text(position, section.x, 63, {
       lineHeightFactor: 0.8,
     });
 
@@ -231,9 +218,9 @@ export class PdfService {
     getInfo('phone');
     pdf.setTextColor(colors.textColor);
     getInfo('email');
+    getInfo('github');
     getInfo('linkedIn');
     createSkillSection('SECTIONS.SPECIALIZATION', 'specializations');
-    createSkillSection('SECTIONS.OTHER_SKILLS', 'otherSkills');
 
     // content
     y = contentPosition.y;

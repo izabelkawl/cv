@@ -8,12 +8,10 @@
   "SECTIONS": {
     "EXPERIENCE": "Doświadczenie",
     "EDUCATION": "Wykształcenie",
-    "SPECIALIZATION": "Specjalizacje",
-    "OTHER_SKILLS": "Inne Umiejętności"
+    "SPECIALIZATION": "Specjalizacje"
   },
   "PERSONAL_DATA": {
-    "PROFILE": "Profil",
-    "PHONE": "tel."
+    "PROFILE": "Profil"
   },
   "NO_DATA": "Brak danych"
 }

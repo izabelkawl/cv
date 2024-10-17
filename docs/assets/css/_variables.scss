@@ -1,29 +1,52 @@
 @use "./mixins";
 
 // font
-$CommonFontFamily: "Roboto", Arial;
-$Caveat: "Caveat", Arial;
+$MontserratLight: "Montserrat-Light", Arial;
+$MontserratMedium: "Montserrat-Medium", Arial;
+$MontserratBold: "Montserrat-Bold", Arial;
+$MontserratExtraBold: "Montserrat-ExtraBold", Arial;
+$MontserratSemiBold: "Montserrat-SemiBold", Arial;
 $letterSpacing: 0.5px;
 
 // colors
-$white-color: var(--white);
 $basic-color: var(--basic-color);
-$lilac-color: var(--lilac);
-$orange-color: var(--orange);
 $text-color: var(--text);
+$pdf-color: var(--pdf);
+
+$dark-gray-color: var(--dark-gray);
+$light-gray-color: var(--light-gray);
+$light-beige-color: var(--light-beige);
+$white-color: var(--white);
 $black-color: var(--black);
-$shadow-color: rgba(200, 200, 200, 0.5);
 
 :root {
   --white: #ffffff;
-  --basic-color: #F27405;
-  --lilac: #D7BCFD;
-  --orange: #ffc897;
-  --text: #2946bf;
+  --basic-color: #141f49;
+  --text: #353535;
+  --pdf: #525659;
+  --light-beige: #f0f0f0;
+  --dark-gray: #414042;
+  --light-gray: #c8c8c8;
   --black: #000000;
 }
 
 @font-face {
-  font-family: Caveat;
-  src: url("./../font/Caveat-Bold.ttf");
+  font-family: Montserrat-Bold;
+  src: url("./../font/Montserrat-Bold.ttf");
+}
+@font-face {
+  font-family: Montserrat-ExtraBold;
+  src: url("./../font/Montserrat-ExtraBold.ttf");
+}
+@font-face {
+  font-family: Montserrat-Light;
+  src: url("./../font/Montserrat-Light.ttf");
+}
+@font-face {
+  font-family: Montserrat-Medium;
+  src: url("./../font/Montserrat-Medium.ttf");
+}
+@font-face {
+  font-family: Montserrat-SemiBold;
+  src: url("./../font/Montserrat-SemiBold.ttf");
 }

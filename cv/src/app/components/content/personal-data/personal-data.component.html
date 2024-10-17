@@ -1,24 +1,23 @@
 <div class="content">
   <h1 class="content__title">
-    {{ "PERSONAL_DATA.PROFILE" | translate | uppercase }}
+    {{ "PERSONAL_DATA.PROFILE" | translate }}
   </h1>
+  <hr />
 
   @if (personalInfo) {
-    <p class="content__description">{{ personalInfo.description }}</p>
+    <span class="content__description">{{ personalInfo.description }}</span>
 
     <div class="content__contact">
-      <a class="content__contact-link" (click)="showPhoneNumber()"
-        >{{ "PERSONAL_DATA.PHONE" | translate }}
-        <span class="content__contact-link--colored">
-          {{ personalInfo.phone | phonePipe: hideNumber }}
-        </span>
-      </a>
-      <a class="content__contact-link" (click)="openMail()"
-        >{{ personalInfo.email }}
-      </a>
-      <a class="content__contact-link" (click)="openLinkedIn()"
-        >{{ personalInfo.linkedIn }}
-      </a>
+      @for (link of contactList; track $index) {
+        <div class="content__contact-item">
+          <span>{{ link.label }}</span>
+          <a (click)="link?.onAction()">
+            <span class="content__contact-item--bold">
+              {{ link.value | linkPipe | phonePipe: hideNumber }}
+            </span>
+          </a>
+        </div>
+      }
     </div>
   }
 </div>

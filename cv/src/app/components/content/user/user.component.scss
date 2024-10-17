@@ -4,58 +4,39 @@
 .user {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  font-family: $MontserratMedium;
 
-  &__image {
-    width: 200px;
-    height: 200px;
-    background-color: $lilac-color;
-    border: 5px solid $lilac-color;
-    border-radius: 50%;
+  &__firstName {
+    font-size: 32px;
+    transform: scaleY(0.8);
+    margin: 0;
   }
 
-  &__name {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+  &__lastName {
+    font-family: $MontserratExtraBold;
+    color: $basic-color;
+    font-size: 32px;
+    margin: 0;
+  }
 
-    &-firstName,
-    &-lastName {
-      font-family: $Caveat;
-      font-size: 90px;
-      color: $basic-color;
-    }
-
-    &-lastName {
-      padding-left: calc(32px * 1.5);
-      line-height: 60px;
-    }
-
-    &-position {
-      font-size: 20px;
-      padding-left: calc(32px * 3);
-      font-weight: bold;
-      letter-spacing: 3px;
-    }
+  &__position {
+    font-size: 20px;
+    margin: 0;
+    transform: scaleY(0.8);
   }
 
   @include mixins.mq-min-width(extra-small) {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-
-    &__image {
-      width: 250px;
-      height: 250px;
+    &__firstName,
+    &__lastName {
+      font-size: 54px;
+      padding-bottom: 5px;
+      margin: 8px 0;
     }
 
-    &__name {
-      text-align: left;
-
-      &-firstName,
-      &-lastName {
-        padding-bottom: 1rem;
-      }
+    &__position {
+      margin: 8px 0;
+      font-size: 30px;
+      transform: scaleY(0.8);
     }
   }
 }

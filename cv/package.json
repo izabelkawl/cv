@@ -1,9 +1,9 @@
 {
   "name": "cv",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "engines": {
-    "node": ">=20.10.0",
-    "npm": ">=10.1.0"
+    "node": ">=21.7.3",
+    "npm": ">=10.9.0"
   },
   "scripts": {
     "ng": "ng",

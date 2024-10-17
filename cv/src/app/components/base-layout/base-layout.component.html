@@ -1,24 +1,22 @@
 @if (personalInfo | async; as personalInfo) {
-  <div class="main">
-    <div class="main__buttons">
-      <app-chips [@changeLanguage]="languageState" />
-      <app-buttons [buttonsConfig]="buttons" (clickEvent)="onClick($event)" />
-    </div>
+  <div class="topbar">
+    <app-chips />
+    <app-buttons [buttonsConfig]="buttons" (clickEvent)="onClick($event)" />
+  </div>
 
-    <app-user [info]="personalInfo.info" />
-
-    <div class="main__content" [@changeLanguage]="languageState"> 
+  <div class="main" [@changeLanguage]="languageState">
+    <div class="main__background"></div>
+    <div class="main__content">
       <div class="main__content-left-side">
         <app-personal-data [personalInfo]="personalInfo.info" />
         <app-section
           heading="SECTIONS.SPECIALIZATION"
           [data]="personalInfo.specializations"
-        />
-        <app-section
-          heading="SECTIONS.OTHER_SKILLS"
-          [data]="personalInfo.otherSkills"
+          [whiteColor]="true"
         />
       </div>
+
+      <app-user class="main__content--user" [info]="personalInfo.info" />
 
       <div class="main__content-right-side">
         <app-section

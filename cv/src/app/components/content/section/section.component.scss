@@ -2,37 +2,59 @@
 @import "../../../../assets/css/variables";
 
 .section {
+  padding: 0 16px;
+  font-family: $MontserratLight;
+
   &__heading {
-    background-color: $text-color;
-    color: $orange-color;
-    min-width: 30%;
-    padding: 10px 0;
-    margin-bottom: 16px;
-    line-height: 14px;
-    font-size: 14px;
-    text-align: center;
-    font-weight: bold;
-    letter-spacing: 3px;
+    padding-top: 16px;
+    font-size: 32px;
+    font-family: $MontserratSemiBold;
   }
 
-  &__title {
-    margin: 0;
-    font-size: 16px;
-    line-height: 1.3;
+  &__hr {
+    border-top: 2px solid $dark-gray-color;
+    margin-bottom: 16px;
+    opacity: 1;
 
-    &--bold {
-      font-weight: bold;
+    &.white {
+      border-color: $white-color;
+    }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+
+    &-title {
+      font-size: 18px;
+      font-family: $MontserratBold;
+      padding-bottom: 10px;
+    }
+
+    &-subtitle {
+      font-size: 18px;
+      font-family: $MontserratSemiBold;
+      padding-bottom: 10px;
+    }
+
+    &-period {
+      font-size: 20px;
+      font-style: italic;
+      white-space: nowrap;
     }
   }
 
   &__list {
     margin: 0;
+    font-size: 12px;
     padding: 0 0 16px 26px;
+
+    &--bold {
+      font-family: $MontserratBold;
+    }
   }
 
-  @include mixins.mq-min-width(small) {
-    &__list {
-      padding-bottom: 2rem;
-    }
+  @include mixins.mq-min-width(extra-small) {
+    padding: 0;
   }
 }

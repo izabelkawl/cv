@@ -1,15 +1,7 @@
 @if (info) {
   <div class="user">
-    <img
-      class="user__image"
-      [src]="info.avatar"
-      [@rubberBand]="rubberBand"
-      alt="avatar"
-    />
-    <div class="user__name">
-      <h1 class="user__name-firstName">{{ info.firstName }}</h1>
-      <h1 class="user__name-lastName">{{ info.lastName }}</h1>
-      <h6 class="user__name-position">{{ info.position | uppercase }}</h6>
-    </div>
+    <h1 class="user__firstName">{{ info.firstName | uppercase }}</h1>
+    <h1 class="user__lastName">{{ info.lastName | uppercase }}</h1>
+    <h6 class="user__position">{{ info.position }}</h6>
   </div>
 }

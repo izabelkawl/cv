@@ -7,13 +7,11 @@
   },
   "SECTIONS": {
     "SPECIALIZATION": "Specializations",
-    "OTHER_SKILLS": "Other skills",
     "EXPERIENCE": "Experience",
     "EDUCATION": "Education"
   },
   "PERSONAL_DATA": {
-    "PROFILE": "Profile",
-    "PHONE": "tel."
+    "PROFILE": "Profile"
   },
   "NO_DATA": "No data"
 }

@@ -5,7 +5,6 @@ export interface IPersonalInformation {
   experience: ISection[];
   education: ISection[];
   specializations: ISection[];
-  otherSkills: ISection[];
   clause: string;
   [name: string]: any;
 }
@@ -16,9 +15,9 @@ export interface IInfo {
   firstName: string;
   lastName: string;
   position: string;
-  avatar: string;
   phone: string;
   email: string;
+  github: string;
   linkedIn: string;
   description: string;
 }

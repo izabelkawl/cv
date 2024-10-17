@@ -1,25 +1,34 @@
 <div class="section">
   <h1 class="section__heading">
-    {{ heading | translate | uppercase }}
+    {{ heading | translate }}
   </h1>
+  <hr [ngClass]="['section__hr', whiteColor ? 'white' : '']" />
 
   @for (item of data; track $index) {
-    <div class="section__title section__title--bold">{{ item.title }}</div>
-    <div class="section__title">{{ item.subTitle }}</div>
-    <div class="section__title section__title--bold mb-2">
-      {{ item.period }}
-    </div>
+    @if (item.title) {
+      <div class="section__header">
+        <div>
+          <div class="section__header-title">{{ item.title }}</div>
+          <div class="section__header-subtitle">{{ item.subTitle }}</div>
+        </div>
+        <div class="section__header-period">
+          {{ item.period }}
+        </div>
+      </div>
+    }
 
     @if (item?.description?.length) {
       <ul class="section__list">
         @for (task of item?.description; track $index) {
           <li>
-            @for (part of getPartialText(task); track index; let index = $index) {
-              @if (index % 2 !== 0) {
-                <b>{{ part }}</b>
-              } @else {
-                <span>{{ part }}</span>
-              }
+            @for (
+              part of getPartialText(task);
+              track index;
+              let index = $index
+            ) {
+              <span [ngClass]="{ 'section__list--bold': index % 2 !== 0 }">{{
+                part
+              }}</span>
             }
           </li>
         }
