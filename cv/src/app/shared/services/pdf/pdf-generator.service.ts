@@ -1,6 +1,5 @@
 import { inject, Injectable } from '@angular/core';
 import {
-  InfoKeys,
   IPersonalInformation,
   SectionTypes,
 } from '@app/components/base-layout/base-layout.interface';
@@ -9,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { jsPDF } from 'jspdf';
 import { LangType } from '../lang/lang.interface';
 import { Colors } from '@app/shared/enums/variables';
+import { LinkPipe } from './../../pipes/link.pipe';
 
 @Injectable({
   providedIn: 'root',
@@ -17,28 +17,12 @@ export class PdfService {
   readonly #translateService = inject(TranslateService);
 
   public generatePdf(data: IPersonalInformation, lang: LangType): void {
-    const { BASIC, WHITE, TEXT_COLOR } = Colors;
     const pdf = new jsPDF();
     const translateService = this.#translateService;
-    const { firstName, lastName, position, description } = data.info;
-    const colors = {
-      white: getDocumentColor(WHITE),
-      basic: getDocumentColor(BASIC),
-      textColor: getDocumentColor(TEXT_COLOR),
-      darkGray: 'darkgray',
-    };
-
-    let y = 10;
-    let x = 60;
-    const contentPosition = { y: 85 };
-    const contactPosition = { x, y: 140 };
-    const skills = { x, y: 175, width: 65 };
-    const section = { x: x + 40, width: 80 };
-    const footerPosition = { x: 105, y: 285 };
-
     const montserratLight: string = 'Montserrat-Light';
     const montserratMedium: string = 'Montserrat-Medium';
     const montserratBold: string = 'Montserrat-Bold';
+    const montserratLightItalic: string = 'Montserrat-LightItalic';
     const montserratSemiBold: string = 'Montserrat-SemiBold';
     const montserratExtraBold: string = 'Montserrat-ExtraBold';
 
@@ -46,6 +30,7 @@ export class PdfService {
       montserratLight,
       montserratMedium,
       montserratBold,
+      montserratLightItalic,
       montserratSemiBold,
       montserratExtraBold,
     ].forEach((font: string) => {
@@ -53,11 +38,29 @@ export class PdfService {
       pdf.addFont(`./assets/font/${font}.ttf`, font, 'normal');
     });
 
+    const colors = {
+      white: getDocumentColor(Colors.WHITE),
+      basic: getDocumentColor(Colors.BASIC),
+      textColor: getDocumentColor(Colors.TEXT_COLOR),
+      lightBeigeColor: getDocumentColor(Colors.LIGHT_BEIGE),
+      lightGray: getDocumentColor(Colors.LIGHT_GRAY),
+      darkGray: getDocumentColor(Colors.DARK_GRAY),
+      black: getDocumentColor(Colors.BLACK),
+    };
+
+    let y = 0;
+
+    const profilePosition = { x: 20, y: 60, width: 60 };
+    const contactPosition = { x: 20, y: 115, width: 60 };
+    const skillsPosition = { x: 20, y: 140, width: 60 };
+    const sectionPosition = { x: 90, y: 80, width: 110 };
+    const footerPosition = { x: 15, y: 285, width: 180 };
+
     function getDocumentColor(color: string): string {
       return getComputedStyle(document.body).getPropertyValue(color);
     }
 
-    function getY(value: number): number {
+    function setY(value: number): number {
       y = value + 10;
       return y;
     }
@@ -66,181 +69,191 @@ export class PdfService {
       return translateService.instant(name as string);
     }
 
-    function getInfo(name: InfoKeys): void {
+    function getInfo(name: string, link: string): void {
+      pdf.setFont(montserratLightItalic);
+      pdf.text(name, contactPosition.x, contactPosition.y);
       pdf.setFont(montserratBold);
-      pdf.text(data.info[name], contactPosition.x, contactPosition.y, {
-        align: 'center',
-      });
-      contactPosition.y += 7;
+      pdf.text(
+        new LinkPipe().transform(link),
+        contactPosition.x + name.length * 2.1,
+        contactPosition.y,
+      );
+      contactPosition.y += 5;
     }
 
     function createProfileSection(): void {
       pdf.setFontSize(15);
       pdf.setFont(montserratBold);
-      y = contentPosition.y;
-      pdf.text(getTranslation('PERSONAL_DATA.PROFILE').toUpperCase(), x, y, {
-        align: 'center',
-      });
+      pdf.text(
+        getTranslation('PERSONAL_DATA.PROFILE'),
+        profilePosition.x,
+        profilePosition.y,
+      );
+      pdf.setLineWidth(0.4);
+      pdf.line(
+        profilePosition.x,
+        setY(y - 5),
+        profilePosition.x + profilePosition.width,
+        y,
+      );
       pdf.setFontSize(9);
-      pdf.setFont(montserratLight);
-      pdf.text(description, x, getY(y - 2), {
-        maxWidth: 50,
-        align: 'center',
-        lineHeightFactor: 1.6,
+      pdf.setFont(montserratMedium);
+      pdf.text(data.info.description, profilePosition.x, setY(y - 2), {
+        maxWidth: profilePosition.width,
+        lineHeightFactor: 1.3,
       });
     }
 
-    function splitTextsOnLength(texts: any, maxLength: number) {
+    function splitTextsOnLength(
+      texts: string[],
+      maxLength: number,
+      xPosition: number,
+      descriptionY: number,
+    ): string[] {
       const result: string[] = [];
 
-      texts.forEach((txt: string) => {
-        let text = `\u2022  ${txt}`;
-        while (text.length > maxLength) {
-          let splitIndex = text.lastIndexOf(' ', maxLength);
-          if (splitIndex === -1) splitIndex = maxLength;
-          result.push(text.slice(0, splitIndex).trim());
-          text = text.slice(splitIndex).trim();
-        }
+      texts.forEach((text: string) => {
+        pdf.setFont('Symbol');
+        pdf.setFontSize(9);
+        pdf.text('·', xPosition + 1, descriptionY);
+        descriptionY = descriptionY + (text.length > maxLength ? 10 : 5);
+
+        if (text.length > maxLength)
+          while (text.length > maxLength) {
+            let splitIndex = text.lastIndexOf(' ', maxLength);
+            if (splitIndex === -1) splitIndex = maxLength;
+            result.push(text.slice(0, splitIndex).trim());
+            text = text.slice(splitIndex).trim();
+          }
+
         if (text.length) result.push(text);
       });
 
       return result;
     }
 
-    function createSkillSection(translate: string, type: SectionTypes): void {
-      pdf.setFontSize(12);
-      pdf.setFont(montserratBold);
-      pdf.setTextColor(colors.textColor);
-      pdf.text(getTranslation(translate).toUpperCase(), skills.x, skills.y, {
-        align: 'center',
-      });
-      pdf.setTextColor(colors.textColor);
-      skills.y += 10;
-
-      pdf.setFont(montserratLight);
-      splitTextsOnLength(data[type][0].description, 48).forEach(
-        (title: string) => {
-          pdf.setFontSize(9);
-          let startX = skills.x - 29;
-          const arrayOfNormalAndBoldText = title.split('**');
-          arrayOfNormalAndBoldText.map((text, i) => {
-            pdf.setFont(montserratBold);
-            pdf.setFont(i % 2 ? montserratBold : montserratLight);
-
-            pdf.text(text, startX, skills.y);
-            startX = startX + pdf.getStringUnitWidth(text) * 3.2;
-          });
-
-          skills.y += 5;
-        },
-      );
-      skills.y += 5;
-    }
-
     function createSection(
       translate: string,
-      type: SectionTypes,
-      sectionX: number,
-      sectionWidth: number,
+      dataType: ISection[],
+      section: { x: number; y?: number; width: number },
     ): void {
-      pdf.setFontSize(12);
-      pdf.setFont(montserratBold);
-      pdf.setTextColor(colors.textColor);
-      pdf.text(
-        getTranslation(translate).toUpperCase(),
-        sectionX + 40,
-        getY(y - 4),
-        { align: 'center', maxWidth: sectionWidth },
-      );
+      const { x, width: sectionWidth } = section;
 
-      data[type].map((item: ISection) => {
+      pdf.setFontSize(15);
+      pdf.setFont(montserratSemiBold);
+      pdf.text(getTranslation(translate), x, setY(y), {
+        maxWidth: sectionWidth,
+      });
+      pdf.setLineWidth(0.2);
+      pdf.line(x, setY(y - 5), x + sectionWidth, y);
+
+      dataType.map((item: ISection) => {
         const { title, subTitle, period, description } = item;
+        pdf.setFontSize(10);
 
         if (title) {
           pdf.setFont(montserratBold);
-          pdf.setFontSize(10);
-          pdf.setTextColor(colors.textColor);
-          pdf.text(title, sectionX, getY(y + 3));
+          pdf.text(title, x, setY(y - 3));
         }
-
-        pdf.setFontSize(10);
-        subTitle && pdf.text(subTitle, sectionX, getY(y - 5));
-        period && pdf.text(period, sectionX, getY(y - 5));
-
-        pdf.setTextColor(colors.textColor);
+        if (period) {
+          pdf.setFont(montserratLightItalic);
+          pdf.text(period, 200, y, {
+            align: 'right',
+          });
+        }
+        if (subTitle) {
+          pdf.setFont(montserratSemiBold);
+          pdf.text(subTitle, x, setY(y - 3));
+        } else {
+          setY(y - 10);
+        }
         if (description) {
           pdf.setFontSize(9);
-          let descY = getY(y - 5);
-          splitTextsOnLength(description, 55).forEach((desc: string) => {
+          let descY = setY(y - 3);
+          splitTextsOnLength(
+            description,
+            sectionWidth / 2 + 7,
+            x,
+            descY,
+          ).forEach((desc: string) => {
             pdf.setFont(montserratLight);
-            let startX = section.x;
-            const arrayOfNormalAndBoldText = desc.split('**');
-            arrayOfNormalAndBoldText.forEach((text, i) => {
+            let startX = x + 5;
+            desc.split('**').forEach((text, i) => {
               pdf.setFont(montserratBold);
               pdf.setFont(i % 2 ? montserratBold : montserratLight);
-
               pdf.text(text, startX, descY);
               startX = startX + pdf.getStringUnitWidth(text) * 3.2;
             });
             descY += 5;
-            getY(y - 6);
+            setY(y - 5);
           });
         }
       });
-      getY(y + 5);
     }
+    // background
+    pdf.setFillColor(colors.lightBeigeColor);
+    pdf.rect(7, 0, 196, 80, 'F');
+    pdf.setFillColor(colors.basic);
+    pdf.rect(14, 10, 70, 267, 'F');
 
     // user-name
-    pdf.setTextColor(colors.basic);
-
-    pdf.setFontSize(35);
+    pdf.setTextColor(colors.textColor);
+    pdf.setFontSize(28);
     pdf.setFont(montserratMedium);
-    pdf.text(firstName.toUpperCase(), section.x, 40, {
+    pdf.text(data.info.firstName.toUpperCase(), sectionPosition.x, 40, {
       lineHeightFactor: 0.8,
     });
 
-    pdf.setFontSize(40);
-    pdf.setFont(montserratBold);
-    pdf.text(lastName.toUpperCase(), section.x, 55, {
+    pdf.setTextColor(colors.basic);
+    pdf.setFontSize(32);
+    pdf.setFont(montserratExtraBold);
+    pdf.text(data.info.lastName.toUpperCase(), sectionPosition.x, 52, {
       lineHeightFactor: 0.8,
     });
 
     pdf.setFont(montserratMedium);
     pdf.setTextColor(colors.textColor);
-    pdf.setFontSize(18);
-    pdf.text(position, section.x, 63, {
+    pdf.setFontSize(16);
+    pdf.text(data.info.position, sectionPosition.x, 59, {
       lineHeightFactor: 0.8,
     });
 
     // profile
+    y = profilePosition.y;
+    pdf.setDrawColor(colors.lightBeigeColor);
+    pdf.setTextColor(colors.white);
     createProfileSection();
-    pdf.setTextColor(colors.basic);
-    getInfo('phone');
-    pdf.setTextColor(colors.textColor);
-    getInfo('email');
-    getInfo('github');
-    getInfo('linkedIn');
-    createSkillSection('SECTIONS.SPECIALIZATION', 'specializations');
+    getInfo('tel.', data.info.phone);
+    getInfo('email:', data.info.email);
+    getInfo('github:', data.info.github);
+    getInfo('linkedIn:', data.info.linkedIn);
+    y = skillsPosition.y;
+    createSection(
+      'SECTIONS.SPECIALIZATION',
+      data.specializations,
+      skillsPosition,
+    );
 
     // content
-    y = contentPosition.y;
-    createSection(
-      'SECTIONS.EXPERIENCE',
-      'experience',
-      section.x,
-      section.width,
-    );
-    createSection('SECTIONS.EDUCATION', 'education', section.x, section.width);
+    pdf.setDrawColor(colors.textColor);
+    pdf.setTextColor(colors.textColor);
+    y = sectionPosition.y;
+    createSection('SECTIONS.EXPERIENCE', data.experience, sectionPosition);
+    createSection('SECTIONS.EDUCATION', data.education, sectionPosition);
 
     // footer
     pdf.setFontSize(6);
-    pdf.setTextColor(colors.darkGray);
+    pdf.setTextColor(colors.textColor);
     pdf.text(data.clause, footerPosition.x, footerPosition.y, {
-      maxWidth: 180,
-      align: 'center',
+      maxWidth: footerPosition.width,
+      align: 'justify',
       lineHeightFactor: 1.5,
     });
 
-    pdf.save(`${firstName} ${lastName} CV ${lang.toUpperCase()}.pdf`);
+    pdf.save(
+      `${data.info.firstName} ${
+        data.info.lastName
+      } CV ${lang.toUpperCase()}.pdf`,
+    );
   }
 }

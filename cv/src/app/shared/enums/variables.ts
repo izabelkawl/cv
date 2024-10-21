@@ -1,8 +1,11 @@
 export enum Colors {
-  BASIC = '--basic-color',
   WHITE = '--white',
-  BLACK = '--black',
+  BASIC = '--basic-color',
   TEXT_COLOR = '--text',
+  LIGHT_BEIGE = '--light-beige',
+  LIGHT_GRAY = '--dark-gray',
+  DARK_GRAY = '--light-gray',
+  BLACK = '--black',
 }
 
 export enum SessionStorageKeys {

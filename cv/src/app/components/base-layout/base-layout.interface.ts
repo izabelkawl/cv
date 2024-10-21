@@ -19,6 +19,7 @@ export interface IInfo {
   email: string;
   github: string;
   linkedIn: string;
+  city: string;
   description: string;
 }
 

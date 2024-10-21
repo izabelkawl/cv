@@ -19,9 +19,9 @@ export class PersonalDataComponent {
     label: string;
     value: string;
     usePipe?: boolean;
-    onAction: () => void;
+    onAction?: () => void;
   }[] {
-    const { phone, email, github, linkedIn } = this.personalInfo;
+    const { phone, email, github, linkedIn, city } = this.personalInfo;
 
     return [
       {
@@ -36,6 +36,10 @@ export class PersonalDataComponent {
         label: 'linkedIn:',
         value: linkedIn,
         onAction: () => this.openLinkedIn(),
+      },
+      {
+        label: '',
+        value: city,
       },
     ];
   }

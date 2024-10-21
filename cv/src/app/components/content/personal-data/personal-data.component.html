@@ -10,7 +10,9 @@
     <div class="content__contact">
       @for (link of contactList; track $index) {
         <div class="content__contact-item">
-          <span>{{ link.label }}</span>
+          @if (link.label) {
+            <span>{{ link.label }}</span>
+          }
           <a (click)="link?.onAction()">
             <span class="content__contact-item--bold">
               {{ link.value | linkPipe | phonePipe: hideNumber }}

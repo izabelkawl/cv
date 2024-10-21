@@ -8,13 +8,14 @@
       "email": "izabelawlazlo9@gmail.com",
       "github": "https://github.com/izabelkawl",
       "linkedIn": "https://www.linkedin.com/in/izabelawl",
+      "city": "Rzeszów, Zdalnie",
       "description": "Cześć! Jestem Iza i posiadam ponad trzyletnie\n doświadczenie w tworzeniu aplikacji webowych.\nZawsze staram się być na bieżąco z nowoczesnymi technologiami i stosować najlepsze techniki programowania."
     },
     "experience": [
       {
         "title": "PROGRAMISTA",
         "subTitle": "Transition Technologies-Software",
-        "period": "10.2021 - 09.2024",
+        "period": "10.2021-09.2024",
         "description": [
           "Tworzenie i rozwijanie rozbudowanych aplikacji dla sektora publicznego do zarządzania danymi",
           "Opracowywanie i implementacja architektury",
@@ -39,7 +40,7 @@
       {
         "title": "INFORMATYKA I EKONOMETRIA",
         "subTitle": "Uniwersytet Rzeszowski",
-        "period": "2017 - 2021",
+        "period": "2017-2021",
         "description": [
           "Specjalizacja: Systemy informatyczne w zarządzaniu",
           "Uzyskany tytuł: **Inżynier**"
@@ -73,13 +74,14 @@
       "email": "izabelawlazlo9@gmail.com",
       "github": "https://github.com/izabelkawl",
       "linkedIn": "https://www.linkedin.com/in/izabelawl",
+      "city": "Rzeszów, Zdalnie",
       "description": "Hi! I'm Iza, and I have over three years of experience in creating web applications. I always strive to stay updated with modern technologies and apply the best programming techniques."
     },
     "experience": [
       {
         "title": "PROGRAMMER",
         "subTitle": "Transition Technologies-Software",
-        "period": "10.2021 - 09.2024",
+        "period": "10.2021-09.2024",
         "description": [
           "Creating and developing complex applications for the public sector for data management",
           "Designing and implementing architecture",
@@ -104,7 +106,7 @@
       {
         "title": "COMPUTER SCIENCE AND ECONOMETRICS",
         "subTitle": "University of Rzeszów",
-        "period": "2017 - 2021",
+        "period": "2017-2021",
         "description": [
           "Specialization: Information Systems in Management",
           "Degree obtained: **Engineer**"
