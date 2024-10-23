@@ -60,6 +60,13 @@ export class PdfService {
       return getComputedStyle(document.body).getPropertyValue(color);
     }
 
+    function addNewPage(): void {
+      pdf.addPage();
+      y = 10;
+      pdf.setFillColor(colors.basic);
+      pdf.rect(14, 10, 70, 267, 'F');
+    }
+
     function setY(value: number): number {
       y = value + 10;
       return y;
@@ -151,6 +158,9 @@ export class PdfService {
         const { title, subTitle, period, description } = item;
         pdf.setFontSize(10);
 
+        if (y >= 280) {
+          addNewPage();
+        }
         if (title) {
           pdf.setFont(montserratBold);
           pdf.text(title, x, setY(y - 3));
@@ -176,6 +186,11 @@ export class PdfService {
             x,
             descY,
           ).forEach((desc: string) => {
+            if (descY >= 280) {
+              addNewPage();
+              descY = 10;
+            }
+
             pdf.setFont(montserratLight);
             let startX = x + 5;
             desc.split('**').forEach((text, i) => {

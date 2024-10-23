@@ -1,4 +1,8 @@
 {
+  "BUTTONS": {
+    "DOWNLOAD_CV": "Download CV",
+    "EDIT_TEMPLATE": "Edit template"
+  },
   "CHIPS": {
     "NAVY_BLUE": "Navy Blue",
     "PURPLE": "Purple",

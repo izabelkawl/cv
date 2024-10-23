@@ -1,11 +1,5 @@
 import { AsyncPipe, NgIf, NgTemplateOutlet } from '@angular/common';
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  inject,
-  OnInit,
-} from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable, map, take } from 'rxjs';
 import { changeLanguage } from '@app/shared/animations/animations';
@@ -39,13 +33,12 @@ import { BaseLayoutService } from './base-layout.service';
     ChipsComponent,
   ],
 })
-export class BaseLayoutComponent implements OnInit, AfterViewInit {
-  readonly #cdr = inject(ChangeDetectorRef);
+export class BaseLayoutComponent implements OnInit {
   readonly #pdfService = inject(PdfService);
   readonly #langService = inject(LangService);
   readonly #baseLayoutService = inject(BaseLayoutService);
 
-  public buttons: IButton[] = [];
+  public buttons: IButton[] = this.buttonConfig;
 
   public languageState: LangType = this.#langService.lang;
 
@@ -55,41 +48,29 @@ export class BaseLayoutComponent implements OnInit, AfterViewInit {
     this.#langService.setDefaultLang();
   }
 
-  ngAfterViewInit(): void {
-    this.buttons = this.buttonConfig;
-    this.#cdr.detectChanges();
-  }
-
-  public onClick(id: string): void {
-    switch (id) {
-      case 'pdf':
-        this.generatePdf();
-        break;
-      case 'lang':
-        this.changeLang();
-        break;
-      default:
-        break;
-    }
-  }
-
   private generatePdf(): void {
-    this.#pdfService.generatePdf({ ...this.#data }, this.languageState);
+    this.#pdfService.generatePdf(this.#data, this.languageState);
   }
 
   private changeLang(): void {
     this.#langService.changeLang();
     this.languageState = this.#langService.lang;
-    this.buttons = this.buttonConfig;
   }
 
   private get buttonConfig(): IButton[] {
     return [
-      { id: 'pdf', name: 'PDF' },
       {
-        id: 'lang',
+        name: 'BUTTONS.EDIT_TEMPLATE',
+        action: () => {},
+      },
+      {
+        name: 'BUTTONS.DOWNLOAD_CV',
+        action: () => this.generatePdf(),
         basicColor: true,
+      },
+      {
         name: this.#langService.oppositeTranslation.toUpperCase(),
+        action: () => this.changeLang(),
       },
     ];
   }

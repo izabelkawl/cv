@@ -1,7 +1,7 @@
 @if (personalInfo | async; as personalInfo) {
   <div class="topbar">
     <app-chips />
-    <app-buttons [buttonsConfig]="buttons" (clickEvent)="onClick($event)" />
+    <app-buttons [buttonsConfig]="buttons" />
   </div>
 
   <div class="main" [@changeLanguage]="languageState">

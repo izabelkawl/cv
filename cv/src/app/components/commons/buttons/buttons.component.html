@@ -2,8 +2,8 @@
   <button
     mat-raised-button
     [ngClass]="{ basicColor: button.basicColor, 'me-2': true }"
-    (click)="onClick(button.id)"
+    (click)="button?.action()"
   >
-    {{ button.name }}
+    {{ button.name | translate }}
   </button>
 }
