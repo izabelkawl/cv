@@ -62,9 +62,9 @@ export class PdfService {
 
     function addNewPage(): void {
       pdf.addPage();
-      y = 10;
       pdf.setFillColor(colors.basic);
       pdf.rect(14, 10, 70, 267, 'F');
+      y = 10;
     }
 
     function setY(value: number): number {
@@ -76,7 +76,7 @@ export class PdfService {
       return translateService.instant(name as string);
     }
 
-    function getInfo(name: string, link: string): void {
+    function setContact(name: string, link: string): void {
       pdf.setFont(montserratLightItalic);
       pdf.text(name, contactPosition.x, contactPosition.y);
       pdf.setFont(montserratBold);
@@ -88,7 +88,7 @@ export class PdfService {
       contactPosition.y += 5;
     }
 
-    function createProfileSection(): void {
+    function setProfileSection(): void {
       pdf.setFontSize(15);
       pdf.setFont(montserratBold);
       pdf.text(
@@ -111,24 +111,16 @@ export class PdfService {
       });
     }
 
-    function splitTextsOnLength(
-      texts: string[],
-      maxLength: number,
-      xPosition: number,
-      descriptionY: number,
-    ): string[] {
+    function splitTextsOnLength(texts: string[], maxLength: number): string[] {
       const result: string[] = [];
 
       texts.forEach((text: string) => {
-        pdf.setFont('Symbol');
-        pdf.setFontSize(9);
-        pdf.text('·', xPosition + 1, descriptionY);
-        descriptionY = descriptionY + (text.length > maxLength ? 10 : 5);
-
         if (text.length > maxLength)
           while (text.length > maxLength) {
             let splitIndex = text.lastIndexOf(' ', maxLength);
-            if (splitIndex === -1) splitIndex = maxLength;
+            if (splitIndex === -1) {
+              splitIndex = maxLength;
+            }
             result.push(text.slice(0, splitIndex).trim());
             text = text.slice(splitIndex).trim();
           }
@@ -146,6 +138,9 @@ export class PdfService {
     ): void {
       const { x, width: sectionWidth } = section;
 
+      if (y >= 270) {
+        addNewPage();
+      }
       pdf.setFontSize(15);
       pdf.setFont(montserratSemiBold);
       pdf.text(getTranslation(translate), x, setY(y), {
@@ -180,28 +175,29 @@ export class PdfService {
         if (description) {
           pdf.setFontSize(9);
           let descY = setY(y - 3);
-          splitTextsOnLength(
-            description,
-            sectionWidth / 2 + 7,
-            x,
-            descY,
-          ).forEach((desc: string) => {
-            if (descY >= 280) {
-              addNewPage();
-              descY = 10;
-            }
-
-            pdf.setFont(montserratLight);
-            let startX = x + 5;
-            desc.split('**').forEach((text, i) => {
-              pdf.setFont(montserratBold);
-              pdf.setFont(i % 2 ? montserratBold : montserratLight);
-              pdf.text(text, startX, descY);
-              startX = startX + pdf.getStringUnitWidth(text) * 3.2;
-            });
-            descY += 5;
-            setY(y - 5);
-          });
+          splitTextsOnLength(description, sectionWidth / 2 + 7).forEach(
+            (desc: string) => {
+              if (descY >= 280) {
+                addNewPage();
+                descY = 10;
+              }
+              if (description.some((txt) => txt.startsWith(desc))) {
+                pdf.setFont('Symbol');
+                pdf.setFontSize(9);
+                pdf.text('·', x + 1, descY);
+              }
+              pdf.setFont(montserratLight);
+              let startX = x + 5;
+              desc.split('**').forEach((text, i) => {
+                pdf.setFont(montserratBold);
+                pdf.setFont(i % 2 ? montserratBold : montserratLight);
+                pdf.text(text, startX, descY);
+                startX = startX + pdf.getStringUnitWidth(text) * 3.2;
+              });
+              descY += 5;
+              setY(y - 5);
+            },
+          );
         }
       });
     }
@@ -237,11 +233,11 @@ export class PdfService {
     y = profilePosition.y;
     pdf.setDrawColor(colors.lightBeigeColor);
     pdf.setTextColor(colors.white);
-    createProfileSection();
-    getInfo('tel.', data.info.phone);
-    getInfo('email:', data.info.email);
-    getInfo('github:', data.info.github);
-    getInfo('linkedIn:', data.info.linkedIn);
+    setProfileSection();
+    setContact('tel.', data.info.phone);
+    setContact('email:', data.info.email);
+    setContact('github:', data.info.github);
+    setContact('linkedIn:', data.info.linkedIn);
     y = skillsPosition.y;
     createSection(
       'SECTIONS.SPECIALIZATION',

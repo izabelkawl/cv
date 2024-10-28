@@ -7,14 +7,10 @@
   @for (item of data; track $index) {
     @if (item.title) {
       <div class="section__header">
-        <div>
-          <div class="section__header-title">{{ item.title }}</div>
-          <div class="section__header-subtitle">{{ item.subTitle }}</div>
-        </div>
-        <div class="section__header-period">
-          {{ item.period }}
-        </div>
+        <div class="section__header-title">{{ item.title }}</div>
+        <div class="section__header-period">{{ item.period }}</div>
       </div>
+      <div class="section__header-subtitle">{{ item.subTitle }}</div>
     }
 
     @if (item?.description?.length) {
