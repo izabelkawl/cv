@@ -15,6 +15,8 @@ import { TranslateModule } from '@ngx-translate/core';
 export class PersonalDataComponent {
   @Input() personalInfo!: IInfo;
 
+  public hideNumber: boolean = true;
+
   public get contactList(): {
     label: string;
     value: string;
@@ -43,8 +45,6 @@ export class PersonalDataComponent {
       },
     ];
   }
-
-  public hideNumber: boolean = true;
 
   public openGithub(): void {
     window.open(this.personalInfo.github, '_blank');
