@@ -3,4 +3,5 @@ export interface IButton {
   name: string;
   action?: () => void;
   basicColor?: boolean;
+  disabled?: boolean;
 }

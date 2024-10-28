@@ -4,22 +4,35 @@
   </h1>
   <hr />
 
-  <span class="content__description">{{
-    infoFormGroup.value.description
-  }}</span>
+  <form [formGroup]="infoFormGroup" class="content__description">
+    <app-textarea
+      [formControlName]="'description'"
+      [placeholder]="'PERSONAL_DATA.PLACEHOLDERS.PROFILE'"
+    />
 
-  <div class="content__contact">
-    @for (link of contactList; track $index) {
-      <div class="content__contact-item">
-        @if (link.label) {
-          <span>{{ link.label }}</span>
-        }
-        <a (click)="link?.onAction()">
-          <span class="content__contact-item--bold">
-            {{ link.value ?? "" | linkPipe | phonePipe: hideNumber }}
-          </span>
-        </a>
-      </div>
-    }
-  </div>
+    <div class="content__contact">
+      @for (item of contactList; track $index) {
+        <div class="content__contact-item">
+          @if (item.label) {
+            <span>{{ item.label }}</span>
+          }
+          <!-- <app-input
+            class="content__contact-item--bold"
+            [formControlName]="item.formControlName"
+            [placeholder]="item.placeholder"
+          /> -->
+
+          <a (click)="item?.onAction()">
+            <span class="content__contact-item--bold">
+              {{
+                infoFormGroup.value[item.formControlName] ?? ""
+                  | linkPipe
+                  | phonePipe: hideNumber
+              }}
+            </span>
+          </a>
+        </div>
+      }
+    </div>
+  </form>
 </div>

@@ -1,0 +1,8 @@
+<input
+  class="input"
+  [placeholder]="placeholder | translate"
+  [(ngModel)]="inputValue"
+  (ngModelChange)="onModelChange($event)"
+  [disabled]="disabled"
+  (blur)="onBlur()"
+/>

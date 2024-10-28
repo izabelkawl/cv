@@ -15,7 +15,21 @@
     "SPECIALIZATION": "Specjalizacje"
   },
   "PERSONAL_DATA": {
-    "PROFILE": "Profil"
+    "PROFILE": "Profil",
+    "PLACEHOLDERS": {
+      "PROFILE": "Przedstaw się!",
+      "PHONE": "Telefon",
+      "EMAIL": "Adres email",
+      "GITHUB": "Wstaw link do githuba",
+      "LINKED_IN": "Wstaw link do linkedIn'a",
+      "CITY": "Podaj lokalizację pracy",
+      "TITLE": "Opis stanowiska",
+      "SUBTITLE": "Miejsce pracy",
+      "PERIOD": "Zakres pracy",
+      "DESCRIPTION": "Opisz co potrafisz ;)! pogrubione elementy odzielaj za pomocą **podwójych gwiazdek**",
+      "ADD": "Dodaj nową pozycję",
+      "DELETE": "Usuń wybraną pozycję"
+    }
   },
   "NO_DATA": "Brak danych"
 }

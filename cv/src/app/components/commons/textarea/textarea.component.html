@@ -1,0 +1,10 @@
+<textarea
+  [ngClass]="['textarea', config.colorClass]"
+  [placeholder]="placeholder | translate"
+  [(ngModel)]="inputValue"
+  (ngModelChange)="onModelChange($event)"
+  [disabled]="disabled"
+  [rows]="config.rows"
+  [maxlength]="config.maxLength"
+  (blur)="onBlur()"
+></textarea>

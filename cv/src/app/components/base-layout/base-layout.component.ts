@@ -49,7 +49,7 @@ export class BaseLayoutComponent implements OnInit {
 
   public formGroup = new FormGroup<IPersonalInformationForm>({
     info: new FormGroup({
-      firstName: new FormControl(''),
+      firstName: new FormControl('Imie'),
       lastName: new FormControl(''),
       position: new FormControl(''),
       phone: new FormControl(''),
@@ -121,7 +121,10 @@ export class BaseLayoutComponent implements OnInit {
     return [
       {
         name: 'BUTTONS.EDIT_TEMPLATE',
-        action: () => {},
+        disabled: true,
+        action: () => {
+          this.formGroup.reset();
+        },
       },
       {
         name: 'BUTTONS.DOWNLOAD_CV',

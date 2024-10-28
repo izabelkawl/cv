@@ -1,7 +1,14 @@
+import { InputComponent } from './../../commons/input/input.component';
 import { NgIf, UpperCasePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { IInfo } from '@app/components/base-layout/base-layout.interface';
+import { TextareaComponent } from '@app/components/commons/textarea/textarea.component';
 import { LinkPipe } from '@app/shared/pipes/link.pipe';
 import { PhonePipe } from '@app/shared/pipes/phone.pipe';
 import { TranslateModule } from '@ngx-translate/core';
@@ -11,7 +18,17 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './personal-data.component.html',
   styleUrls: ['./personal-data.component.scss'],
   standalone: true,
-  imports: [TranslateModule, PhonePipe, LinkPipe, NgIf, UpperCasePipe],
+  imports: [
+    TranslateModule,
+    PhonePipe,
+    LinkPipe,
+    NgIf,
+    UpperCasePipe,
+    FormsModule,
+    ReactiveFormsModule,
+    InputComponent,
+    TextareaComponent,
+  ],
 })
 export class PersonalDataComponent {
   @Input() infoFormGroup!: FormGroup<IInfo<FormControl>>;
@@ -20,37 +37,41 @@ export class PersonalDataComponent {
 
   public get contactList(): {
     label: string;
-    value: string | undefined;
+    placeholder: string;
+    formControlName: keyof IInfo;
     usePipe?: boolean;
     onAction?: () => void;
   }[] {
-    const { phone, email, github, linkedIn, city } = this.infoFormGroup.value;
-
     return [
       {
         label: 'tel.',
-        value: phone,
+        placeholder: 'PERSONAL_DATA.PLACEHOLDERS.PHONE',
+        formControlName: 'phone',
         usePipe: true,
         onAction: () => this.showPhoneNumber(),
       },
       {
         label: 'email:',
-        value: email,
+        placeholder: 'PERSONAL_DATA.PLACEHOLDERS.EMAIL',
+        formControlName: 'email',
         onAction: () => this.openMail(),
       },
       {
         label: 'github:',
-        value: github,
+        placeholder: 'PERSONAL_DATA.PLACEHOLDERS.GITHUB',
+        formControlName: 'github',
         onAction: () => this.openGithub(),
       },
       {
         label: 'linkedIn:',
-        value: linkedIn,
+        placeholder: 'PERSONAL_DATA.PLACEHOLDERS.LINKED_IN',
+        formControlName: 'linkedIn',
         onAction: () => this.openLinkedIn(),
       },
       {
         label: '',
-        value: city,
+        placeholder: 'PERSONAL_DATA.PLACEHOLDERS.CITY',
+        formControlName: 'city',
       },
     ];
   }

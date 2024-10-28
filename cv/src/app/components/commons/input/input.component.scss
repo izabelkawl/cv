@@ -1,0 +1,15 @@
+@import "./../../../../assets/css/variables";
+
+.input,
+.input:focus,
+.input:focus-visible {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: $white-color;
+
+  &::placeholder {
+    color: $white-color;
+    font-style: italic;
+  }
+}

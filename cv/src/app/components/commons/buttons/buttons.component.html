@@ -2,6 +2,7 @@
   <button
     mat-raised-button
     [ngClass]="{ basicColor: button.basicColor, 'me-2': true }"
+    [disabled]="button.disabled"
     (click)="button?.action()"
   >
     {{ button.name | translate }}
