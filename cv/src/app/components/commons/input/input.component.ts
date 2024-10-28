@@ -1,5 +1,14 @@
 import { TranslateModule } from '@ngx-translate/core';
-import { Component, forwardRef, Input } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  forwardRef,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import {
   ControlValueAccessor,
   FormsModule,
@@ -21,11 +30,19 @@ import {
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss',
 })
-export class InputComponent implements ControlValueAccessor {
+export class InputComponent implements ControlValueAccessor, AfterViewInit {
+  @ViewChild('input') inputRef!: ElementRef;
+
   @Input() placeholder!: string;
+
+  @Output() isEditMode: EventEmitter<void> = new EventEmitter();
 
   public inputValue!: string;
   public disabled: boolean = false;
+
+  public ngAfterViewInit(): void {
+    this.inputRef.nativeElement.focus();
+  }
 
   private onChange!: (value: string) => void;
   private onTouched!: () => void;
@@ -48,6 +65,7 @@ export class InputComponent implements ControlValueAccessor {
 
   public onBlur(): void {
     this.onTouched();
+    this.isEditMode.emit();
   }
 
   public onModelChange(value: string): void {

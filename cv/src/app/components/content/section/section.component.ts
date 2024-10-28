@@ -13,6 +13,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class SectionComponent {
   @Input() formArray!: FormArray<FormGroup<ISection<FormControl>>>;
+  @Input() editMode: boolean = false;
   @Input() heading: string = '';
   @Input() whiteColor: boolean = false;
 

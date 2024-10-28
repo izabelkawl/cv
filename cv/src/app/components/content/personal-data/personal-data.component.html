@@ -7,23 +7,29 @@
   <form [formGroup]="infoFormGroup" class="content__description">
     <app-textarea
       [formControlName]="'description'"
-      [placeholder]="'PERSONAL_DATA.PLACEHOLDERS.PROFILE'"
+      placeholder="PERSONAL_DATA.PLACEHOLDERS.PROFILE"
     />
 
     <div class="content__contact">
-      @for (item of contactList; track $index) {
+      @for (item of contactList; let i = $index; track i) {
         <div class="content__contact-item">
           @if (item.label) {
             <span>{{ item.label }}</span>
           }
-          <!-- <app-input
+          <app-input
+            *ngIf="editedIndex === i"
             class="content__contact-item--bold"
             [formControlName]="item.formControlName"
             [placeholder]="item.placeholder"
-          /> -->
+            (isEditMode)="setEditableLinkIndex()"
+          />
 
-          <a (click)="item?.onAction()">
-            <span class="content__contact-item--bold">
+          <a (click)="editMode ? null : item?.onAction()">
+            <span
+              *ngIf="editedIndex !== i"
+              class="content__contact-item--bold"
+              (click)="setEditableLinkIndex(i)"
+            >
               {{
                 infoFormGroup.value[item.formControlName] ?? ""
                   | linkPipe

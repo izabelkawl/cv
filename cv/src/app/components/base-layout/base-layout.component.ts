@@ -65,6 +65,8 @@ export class BaseLayoutComponent implements OnInit {
     clause: new FormControl(''),
   });
 
+  public editMode: boolean = false;
+
   ngOnInit(): void {
     this.#langService.setDefaultLang();
     this.setPersonalInfo();
@@ -123,7 +125,8 @@ export class BaseLayoutComponent implements OnInit {
         name: 'BUTTONS.EDIT_TEMPLATE',
         disabled: true,
         action: () => {
-          this.formGroup.reset();
+          // this.formGroup.reset();
+          this.editMode = !this.editMode;
         },
       },
       {

@@ -32,8 +32,13 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class PersonalDataComponent {
   @Input() infoFormGroup!: FormGroup<IInfo<FormControl>>;
+  @Input() editMode: boolean = false;
 
   public hideNumber: boolean = true;
+
+  isEditMode: boolean = false;
+
+  editedIndex: number | undefined;
 
   public get contactList(): {
     label: string;
@@ -90,5 +95,10 @@ export class PersonalDataComponent {
 
   public showPhoneNumber(): void {
     this.hideNumber = !this.hideNumber;
+  }
+
+  public setEditableLinkIndex(index?: number): void {
+    console.log('setEditableLinkIndex', index);
+    this.editedIndex = this.editMode ? index : undefined;
   }
 }

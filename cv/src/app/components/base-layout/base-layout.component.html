@@ -7,11 +7,15 @@
   <div class="main__background"></div>
   <div class="main__content">
     <div class="main__content-left-side">
-      <app-personal-data [infoFormGroup]="formGroup.controls.info" />
+      <app-personal-data
+        [infoFormGroup]="formGroup.controls.info"
+        [editMode]="editMode"
+      />
       <app-section
         heading="SECTIONS.SPECIALIZATION"
         [formArray]="formGroup.controls.specializations"
         [whiteColor]="true"
+        [editMode]="editMode"
       />
     </div>
 
@@ -21,10 +25,12 @@
       <app-section
         heading="SECTIONS.EXPERIENCE"
         [formArray]="formGroup.controls.experience"
+        [editMode]="editMode"
       />
       <app-section
         heading="SECTIONS.EDUCATION"
         [formArray]="formGroup.controls.education"
+        [editMode]="editMode"
       />
     </div>
   </div>

@@ -11,6 +11,7 @@ import { IInfo } from '@app/components/base-layout/base-layout.interface';
   imports: [NgIf, UpperCasePipe],
 })
 export class UserComponent implements AfterViewInit {
+  @Input() editMode: boolean = false;
   @Input() info!: FormGroup<IInfo<FormControl>>;
 
   public rubberBand = true;
