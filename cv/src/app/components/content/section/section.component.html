@@ -4,7 +4,7 @@
   </h1>
   <hr [ngClass]="['section__hr', whiteColor ? 'white' : '']" />
 
-  @for (item of data; track $index) {
+  @for (item of formArray.value; track $index) {
     @if (item.title) {
       <div class="section__header">
         <div class="section__header-title">{{ item.title }}</div>

@@ -1,5 +1,6 @@
 import { NgIf, UpperCasePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { IInfo } from '@app/components/base-layout/base-layout.interface';
 import { LinkPipe } from '@app/shared/pipes/link.pipe';
 import { PhonePipe } from '@app/shared/pipes/phone.pipe';
@@ -13,17 +14,17 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [TranslateModule, PhonePipe, LinkPipe, NgIf, UpperCasePipe],
 })
 export class PersonalDataComponent {
-  @Input() personalInfo!: IInfo;
+  @Input() infoFormGroup!: FormGroup<IInfo<FormControl>>;
 
   public hideNumber: boolean = true;
 
   public get contactList(): {
     label: string;
-    value: string;
+    value: string | undefined;
     usePipe?: boolean;
     onAction?: () => void;
   }[] {
-    const { phone, email, github, linkedIn, city } = this.personalInfo;
+    const { phone, email, github, linkedIn, city } = this.infoFormGroup.value;
 
     return [
       {
@@ -32,8 +33,16 @@ export class PersonalDataComponent {
         usePipe: true,
         onAction: () => this.showPhoneNumber(),
       },
-      { label: 'email:', value: email, onAction: () => this.openMail() },
-      { label: 'github:', value: github, onAction: () => this.openGithub() },
+      {
+        label: 'email:',
+        value: email,
+        onAction: () => this.openMail(),
+      },
+      {
+        label: 'github:',
+        value: github,
+        onAction: () => this.openGithub(),
+      },
       {
         label: 'linkedIn:',
         value: linkedIn,
@@ -47,11 +56,11 @@ export class PersonalDataComponent {
   }
 
   public openGithub(): void {
-    window.open(this.personalInfo.github, '_blank');
+    window.open(this.infoFormGroup.value.github, '_blank');
   }
 
   public openLinkedIn(): void {
-    window.open(this.personalInfo.linkedIn, '_blank');
+    window.open(this.infoFormGroup.value.linkedIn, '_blank');
   }
 
   public openMail(): void {

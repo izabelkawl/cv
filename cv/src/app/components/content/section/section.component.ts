@@ -1,7 +1,8 @@
 import { NgClass, NgFor } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { FormArray, FormGroup, FormControl } from '@angular/forms';
+import { ISection } from '@app/components/base-layout/base-layout.interface';
 import { TranslateModule } from '@ngx-translate/core';
-import { ISection } from './section.interface';
 
 @Component({
   selector: 'app-section',
@@ -11,7 +12,7 @@ import { ISection } from './section.interface';
   imports: [TranslateModule, NgFor, NgClass],
 })
 export class SectionComponent {
-  @Input() data!: ISection[];
+  @Input() formArray!: FormArray<FormGroup<ISection<FormControl>>>;
   @Input() heading: string = '';
   @Input() whiteColor: boolean = false;
 

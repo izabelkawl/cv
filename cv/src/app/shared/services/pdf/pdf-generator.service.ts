@@ -1,9 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import {
-  IPersonalInformation,
-  SectionTypes,
-} from '@app/components/base-layout/base-layout.interface';
-import { ISection } from '@app/components/content/section/section.interface';
+import { IPersonalInformation, ISection } from '@app/components/base-layout/base-layout.interface';
 import { TranslateService } from '@ngx-translate/core';
 import { jsPDF } from 'jspdf';
 import { LangType } from '../lang/lang.interface';
@@ -72,8 +68,8 @@ export class PdfService {
       return y;
     }
 
-    function getTranslation(name: SectionTypes): string {
-      return translateService.instant(name as string);
+    function getTranslation(name: string): string {
+      return translateService.instant(name);
     }
 
     function setContact(name: string, link: string): void {

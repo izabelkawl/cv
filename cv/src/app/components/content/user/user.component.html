@@ -1,7 +1,7 @@
 @if (info) {
   <div class="user">
-    <h1 class="user__firstName">{{ info.firstName | uppercase }}</h1>
-    <h1 class="user__lastName">{{ info.lastName | uppercase }}</h1>
-    <h6 class="user__position">{{ info.position }}</h6>
+    <h1 class="user__firstName">{{ info.value.firstName | uppercase }}</h1>
+    <h1 class="user__lastName">{{ info.value.lastName | uppercase }}</h1>
+    <h6 class="user__position">{{ info.value.position }}</h6>
   </div>
 }

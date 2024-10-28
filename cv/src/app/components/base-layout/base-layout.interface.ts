@@ -1,4 +1,4 @@
-import { ISection } from '../content/section/section.interface';
+import { FormGroup, FormControl, FormArray } from '@angular/forms';
 
 export interface IPersonalInformation {
   info: IInfo;
@@ -6,27 +6,31 @@ export interface IPersonalInformation {
   education: ISection[];
   specializations: ISection[];
   clause: string;
-  [name: string]: any;
 }
 
-export type SectionTypes = keyof IPersonalInformation;
-
-export interface IInfo {
-  firstName: string;
-  lastName: string;
-  position: string;
-  phone: string;
-  email: string;
-  github: string;
-  linkedIn: string;
-  city: string;
-  description: string;
+export interface IInfo<T = string> {
+  firstName: T;
+  lastName: T;
+  position: T;
+  phone: T;
+  email: T;
+  github: T;
+  linkedIn: T;
+  city: T;
+  description: T;
 }
 
-export type InfoKeys = keyof IInfo;
+export interface ISection<T = string> {
+  title: T;
+  subTitle: T;
+  period: T;
+  description: T extends string ? string[] : T;
+}
 
-export interface InfoStateInterface {
-  isLoading: boolean;
-  info: IInfo | undefined;
-  error: string | null;
+export interface IPersonalInformationForm {
+  info: FormGroup<IInfo<FormControl>>;
+  experience: FormArray<FormGroup<ISection<FormControl>>>;
+  education: FormArray<FormGroup<ISection<FormControl>>>;
+  specializations: FormArray<FormGroup<ISection<FormControl>>>;
+  clause: FormControl;
 }

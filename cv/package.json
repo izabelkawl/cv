@@ -2,7 +2,7 @@
   "name": "cv",
   "version": "1.0.0",
   "engines": {
-    "node": ">=21.7.3",
+    "node": ">=22.10.0",
     "npm": ">=10.9.0"
   },
   "scripts": {

@@ -1,5 +1,6 @@
 import { NgIf, UpperCasePipe } from '@angular/common';
 import { AfterViewInit, Component, Input } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 import { IInfo } from '@app/components/base-layout/base-layout.interface';
 
 @Component({
@@ -10,7 +11,7 @@ import { IInfo } from '@app/components/base-layout/base-layout.interface';
   imports: [NgIf, UpperCasePipe],
 })
 export class UserComponent implements AfterViewInit {
-  @Input() info!: IInfo;
+  @Input() info!: FormGroup<IInfo<FormControl>>;
 
   public rubberBand = true;
 

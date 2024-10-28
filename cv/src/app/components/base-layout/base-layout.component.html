@@ -1,36 +1,34 @@
-@if (personalInfo | async; as personalInfo) {
-  <div class="topbar">
-    <app-chips />
-    <app-buttons [buttonsConfig]="buttons" />
-  </div>
+<div class="topbar">
+  <app-chips />
+  <app-buttons [buttonsConfig]="buttons" />
+</div>
 
-  <div class="main" [@changeLanguage]="languageState">
-    <div class="main__background"></div>
-    <div class="main__content">
-      <div class="main__content-left-side">
-        <app-personal-data [personalInfo]="personalInfo.info" />
-        <app-section
-          heading="SECTIONS.SPECIALIZATION"
-          [data]="personalInfo.specializations"
-          [whiteColor]="true"
-        />
-      </div>
-
-      <app-user class="main__content--user" [info]="personalInfo.info" />
-
-      <div class="main__content-right-side">
-        <app-section
-          heading="SECTIONS.EXPERIENCE"
-          [data]="personalInfo.experience"
-        />
-        <app-section
-          heading="SECTIONS.EDUCATION"
-          [data]="personalInfo.education"
-        />
-      </div>
+<div class="main" [@changeLanguage]="languageState">
+  <div class="main__background"></div>
+  <div class="main__content">
+    <div class="main__content-left-side">
+      <app-personal-data [infoFormGroup]="formGroup.controls.info" />
+      <app-section
+        heading="SECTIONS.SPECIALIZATION"
+        [formArray]="formGroup.controls.specializations"
+        [whiteColor]="true"
+      />
     </div>
-    <div class="main__footer">
-      {{ personalInfo.clause }}
+
+    <app-user class="main__content--user" [info]="formGroup.controls.info" />
+
+    <div class="main__content-right-side">
+      <app-section
+        heading="SECTIONS.EXPERIENCE"
+        [formArray]="formGroup.controls.experience"
+      />
+      <app-section
+        heading="SECTIONS.EDUCATION"
+        [formArray]="formGroup.controls.education"
+      />
     </div>
   </div>
-}
+  <div class="main__footer">
+    {{ formGroup.controls.clause.value }}
+  </div>
+</div>

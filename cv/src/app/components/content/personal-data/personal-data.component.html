@@ -4,22 +4,22 @@
   </h1>
   <hr />
 
-  @if (personalInfo) {
-    <span class="content__description">{{ personalInfo.description }}</span>
+  <span class="content__description">{{
+    infoFormGroup.value.description
+  }}</span>
 
-    <div class="content__contact">
-      @for (link of contactList; track $index) {
-        <div class="content__contact-item">
-          @if (link.label) {
-            <span>{{ link.label }}</span>
-          }
-          <a (click)="link?.onAction()">
-            <span class="content__contact-item--bold">
-              {{ link.value | linkPipe | phonePipe: hideNumber }}
-            </span>
-          </a>
-        </div>
-      }
-    </div>
-  }
+  <div class="content__contact">
+    @for (link of contactList; track $index) {
+      <div class="content__contact-item">
+        @if (link.label) {
+          <span>{{ link.label }}</span>
+        }
+        <a (click)="link?.onAction()">
+          <span class="content__contact-item--bold">
+            {{ link.value ?? "" | linkPipe | phonePipe: hideNumber }}
+          </span>
+        </a>
+      </div>
+    }
+  </div>
 </div>
