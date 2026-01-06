@@ -1,4 +1,4 @@
-import { AsyncPipe, NgFor } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,7 +15,6 @@ import { Observable, of } from 'rxjs';
   imports: [
     TranslateModule,
     AsyncPipe,
-    NgFor,
     MatChipsModule,
     MatIconModule,
     MatFormFieldModule,

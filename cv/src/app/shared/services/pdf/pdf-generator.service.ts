@@ -1,270 +1,424 @@
 import { inject, Injectable } from '@angular/core';
-import {
-  IPersonalInformation,
-  SectionTypes,
-} from '@app/components/base-layout/base-layout.interface';
-import { ISection } from '@app/components/content/section/section.interface';
+import { IPersonalInformation } from '@app/components/base-layout/base-layout.interface';
 import { TranslateService } from '@ngx-translate/core';
-import { jsPDF } from 'jspdf';
+import * as pdfMake from 'pdfmake/build/pdfmake';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import { LangType } from '../lang/lang.interface';
 import { Colors } from '@app/shared/enums/variables';
-import { LinkPipe } from './../../pipes/link.pipe';
+import { LinkPipe } from '@app/shared/pipes/link.pipe';
+import { ISection } from '@app/components/content/section/section.interface';
+
+(pdfMake as any).vfs = pdfFonts.vfs;
+const url =  `${window.location.origin}${window.location.origin.includes('localhost') ? '' : '/cv'}`;
+
+(pdfMake as any).fonts = {
+  'Montserrat-Light': {
+    normal: `${url}/assets/font/Montserrat-Light.ttf`,
+  },
+  'Montserrat-Medium': {
+    normal: `${url}/assets/font/Montserrat-Medium.ttf`,
+  },
+  'Montserrat-Bold': {
+    normal: `${url}/assets/font/Montserrat-Bold.ttf`,
+  },
+  'Montserrat-LightItalic': {
+    normal: `${url}/assets/font/Montserrat-LightItalic.ttf`,
+  },
+  'Montserrat-SemiBold': {
+    normal: `${url}/assets/font/Montserrat-SemiBold.ttf`,
+  },
+  'Montserrat-ExtraBold': {
+    normal: `${url}/assets/font/Montserrat-ExtraBold.ttf`,
+  },
+};
 
 @Injectable({
   providedIn: 'root',
 })
 export class PdfService {
   readonly #translateService = inject(TranslateService);
+  readonly #linkPipe = inject(LinkPipe);
 
-  public generatePdf(data: IPersonalInformation, lang: LangType): void {
-    const pdf = new jsPDF();
-    const translateService = this.#translateService;
-    const montserratLight: string = 'Montserrat-Light';
-    const montserratMedium: string = 'Montserrat-Medium';
-    const montserratBold: string = 'Montserrat-Bold';
-    const montserratLightItalic: string = 'Montserrat-LightItalic';
-    const montserratSemiBold: string = 'Montserrat-SemiBold';
-    const montserratExtraBold: string = 'Montserrat-ExtraBold';
+  page = {
+    width: 595,
+    height: 842,
+  };
 
-    [
-      montserratLight,
-      montserratMedium,
-      montserratBold,
-      montserratLightItalic,
-      montserratSemiBold,
-      montserratExtraBold,
-    ].forEach((font: string) => {
-      pdf.addFileToVFS(`assets/font/${font}.ttf`, `${font}.ttf`);
-      pdf.addFont(`./assets/font/${font}.ttf`, font, 'normal');
+  fonts = {
+    light: 'Montserrat-Light',
+    medium: 'Montserrat-Medium',
+    bold: 'Montserrat-Bold',
+    lightItalic: 'Montserrat-LightItalic',
+    semiBold: 'Montserrat-SemiBold',
+    extraBold: 'Montserrat-ExtraBold',
+  };
+
+  colors = {
+    white: this.getDocumentColor(Colors.WHITE),
+    basic: this.getDocumentColor(Colors.BASIC),
+    textColor: this.getDocumentColor(Colors.TEXT_COLOR),
+    lightBeigeColor: this.getDocumentColor(Colors.LIGHT_BEIGE),
+    lightGray: this.getDocumentColor(Colors.LIGHT_GRAY),
+    darkGray: this.getDocumentColor(Colors.DARK_GRAY),
+    black: this.getDocumentColor(Colors.BLACK),
+  };
+
+  getDocumentColor(color: string): string {
+    return getComputedStyle(document.body).getPropertyValue(color);
+  }
+
+  generateSection(header: string, data: ISection[], darkMode?: boolean): any[] {
+    const width =
+      this.page.width * (darkMode ? 0.65 : 0.35) - 15 * (darkMode ? 6 : 2);
+    const style = darkMode ? 'headerDark' : 'header';
+    const color = darkMode ? this.colors.textColor : this.colors.white;
+
+    const sectionHeader = [
+      {
+        margin: [0, 20, 0, 0],
+        text: this.#translateService.instant('SECTIONS.' + header),
+        font: this.fonts.bold,
+        style,
+      },
+      {
+        canvas: [
+          {
+            type: 'rect',
+            x: 0,
+            y: 15,
+            w: width,
+            h: 0.5,
+            color,
+          },
+        ],
+      },
+    ];
+
+    const items: any[] = [];
+
+    data.forEach((item) => {
+      const { title, subTitle, period, description } = item;
+
+      if (title) {
+        items.push(
+          {
+            margin: [0, 15, 0, 5],
+            columns: [
+              {
+                text: title,
+                font: this.fonts.bold,
+                style: 'subTitle',
+                color,
+              },
+              {
+                text: period,
+                font: this.fonts.lightItalic,
+                alignment: 'right',
+                style: 'subTitle',
+                color,
+              },
+            ],
+          },
+          {
+            margin: [0, 0, 0, 5],
+            text: subTitle,
+            font: this.fonts.medium,
+            style: 'subTitle',
+            color,
+          },
+        );
+      }
+
+      (description ?? []).forEach((desc, i) => {
+        const textarray: any[] = [];
+        desc.split('**').forEach((text, index) => {
+          if (index === 0) {
+            textarray.push({
+              text: '•  ',
+              font: this.fonts.extraBold,
+              color,
+            });
+          }
+          textarray.push({
+            text: text,
+            font: index % 2 ? this.fonts.bold : this.fonts.light,
+            style: 'sectionText',
+            color,
+          });
+        });
+        items.push({
+          margin: [
+            10,
+            i || darkMode ? 0 : 10,
+            0,
+            i === items.length - 1 ? 20 : 0,
+          ],
+          text: textarray,
+        });
+      });
     });
 
-    const colors = {
-      white: getDocumentColor(Colors.WHITE),
-      basic: getDocumentColor(Colors.BASIC),
-      textColor: getDocumentColor(Colors.TEXT_COLOR),
-      lightBeigeColor: getDocumentColor(Colors.LIGHT_BEIGE),
-      lightGray: getDocumentColor(Colors.LIGHT_GRAY),
-      darkGray: getDocumentColor(Colors.DARK_GRAY),
-      black: getDocumentColor(Colors.BLACK),
-    };
+    return sectionHeader.concat(items);
+  }
 
-    let y = 0;
+  generatePdf(data: IPersonalInformation, lang: LangType): void {
+    const docDefinition: any = {
+      pageSize: 'A4',
+      pageMargins: [30, 30, 30, 60],
 
-    const profilePosition = { x: 20, y: 60, width: 60 };
-    const contactPosition = { x: 20, y: 115, width: 60 };
-    const skillsPosition = { x: 20, y: 140, width: 60 };
-    const sectionPosition = { x: 90, y: 80, width: 110 };
-    const footerPosition = { x: 15, y: 285, width: 180 };
+      background: (
+        currentPage: number,
+        page: {
+          width: number;
+          height: number;
+          orientation: string;
+        },
+      ) => {
+        const canvas = [
+          {
+            type: 'rect',
+            x: 15 * 2,
+            y: currentPage === 1 ? 15 * 2 : 0,
+            w: this.page.width * 0.35,
+            h: page.height - 15 * 2,
+            color: this.colors.basic,
+          },
+        ];
 
-    function getDocumentColor(color: string): string {
-      return getComputedStyle(document.body).getPropertyValue(color);
-    }
-
-    function addNewPage(): void {
-      pdf.addPage();
-      pdf.setFillColor(colors.basic);
-      pdf.rect(14, 10, 70, 267, 'F');
-      y = 10;
-    }
-
-    function setY(value: number): number {
-      y = value + 10;
-      return y;
-    }
-
-    function getTranslation(name: SectionTypes): string {
-      return translateService.instant(name as string);
-    }
-
-    function setContact(name: string, link: string): void {
-      pdf.setFont(montserratLightItalic);
-      pdf.text(name, contactPosition.x, contactPosition.y);
-      pdf.setFont(montserratBold);
-      pdf.text(
-        new LinkPipe().transform(link),
-        contactPosition.x + name.length * 2.1,
-        contactPosition.y,
-      );
-      contactPosition.y += 5;
-    }
-
-    function setProfileSection(): void {
-      pdf.setFontSize(15);
-      pdf.setFont(montserratBold);
-      pdf.text(
-        getTranslation('PERSONAL_DATA.PROFILE'),
-        profilePosition.x,
-        profilePosition.y,
-      );
-      pdf.setLineWidth(0.4);
-      pdf.line(
-        profilePosition.x,
-        setY(y - 5),
-        profilePosition.x + profilePosition.width,
-        y,
-      );
-      pdf.setFontSize(9);
-      pdf.setFont(montserratMedium);
-      pdf.text(data.info.description, profilePosition.x, setY(y - 2), {
-        maxWidth: profilePosition.width,
-        lineHeightFactor: 1.3,
-      });
-    }
-
-    function splitTextsOnLength(texts: string[], maxLength: number): string[] {
-      const result: string[] = [];
-
-      texts.forEach((text: string) => {
-        if (text.length > maxLength)
-          while (text.length > maxLength) {
-            let splitIndex = text.lastIndexOf(' ', maxLength);
-            if (splitIndex === -1) {
-              splitIndex = maxLength;
-            }
-            result.push(text.slice(0, splitIndex).trim());
-            text = text.slice(splitIndex).trim();
-          }
-
-        if (text.length) result.push(text);
-      });
-
-      return result;
-    }
-
-    function createSection(
-      translate: string,
-      dataType: ISection[],
-      section: { x: number; y?: number; width: number },
-    ): void {
-      const { x, width: sectionWidth } = section;
-
-      if (y >= 270) {
-        addNewPage();
-      }
-      pdf.setFontSize(15);
-      pdf.setFont(montserratSemiBold);
-      pdf.text(getTranslation(translate), x, setY(y), {
-        maxWidth: sectionWidth,
-      });
-      pdf.setLineWidth(0.2);
-      pdf.line(x, setY(y - 5), x + sectionWidth, y);
-
-      dataType.map((item: ISection) => {
-        const { title, subTitle, period, description } = item;
-        pdf.setFontSize(10);
-
-        if (y >= 280) {
-          addNewPage();
-        }
-        if (title) {
-          pdf.setFont(montserratBold);
-          pdf.text(title, x, setY(y - 3));
-        }
-        if (period) {
-          pdf.setFont(montserratLightItalic);
-          pdf.text(period, 200, y, {
-            align: 'right',
+        if (currentPage === 1) {
+          canvas.unshift({
+            type: 'rect',
+            x: 15,
+            y: 0,
+            w: this.page.width - 15 * 2,
+            h: 200,
+            color: this.colors.lightBeigeColor,
           });
         }
-        if (subTitle) {
-          pdf.setFont(montserratSemiBold);
-          pdf.text(subTitle, x, setY(y - 3));
-        } else {
-          setY(y - 10);
-        }
-        if (description) {
-          pdf.setFontSize(9);
-          let descY = setY(y - 3);
-          splitTextsOnLength(description, sectionWidth / 2 + 7).forEach(
-            (desc: string) => {
-              if (descY >= 280) {
-                addNewPage();
-                descY = 10;
-              }
-              if (description.some((txt) => txt.startsWith(desc))) {
-                pdf.setFont('Symbol');
-                pdf.setFontSize(9);
-                pdf.text('·', x + 1, descY);
-              }
-              pdf.setFont(montserratLight);
-              let startX = x + 5;
-              desc.split('**').forEach((text, i) => {
-                pdf.setFont(montserratBold);
-                pdf.setFont(i % 2 ? montserratBold : montserratLight);
-                pdf.text(text, startX, descY);
-                startX = startX + pdf.getStringUnitWidth(text) * 3.2;
-              });
-              descY += 5;
-              setY(y - 5);
+
+        return { canvas };
+      },
+
+      footer: (currentPage: number, pageCount: number) => {
+        const stack: any[] = [
+          {
+            text:
+              lang === 'en'
+                ? `Page ${currentPage} of ${pageCount}`
+                : `Strona ${currentPage} z ${pageCount}`,
+            alignment: 'center',
+            font: this.fonts.light,
+            style: 'footer',
+            absolutePosition: { x: 0, y: 45 },
+          },
+        ];
+
+        if (currentPage === pageCount) {
+          stack.unshift(
+            {
+              canvas: [
+                {
+                  type: 'rect',
+                  x: 0,
+                  y: 0,
+                  w: this.page.width,
+                  h: 60,
+                  color: this.colors.white,
+                },
+              ],
+              absolutePosition: { x: 0, y: 0 },
+            },
+            {
+              margin: [30, 10, 30, 0],
+              text: data.clause,
+              alignment: 'justify',
+              font: this.fonts.light,
+              style: 'footer',
             },
           );
         }
-      });
-    }
-    // background
-    pdf.setFillColor(colors.lightBeigeColor);
-    pdf.rect(7, 0, 196, 80, 'F');
-    pdf.setFillColor(colors.basic);
-    pdf.rect(14, 10, 70, 267, 'F');
 
-    // user-name
-    pdf.setTextColor(colors.textColor);
-    pdf.setFontSize(28);
-    pdf.setFont(montserratMedium);
-    pdf.text(data.info.firstName.toUpperCase(), sectionPosition.x, 40, {
-      lineHeightFactor: 0.8,
-    });
+        return { stack };
+      },
 
-    pdf.setTextColor(colors.basic);
-    pdf.setFontSize(32);
-    pdf.setFont(montserratExtraBold);
-    pdf.text(data.info.lastName.toUpperCase(), sectionPosition.x, 52, {
-      lineHeightFactor: 0.8,
-    });
+      content: [
+        {
+          columns: [
+            {
+              width: '35%',
+              margin: [15, 140, 0, 15],
+              stack: [
+                {
+                  text: this.#translateService.instant('PERSONAL_DATA.PROFILE'),
+                  font: this.fonts.bold,
+                  style: 'header',
+                },
+                {
+                  canvas: [
+                    {
+                      type: 'rect',
+                      x: 0,
+                      y: 10,
+                      w: this.page.width * 0.35 - 15 * 2,
+                      h: 0.5,
+                      color: this.colors.white,
+                    },
+                  ],
+                },
+                {
+                  margin: [0, 15, 0, 0],
+                  text: data.info.description,
+                  style: 'description',
+                  font: this.fonts.light,
+                },
 
-    pdf.setFont(montserratMedium);
-    pdf.setTextColor(colors.textColor);
-    pdf.setFontSize(16);
-    pdf.text(data.info.position, sectionPosition.x, 59, {
-      lineHeightFactor: 0.8,
-    });
+                {
+                  margin: [0, 20, 0, 0],
+                  text: [
+                    'tel. ',
+                    { text: data.info.phone, font: this.fonts.bold },
+                  ],
+                  font: this.fonts.light,
+                  style: 'text',
+                },
+                {
+                  text: [
+                    'email. ',
+                    { text: data.info.email, font: this.fonts.bold },
+                  ],
+                  font: this.fonts.light,
+                  style: 'text',
+                },
+                {
+                  text: [
+                    'github. ',
+                    {
+                      text: this.#linkPipe.transform(data.info.github),
+                      font: this.fonts.bold,
+                      link: data.info.github,
+                    },
+                  ],
+                  font: this.fonts.light,
+                  style: 'text',
+                },
+                {
+                  text: [
+                    'linkedIn. ',
+                    {
+                      text: this.#linkPipe.transform(data.info.linkedIn),
+                      font: this.fonts.bold,
+                      link: data.info.linkedIn,
+                    },
+                  ],
+                  font: this.fonts.light,
+                  style: 'text',
+                },
+                {
+                  text: this.#linkPipe.transform(data.info.website),
+                  link: data.info.website,
+                  font: this.fonts.bold,
+                  style: 'text',
+                },
+                {
+                  text: data.info.city,
+                  font: this.fonts.bold,
+                  style: 'text',
+                },
 
-    // profile
-    y = profilePosition.y;
-    pdf.setDrawColor(colors.lightBeigeColor);
-    pdf.setTextColor(colors.white);
-    setProfileSection();
-    setContact('tel.', data.info.phone);
-    setContact('email:', data.info.email);
-    setContact('github:', data.info.github);
-    setContact('linkedIn:', data.info.linkedIn);
-    y = skillsPosition.y;
-    createSection(
-      'SECTIONS.SPECIALIZATION',
-      data.specializations,
-      skillsPosition,
-    );
+                this.generateSection(
+                  'SPECIALIZATION',
+                  data.specializations,
+                  false,
+                ),
+              ],
+            },
+            {
+              width: '65%',
+              margin: [45, 40, 0, 15],
+              stack: [
+                {
+                  text: data.info.firstName.toUpperCase(),
+                  style: 'firstName',
+                  font: this.fonts.medium,
+                },
+                {
+                  margin: [0, 10, 0, 15],
+                  text: data.info.lastName.toUpperCase(),
+                  style: 'lastName',
+                  font: this.fonts.extraBold,
+                },
+                {
+                  text: data.info.position,
+                  style: 'subHeader',
+                  font: this.fonts.medium,
+                  margin: [0, 0, 0, 50],
+                },
 
-    // content
-    pdf.setDrawColor(colors.textColor);
-    pdf.setTextColor(colors.textColor);
-    y = sectionPosition.y;
-    createSection('SECTIONS.EXPERIENCE', data.experience, sectionPosition);
-    createSection('SECTIONS.EDUCATION', data.education, sectionPosition);
+                this.generateSection('EXPERIENCE', data.experience, true),
+                this.generateSection('EDUCATION', data.education, true),
+              ],
+            },
+          ],
+        },
+      ],
 
-    // footer
-    pdf.setFontSize(6);
-    pdf.setTextColor(colors.textColor);
-    pdf.text(data.clause, footerPosition.x, footerPosition.y, {
-      maxWidth: footerPosition.width,
-      align: 'justify',
-      lineHeightFactor: 1.5,
-    });
+      styles: {
+        header: {
+          fontSize: 20,
+          lineHeight: 0.9,
+          color: this.colors.white,
+        },
+        headerDark: {
+          fontSize: 20,
+          lineHeight: 0.9,
+          color: this.colors.textColor,
+        },
+        description: {
+          fontSize: 10,
+          lineHeight: 1.1,
+          color: this.colors.white,
+        },
+        text: {
+          fontSize: 9,
+          lineHeight: 1.3,
+          color: this.colors.white,
+        },
+        subTitle: {
+          fontSize: 12,
+          color: this.colors.textColor,
+        },
+        sectionText: {
+          fontSize: 9,
+          lineHeight: 1.2,
+        },
+        firstName: {
+          fontSize: 30,
+          lineHeight: 0.6,
+          color: this.colors.textColor,
+        },
+        lastName: {
+          fontSize: 32,
+          lineHeight: 0.6,
+          color: this.colors.basic,
+        },
+        subHeader: {
+          fontSize: 18,
+          lineHeight: 0.4,
+          color: this.colors.textColor,
+        },
+        footer: {
+          fontSize: 7,
+          color: this.colors.lightGray,
+        },
+      },
+    };
 
-    pdf.save(
-      `${data.info.firstName} ${
-        data.info.lastName
-      } CV ${lang.toUpperCase()}.pdf`,
-    );
+    pdfMake
+      .createPdf(docDefinition)
+      .download(
+        `${data.info.firstName} ${
+          data.info.lastName
+        } CV ${lang.toUpperCase()}.pdf`,
+      );
   }
 }

@@ -1,4 +1,3 @@
-import { NgIf, UpperCasePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { IInfo } from '@app/components/base-layout/base-layout.interface';
 import { LinkPipe } from '@app/shared/pipes/link.pipe';
@@ -10,32 +9,51 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './personal-data.component.html',
   styleUrls: ['./personal-data.component.scss'],
   standalone: true,
-  imports: [TranslateModule, PhonePipe, LinkPipe, NgIf, UpperCasePipe],
+  imports: [TranslateModule],
+  providers: [LinkPipe, PhonePipe],
 })
 export class PersonalDataComponent {
   @Input() personalInfo!: IInfo;
 
+  public hideNumber: boolean = true;
+
+  constructor(
+    private linkPipe: LinkPipe,
+    private phonePipe: PhonePipe,
+  ) {}
+
   public get contactList(): {
     label: string;
     value: string;
-    usePipe?: boolean;
     onAction?: () => void;
   }[] {
-    const { phone, email, github, linkedIn, city } = this.personalInfo;
+    const { phone, email, github, linkedIn, city, website } = this.personalInfo;
 
     return [
       {
         label: 'tel.',
-        value: phone,
-        usePipe: true,
+        value: this.phonePipe.transform(phone, this.hideNumber),
         onAction: () => this.showPhoneNumber(),
       },
-      { label: 'email:', value: email, onAction: () => this.openMail() },
-      { label: 'github:', value: github, onAction: () => this.openGithub() },
+      {
+        label: 'email:',
+        value: this.linkPipe.transform(email),
+        onAction: () => this.openMail(),
+      },
+      {
+        label: 'github:',
+        value: this.linkPipe.transform(github),
+        onAction: () => this.openGithub(),
+      },
       {
         label: 'linkedIn:',
-        value: linkedIn,
+        value: this.linkPipe.transform(linkedIn),
         onAction: () => this.openLinkedIn(),
+      },
+      {
+        label: '',
+        value: this.linkPipe.transform(website),
+        onAction: () => this.openWebsite(),
       },
       {
         label: '',
@@ -43,8 +61,6 @@ export class PersonalDataComponent {
       },
     ];
   }
-
-  public hideNumber: boolean = true;
 
   public openGithub(): void {
     window.open(this.personalInfo.github, '_blank');
@@ -56,6 +72,10 @@ export class PersonalDataComponent {
 
   public openMail(): void {
     window.open('mailto:izabelawlazlo9@gmail.com');
+  }
+
+  public openWebsite(): void {
+    window.open(this.personalInfo.website);
   }
 
   public showPhoneNumber(): void {

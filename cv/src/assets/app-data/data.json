@@ -4,16 +4,29 @@
       "firstName": "Izabela",
       "lastName": "Wlazło",
       "position": "Programista Front-end",
-      "phone": "733 253 028",
+      "website": "https://izaw.pl",
+      "phone": "733 *** 028",
       "email": "izabelawlazlo9@gmail.com",
       "github": "https://github.com/izabelkawl",
       "linkedIn": "https://www.linkedin.com/in/izabelawl",
-      "city": "Rzeszów, Zdalnie",
-      "description": "Cześć! Jestem Iza i posiadam ponad trzyletnie\n doświadczenie w tworzeniu aplikacji webowych.\nZawsze staram się być na bieżąco z nowoczesnymi technologiami i stosować najlepsze techniki programowania."
+      "city": "Tarnów, Zdalnie",
+      "description": "Cześć! Jestem Iza i od 4,5 roku pracuję na stanowisku Frontend Developera. Na co dzień szczególną wagę przykładam do stabilności aplikacji, jakości kodu oraz dostępności zgodnej z wytycznymi WCAG."
     },
     "experience": [
       {
-        "title": "PROGRAMISTA",
+        "title": "PROGRAMISTA FRONTEND",
+        "subTitle": "Autopay Service",
+        "period": "12.2024-Obecnie",
+        "description": [
+          "Realizacja zadań w projektach dla sektora ubezpieczeniowego, bankowego oraz projektów wewnętrznych.",
+          "Równoległa praca nad wieloma projektami.",
+          "Regularne aktualizacje Angulara oraz jego zależności.",
+          "Dostosowywanie aplikacji do wytycznych WCAG.",
+          "Praca w metodyce Kanban"
+        ]
+      },
+      {
+        "title": "PROGRAMISTA ANGULAR",
         "subTitle": "Transition Technologies-Software",
         "period": "10.2021-09.2024",
         "description": [
@@ -50,15 +63,17 @@
     "specializations": [
       {
         "description": [
-          "Znajomość **JavaScript**, **TypeScript**, **HTML**, **CSS**",
-          "Praca z **Angular** na wersjach 11-17",
-          "Znajomość **SCSS** **Bootstrap**",
-          "Praca z wykorzystaniem **PrimeNg** oraz **NgZorro**",
+          "Znajomość **JavaScript**, **TypeScript**, **HTML**, **CSS**, **jQuery**",
+          "Praca z **Angular** na wersjach 11-20",
+          "Znajomość **SCSS**, **SASS**, **Bootstrap**",
+          "Praca z wykorzystaniem **Angular Material**, **PrimeNg** oraz **NgZorro**",
+          "Dostosowywanie wymagań **WCAG**",
+          "Tworzenie konfiguracji **Matomo** w projekcie",
           "Doświadczenie w pracy z **OpenLayers**",
-          "Tworzenie responsywnych stron",
-          "Znajomośc narzędzi **Jira**, **Confluence**, **Git**",
+          "Tworzenie responsywnych stron internetowych",
+          "Znajomośc narzędzi **Jira**, **Youtrack**, **Confluence**, **Git**",
           "Umiejętnośc pracy w oparciu o metodyki **Scrum** oraz **Kanban**",
-          "Doświadczenie w pracy z **Docker**, **Jenkins**, **Postman**, **GitLab**",
+          "Doświadczenie w pracy z **Docker**, **Jenkins**, **Postman**, **GitLab**, **Figma**",
           "Znajomość **j. angielskiego** - średnio zaawansowany B1"
         ]
       }
@@ -70,26 +85,39 @@
       "firstName": "Izabela",
       "lastName": "Wlazło",
       "position": "Front-end Developer",
-      "phone": "733 253 028",
+      "website": "https://izaw.pl",
+      "phone": "733 *** 028",
       "email": "izabelawlazlo9@gmail.com",
       "github": "https://github.com/izabelkawl",
       "linkedIn": "https://www.linkedin.com/in/izabelawl",
-      "city": "Rzeszów, Zdalnie",
-      "description": "Hi! I'm Iza, and I have over three years of experience in creating web applications. I always strive to stay updated with modern technologies and apply the best programming techniques."
+      "city": "Tarnów, Zdalnie",
+      "description": "Hello! My name is Iza, and I have been working as a Frontend Developer for 4.5 years. In my day-to-day work, I place particular emphasis on application stability, code quality, and accessibility in line with WCAG guidelines."
     },
     "experience": [
       {
-        "title": "PROGRAMMER",
+        "title": "FRONTEND DEVELOPER",
+        "subTitle": "Autopay Service",
+        "period": "12.2024–Present",
+        "description": [
+          "Delivering tasks in projects for the insurance and banking sectors, as well as internal projects",
+          "Working on multiple projects in parallel",
+          "Regularly updating Angular and its dependencies",
+          "Adapting applications to WCAG guidelines",
+          "Working in the Kanban methodology"
+        ]
+      },
+      {
+        "title": "ANGULAR DEVELOPER",
         "subTitle": "Transition Technologies-Software",
         "period": "10.2021-09.2024",
         "description": [
-          "Creating and developing complex applications for the public sector for data management",
+          "Developing and maintaining complex applications for the public sector to manage data",
           "Designing and implementing architecture",
           "Participating in projects from initiation to completion",
           "Ensuring high code quality and performance optimization",
           "Diagnosing and fixing bugs",
-          "Conducting code reviews and verification",
-          "Executing projects in accordance with Agile methodology (Scrum, Kanban)"
+          "Conducting code reviews and verifications",
+          "Delivering projects in accordance with Agile methodologies (Scrum, Kanban)"
         ]
       },
       {
@@ -116,16 +144,18 @@
     "specializations": [
       {
         "description": [
-          "Proficiency in **JavaScript**, **TypeScript**, **HTML**, **CSS**",
-          "Working with **Angular** versions 11-17",
-          "Knowledge of **SCSS**, **Bootstrap**",
-          "Experience with **PrimeNg** and **NgZorro**",
+          "Proficiency in **JavaScript**, **TypeScript**, **HTML**, **CSS**, **jQuery**",
+          "Working with **Angular** versions 11–20",
+          "Knowledge of **SCSS**, **SASS**, **Bootstrap**",
+          "Experience with **Angular Material**, **PrimeNG**, and **NG Zorro**",
+          "Adapting applications to **WCAG** requirements",
+          "Creating **Matomo** configurations within projects",
           "Experience working with **OpenLayers**",
-          "Creating responsive websites",
-          "Familiarity with tools like **Jira**, **Confluence**, **Git**",
-          "Ability to work based on **Scrum** and **Kanban** methodologies",
-          "Experience with **Docker**, **Jenkins**, **Postman**, and **GitLab**",
-          "**English** proficiency - intermediate (B1 level)"
+          "Building responsive websites",
+          "Familiarity with **Jira**, **YouTrack**, **Confluence**, **Git** tools",
+          "Ability to work using **Scrum** and **Kanban** methodologies",
+          "Experience working with **Docker**, **Jenkins**, **Postman**, **GitLab**, **Figma**",
+          "Knowledge of **English** – intermediate level (B1)"
         ]
       }
     ],

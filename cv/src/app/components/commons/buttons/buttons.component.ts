@@ -6,7 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { IButton } from './buttons.interfaces';
-import { NgClass, NgFor } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -15,7 +15,7 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './buttons.component.html',
   styleUrl: './buttons.component.scss',
   standalone: true,
-  imports: [NgClass, NgFor, MatButtonModule, TranslateModule],
+  imports: [NgClass, MatButtonModule, TranslateModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonsComponent {

@@ -30,6 +30,11 @@
       font-size: 12px;
       gap: 5px;
 
+      a {
+        text-decoration: none;
+        color: $white-color;
+      }
+
       &--bold {
         text-decoration: none;
         font-family: $MontserratSemiBold;

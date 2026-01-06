@@ -1,4 +1,4 @@
-import { AsyncPipe, NgIf, NgTemplateOutlet } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable, map, take } from 'rxjs';
@@ -23,9 +23,7 @@ import { BaseLayoutService } from './base-layout.service';
   animations: [changeLanguage],
   standalone: true,
   imports: [
-    NgIf,
     AsyncPipe,
-    NgTemplateOutlet,
     ButtonsComponent,
     SectionComponent,
     PersonalDataComponent,

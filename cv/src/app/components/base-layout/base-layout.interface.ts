@@ -21,6 +21,7 @@ export interface IInfo {
   linkedIn: string;
   city: string;
   description: string;
+  website: string;
 }
 
 export type InfoKeys = keyof IInfo;
