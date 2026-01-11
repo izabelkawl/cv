@@ -1,41 +1,47 @@
 import { inject, Injectable } from '@angular/core';
 import { IPersonalInformation } from '@app/components/base-layout/base-layout.interface';
-import { TranslateService } from '@ngx-translate/core';
-import * as pdfMake from 'pdfmake/build/pdfmake';
-import * as pdfFonts from 'pdfmake/build/vfs_fonts';
-import { LangType } from '../lang/lang.interface';
+import { ISection } from '@app/components/content/section/section.interface';
 import { Colors } from '@app/shared/enums/variables';
 import { LinkPipe } from '@app/shared/pipes/link.pipe';
-import { ISection } from '@app/components/content/section/section.interface';
+import { TranslateService } from '@ngx-translate/core';
+import * as pdfMakeModule from 'pdfmake/build/pdfmake';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import { LangType } from '../lang/lang.interface';
 
-(pdfMake as any).vfs = pdfFonts.vfs;
-const url =  `${window.location.origin}${window.location.origin.includes('localhost') ? '' : '/cv'}`;
-
-(pdfMake as any).fonts = {
-  'Montserrat-Light': {
-    normal: `${url}/assets/font/Montserrat-Light.ttf`,
-  },
-  'Montserrat-Medium': {
-    normal: `${url}/assets/font/Montserrat-Medium.ttf`,
-  },
-  'Montserrat-Bold': {
-    normal: `${url}/assets/font/Montserrat-Bold.ttf`,
-  },
-  'Montserrat-LightItalic': {
-    normal: `${url}/assets/font/Montserrat-LightItalic.ttf`,
-  },
-  'Montserrat-SemiBold': {
-    normal: `${url}/assets/font/Montserrat-SemiBold.ttf`,
-  },
-  'Montserrat-ExtraBold': {
-    normal: `${url}/assets/font/Montserrat-ExtraBold.ttf`,
-  },
-};
+const url = `${window.location.origin}${
+  window.location.origin.includes('localhost') ? '' : '/cv'
+}`;
 
 @Injectable({
   providedIn: 'root',
 })
 export class PdfService {
+  private pdfMake = (pdfMakeModule as any).default || pdfMakeModule;
+
+  constructor() {
+    this.pdfMake.vfs = pdfFonts.vfs;
+    this.pdfMake.fonts = {
+      'Montserrat-Light': {
+        normal: `${url}/assets/font/Montserrat-Light.ttf`,
+      },
+      'Montserrat-Medium': {
+        normal: `${url}/assets/font/Montserrat-Medium.ttf`,
+      },
+      'Montserrat-Bold': {
+        normal: `${url}/assets/font/Montserrat-Bold.ttf`,
+      },
+      'Montserrat-LightItalic': {
+        normal: `${url}/assets/font/Montserrat-LightItalic.ttf`,
+      },
+      'Montserrat-SemiBold': {
+        normal: `${url}/assets/font/Montserrat-SemiBold.ttf`,
+      },
+      'Montserrat-ExtraBold': {
+        normal: `${url}/assets/font/Montserrat-ExtraBold.ttf`,
+      },
+    };
+  }
+
   readonly #translateService = inject(TranslateService);
   readonly #linkPipe = inject(LinkPipe);
 
@@ -413,7 +419,7 @@ export class PdfService {
       },
     };
 
-    pdfMake
+    this.pdfMake
       .createPdf(docDefinition)
       .download(
         `${data.info.firstName} ${
