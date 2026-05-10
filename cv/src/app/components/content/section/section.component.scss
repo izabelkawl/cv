@@ -52,6 +52,10 @@
     &--bold {
       font-family: $MontserratBold;
     }
+
+    li {
+      white-space: break-spaces;
+    }
   }
 
   @include mixins.mq-min-width(extra-small) {

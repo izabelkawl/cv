@@ -5,7 +5,7 @@
       "lastName": "Wlazło",
       "position": "Programista Front-end",
       "website": "https://izaw.pl",
-      "phone": "733 *** 028",
+      "phone": "733 253 028",
       "email": "izabelawlazlo9@gmail.com",
       "github": "https://github.com/izabelkawl",
       "linkedIn": "https://www.linkedin.com/in/izabelawl",
@@ -18,7 +18,7 @@
         "subTitle": "Autopay Service",
         "period": "12.2024-Obecnie",
         "description": [
-          "Realizacja zadań w projektach dla sektora ubezpieczeniowego, bankowego oraz projektów wewnętrznych.",
+          "Utrzymanie, rozwój i optymalizacja projektów z sektora ubezpieczeniowego, bankowego oraz projektów wewnętrznych.",
           "Równoległa praca nad wieloma projektami.",
           "Regularne aktualizacje Angulara oraz jego zależności.",
           "Dostosowywanie aplikacji do wytycznych WCAG.",
@@ -63,9 +63,9 @@
     "specializations": [
       {
         "description": [
-          "Znajomość **JavaScript**, **TypeScript**, **HTML**, **CSS**, **jQuery**",
-          "Praca z **Angular** na wersjach 11-20",
-          "Znajomość **SCSS**, **SASS**, **Bootstrap**",
+          "Tech stack:  **Angular**, **TypeScript**, **RxJS**, **SCSS**, **SASS**, **REST API**",
+          "Praca z na wersjach 11-20",
+          "Tools",
           "Praca z wykorzystaniem **Angular Material**, **PrimeNg** oraz **NgZorro**",
           "Dostosowywanie wymagań **WCAG**",
           "Tworzenie konfiguracji **Matomo** w projekcie",

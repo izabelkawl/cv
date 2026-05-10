@@ -48,6 +48,9 @@ export class PdfService {
   page = {
     width: 595,
     height: 842,
+    grayBoxHeight: 200,
+    leftBox: 35,
+    rightBox: 65,
   };
 
   fonts = {
@@ -75,13 +78,15 @@ export class PdfService {
 
   generateSection(header: string, data: ISection[], darkMode?: boolean): any[] {
     const width =
-      this.page.width * (darkMode ? 0.65 : 0.35) - 15 * (darkMode ? 6 : 2);
-    const style = darkMode ? 'headerDark' : 'header';
+      (this.page.width * (darkMode ? this.page.rightBox : this.page.leftBox)) /
+        100 -
+      (darkMode ? 70 : 15 * 2);
+    const style = darkMode ? 'headerDarkFont' : 'headerFont';
     const color = darkMode ? this.colors.textColor : this.colors.white;
 
     const sectionHeader = [
       {
-        margin: [0, 20, 0, 0],
+        margin: [0, 10, 0, 0],
         text: this.#translateService.instant('SECTIONS.' + header),
         font: this.fonts.bold,
         style,
@@ -108,29 +113,35 @@ export class PdfService {
       if (title) {
         items.push(
           {
-            margin: [0, 15, 0, 5],
+            margin: [0, 10, 0, 5],
             columns: [
               {
                 text: title,
                 font: this.fonts.bold,
-                style: 'subTitle',
+                style: 'mediumFont',
                 color,
+                width: '66%',
               },
               {
                 text: period,
                 font: this.fonts.lightItalic,
                 alignment: 'right',
-                style: 'subTitle',
+                style: 'mediumFont',
                 color,
               },
             ],
           },
+        );
+      }
+      
+      if (subTitle) {
+        items.push(
           {
-            margin: [0, 0, 0, 5],
+            margin: darkMode ? []: [0, 15, 0, 0],
             text: subTitle,
-            font: this.fonts.medium,
-            style: 'subTitle',
-            color,
+            font: darkMode ? this.fonts.semiBold : this.fonts.light,
+            style: 'text',
+            color: darkMode ? this.colors.basic : this.colors.white,
           },
         );
       }
@@ -138,7 +149,7 @@ export class PdfService {
       (description ?? []).forEach((desc, i) => {
         const textarray: any[] = [];
         desc.split('**').forEach((text, index) => {
-          if (index === 0) {
+          if (darkMode && index === 0) {
             textarray.push({
               text: '•  ',
               font: this.fonts.extraBold,
@@ -148,17 +159,12 @@ export class PdfService {
           textarray.push({
             text: text,
             font: index % 2 ? this.fonts.bold : this.fonts.light,
-            style: 'sectionText',
+            style: 'listItem',
             color,
           });
         });
         items.push({
-          margin: [
-            10,
-            i || darkMode ? 0 : 10,
-            0,
-            i === items.length - 1 ? 20 : 0,
-          ],
+          margin: darkMode ? [10, 0, 0, 0] : [],
           text: textarray,
         });
       });
@@ -170,7 +176,7 @@ export class PdfService {
   generatePdf(data: IPersonalInformation, lang: LangType): void {
     const docDefinition: any = {
       pageSize: 'A4',
-      pageMargins: [30, 30, 30, 60],
+      pageMargins: [30, 30, 30, 40],
 
       background: (
         currentPage: number,
@@ -185,7 +191,7 @@ export class PdfService {
             type: 'rect',
             x: 15 * 2,
             y: currentPage === 1 ? 15 * 2 : 0,
-            w: this.page.width * 0.35,
+            w: (this.page.width * this.page.leftBox) / 100,
             h: page.height - 15 * 2,
             color: this.colors.basic,
           },
@@ -197,7 +203,7 @@ export class PdfService {
             x: 15,
             y: 0,
             w: this.page.width - 15 * 2,
-            h: 200,
+            h: this.page.grayBoxHeight,
             color: this.colors.lightBeigeColor,
           });
         }
@@ -215,9 +221,13 @@ export class PdfService {
             alignment: 'center',
             font: this.fonts.light,
             style: 'footer',
-            absolutePosition: { x: 0, y: 45 },
+            absolutePosition: { x: 0, y: 35 },
           },
         ];
+
+        if (pageCount === 1) {
+          stack.pop();
+        }
 
         if (currentPage === pageCount) {
           stack.unshift(
@@ -228,14 +238,19 @@ export class PdfService {
                   x: 0,
                   y: 0,
                   w: this.page.width,
-                  h: 60,
+                  h: docDefinition.pageMargins[3],
                   color: this.colors.white,
                 },
               ],
               absolutePosition: { x: 0, y: 0 },
             },
             {
-              margin: [30, 10, 30, 0],
+              margin: [
+                docDefinition.pageMargins[0],
+                10,
+                docDefinition.pageMargins[2],
+                0,
+              ],
               text: data.clause,
               alignment: 'justify',
               font: this.fonts.light,
@@ -251,13 +266,13 @@ export class PdfService {
         {
           columns: [
             {
-              width: '35%',
-              margin: [15, 140, 0, 15],
+              width: this.page.leftBox + '%',
+              margin: [15, this.page.grayBoxHeight - 60, 0, 15],
               stack: [
                 {
                   text: this.#translateService.instant('PERSONAL_DATA.PROFILE'),
                   font: this.fonts.bold,
-                  style: 'header',
+                  style: 'headerFont',
                 },
                 {
                   canvas: [
@@ -265,7 +280,7 @@ export class PdfService {
                       type: 'rect',
                       x: 0,
                       y: 10,
-                      w: this.page.width * 0.35 - 15 * 2,
+                      w: (this.page.width * this.page.leftBox) / 100 - 15 * 2,
                       h: 0.5,
                       color: this.colors.white,
                     },
@@ -275,32 +290,32 @@ export class PdfService {
                   margin: [0, 15, 0, 0],
                   text: data.info.description,
                   style: 'description',
-                  font: this.fonts.light,
+                  font: this.fonts.medium,
                 },
 
                 {
                   margin: [0, 20, 0, 0],
                   text: [
-                    'tel. ',
-                    { text: data.info.phone, font: this.fonts.bold },
+                    'tel: ',
+                    { text: data.info.phone, font: this.fonts.semiBold },
                   ],
                   font: this.fonts.light,
                   style: 'text',
                 },
                 {
                   text: [
-                    'email. ',
-                    { text: data.info.email, font: this.fonts.bold },
+                    'email: ',
+                    { text: data.info.email, font: this.fonts.semiBold },
                   ],
                   font: this.fonts.light,
                   style: 'text',
                 },
                 {
                   text: [
-                    'github. ',
+                    'github: ',
                     {
                       text: this.#linkPipe.transform(data.info.github),
-                      font: this.fonts.bold,
+                      font: this.fonts.semiBold,
                       link: data.info.github,
                     },
                   ],
@@ -309,28 +324,27 @@ export class PdfService {
                 },
                 {
                   text: [
-                    'linkedIn. ',
+                    'linkedIn: ',
                     {
                       text: this.#linkPipe.transform(data.info.linkedIn),
-                      font: this.fonts.bold,
+                      font: this.fonts.semiBold,
                       link: data.info.linkedIn,
                     },
                   ],
                   font: this.fonts.light,
                   style: 'text',
                 },
-                {
-                  text: this.#linkPipe.transform(data.info.website),
-                  link: data.info.website,
-                  font: this.fonts.bold,
-                  style: 'text',
-                },
+                // {
+                //   text: this.#linkPipe.transform(data.info.website),
+                //   link: data.info.website,
+                //   font: this.fonts.semiBold,
+                //   style: 'text',
+                // },
                 {
                   text: data.info.city,
-                  font: this.fonts.bold,
+                  font: this.fonts.semiBold,
                   style: 'text',
                 },
-
                 this.generateSection(
                   'SPECIALIZATION',
                   data.specializations,
@@ -339,8 +353,8 @@ export class PdfService {
               ],
             },
             {
-              width: '65%',
-              margin: [45, 40, 0, 15],
+              width: this.page.rightBox + '%',
+              margin: [45, this.page.grayBoxHeight - 150, 0, 0],
               stack: [
                 {
                   text: data.info.firstName.toUpperCase(),
@@ -355,9 +369,9 @@ export class PdfService {
                 },
                 {
                   text: data.info.position,
-                  style: 'subHeader',
+                  style: 'positionFont',
                   font: this.fonts.medium,
-                  margin: [0, 0, 0, 50],
+                  margin: [0, 0, 0, 40],
                 },
 
                 this.generateSection('EXPERIENCE', data.experience, true),
@@ -369,12 +383,27 @@ export class PdfService {
       ],
 
       styles: {
-        header: {
+        firstName: {
+          fontSize: 28,
+          lineHeight: 0.6,
+          color: this.colors.textColor,
+        },
+        lastName: {
+          fontSize: 40,
+          lineHeight: 0.6,
+          color: this.colors.basic,
+        },
+        positionFont: {
+          fontSize: 18,
+          lineHeight: 0.4,
+          color: this.colors.textColor,
+        },
+        headerFont: {
           fontSize: 20,
           lineHeight: 0.9,
           color: this.colors.white,
         },
-        headerDark: {
+        headerDarkFont: {
           fontSize: 20,
           lineHeight: 0.9,
           color: this.colors.textColor,
@@ -385,35 +414,20 @@ export class PdfService {
           color: this.colors.white,
         },
         text: {
-          fontSize: 9,
+          fontSize: 10,
           lineHeight: 1.3,
           color: this.colors.white,
         },
-        subTitle: {
+        mediumFont: {
           fontSize: 12,
           color: this.colors.textColor,
         },
-        sectionText: {
-          fontSize: 9,
+        listItem: {
+          fontSize: 10,
           lineHeight: 1.2,
         },
-        firstName: {
-          fontSize: 30,
-          lineHeight: 0.6,
-          color: this.colors.textColor,
-        },
-        lastName: {
-          fontSize: 32,
-          lineHeight: 0.6,
-          color: this.colors.basic,
-        },
-        subHeader: {
-          fontSize: 18,
-          lineHeight: 0.4,
-          color: this.colors.textColor,
-        },
         footer: {
-          fontSize: 7,
+          fontSize: 8,
           color: this.colors.lightGray,
         },
       },
