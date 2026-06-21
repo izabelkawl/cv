@@ -5,12 +5,12 @@
       "lastName": "Wlazło",
       "position": "Programista Front-end",
       "website": "https://izaw.pl",
-      "phone": "733 *** 028",
+      "phone": "733 253 028",
       "email": "izabelawlazlo9@gmail.com",
       "github": "https://github.com/izabelkawl",
       "linkedIn": "https://www.linkedin.com/in/izabelawl",
-      "city": "Tarnów, Zdalnie",
-      "description": "Cześć! Jestem Iza i od 4,5 roku pracuję na stanowisku Frontend Developera. Na co dzień szczególną wagę przykładam do stabilności aplikacji, jakości kodu oraz dostępności zgodnej z wytycznymi WCAG."
+      "city": "Tarnów / Rzeszów, Zdalnie",
+      "description": "Frontend Developer (Angular) z 4,5+ letnim doświadczeniem.\nTworzę i rozwijam aplikacje dla sektora ubezpieczeniowego, bankowego i publicznego. Mam doświadczenie w migracjach Angulara, pracy nad architekturą oraz dbaniu o jakość i wydajność kodu."
     },
     "experience": [
       {
@@ -18,11 +18,10 @@
         "subTitle": "Autopay Service",
         "period": "12.2024-Obecnie",
         "description": [
-          "Realizacja zadań w projektach dla sektora ubezpieczeniowego, bankowego oraz projektów wewnętrznych.",
-          "Równoległa praca nad wieloma projektami.",
-          "Regularne aktualizacje Angulara oraz jego zależności.",
-          "Dostosowywanie aplikacji do wytycznych WCAG.",
-          "Praca w metodyce Kanban"
+          "Rozwój aplikacji dla sektora ubezpieczeniowego i bankowego oraz produktów własnych firmy.",
+          "Migracje aplikacji w Angularze do najnowszych wersji.",
+          "Implementacja nowych funkcjonalności oraz standardów WCAG.",
+          "Praca w metodyce Kanban."
         ]
       },
       {
@@ -30,13 +29,10 @@
         "subTitle": "Transition Technologies-Software",
         "period": "10.2021-09.2024",
         "description": [
-          "Tworzenie i rozwijanie rozbudowanych aplikacji dla sektora publicznego do zarządzania danymi",
-          "Opracowywanie i implementacja architektury",
-          "Udział w projektach od etapu rozpoczęcia do zakończenia",
-          "Dbanie o wysoką jakość kodu oraz o optymalizację wydajności",
-          "Diagnoza i naprawa błędów",
-          "Wykonywanie code review oraz weryfikacji",
-          "Realizacja projektów zgodnie z metodyką Agile (Scrum, Kanban)"
+          "Rozwijanie aplikacji dla sektora publicznego wspierających zarządzanie danymi.",
+          "Udział w projektowaniu i implementacji architektury nowych projektów.",
+          "Dbanie o wysoką jakość kodu oraz optymalizację wydajności aplikacji.",
+          "Realizacja projektów zgodnie z metodykami Agile (Scrum, Kanban)."
         ]
       },
       {
@@ -44,8 +40,7 @@
         "subTitle": "Transition Technologies-Software",
         "period": "07-09.2021",
         "description": [
-          "Projektowanie oraz implementacja aplikacji w Angularze na potrzeby wewnętrze firmy",
-          "Praca z zespołem programistycznym z wykorzystaniem metodyki Scrum"
+          "Projektowanie oraz rozwój aplikacji webowych w Angularze na potrzeby wewnętrzne firmy."
         ]
       }
     ],
@@ -62,103 +57,110 @@
     ],
     "specializations": [
       {
+        "subTitle": "Technologie:",
         "description": [
-          "Znajomość **JavaScript**, **TypeScript**, **HTML**, **CSS**, **jQuery**",
-          "Praca z **Angular** na wersjach 11-20",
-          "Znajomość **SCSS**, **SASS**, **Bootstrap**",
-          "Praca z wykorzystaniem **Angular Material**, **PrimeNg** oraz **NgZorro**",
-          "Dostosowywanie wymagań **WCAG**",
-          "Tworzenie konfiguracji **Matomo** w projekcie",
-          "Doświadczenie w pracy z **OpenLayers**",
-          "Tworzenie responsywnych stron internetowych",
-          "Znajomośc narzędzi **Jira**, **Youtrack**, **Confluence**, **Git**",
-          "Umiejętnośc pracy w oparciu o metodyki **Scrum** oraz **Kanban**",
-          "Doświadczenie w pracy z **Docker**, **Jenkins**, **Postman**, **GitLab**, **Figma**",
-          "Znajomość **j. angielskiego** - średnio zaawansowany B1"
+          "**Angular (11-20)**, **TypeScript**, **JavaScript**, **jQuery**, **Vue.js (podstawy)**"
         ]
+      },
+      {
+        "subTitle": "Styling / UI:",
+        "description": [
+          "**SCSS**, **PrimeNG**, **Ant Design**, **Tailwind**, **Bootstrap**,"
+        ]
+      },
+      {
+        "subTitle": "Narzędzia:",
+        "description": [
+          "**Git**, **Docker**, **Postman**, **Jira**, **YouTrack**, **Confluence**, **Figma**"
+        ]
+      },
+      {
+        "subTitle": "Dodatkowo:",
+        "description": ["**WCAG**, **OpenLayers**, **Matomo**"]
       }
     ],
-    "clause": "Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji (zgodnie z ustawą z dnia 10 maja 2018 roku o ochronie danych osobowych (Dz. Ustaw z 2018, poz. 1000) oraz zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (RODO)."
+    "clause": "Wyrażam zgodę na przetwarzanie moich danych osobowych przez ASTEK Polska w celu prowadzenia rekrutacji na aplikowane przeze mnie stanowisko."
   },
   "en": {
     "info": {
       "firstName": "Izabela",
       "lastName": "Wlazło",
-      "position": "Front-end Developer",
+      "position": "Programista Front-end",
       "website": "https://izaw.pl",
-      "phone": "733 *** 028",
+      "phone": "733 253 028",
       "email": "izabelawlazlo9@gmail.com",
       "github": "https://github.com/izabelkawl",
       "linkedIn": "https://www.linkedin.com/in/izabelawl",
-      "city": "Tarnów, Zdalnie",
-      "description": "Hello! My name is Iza, and I have been working as a Frontend Developer for 4.5 years. In my day-to-day work, I place particular emphasis on application stability, code quality, and accessibility in line with WCAG guidelines."
+      "city": "Tarnów / Rzeszów, Zdalnie",
+      "description": "Frontend Developer (Angular) z 4,5+ letnim doświadczeniem.\nTworzę i rozwijam aplikacje dla sektora ubezpieczeniowego, bankowego i publicznego. Mam doświadczenie w migracjach Angulara, pracy nad architekturą oraz dbaniu o jakość i wydajność kodu."
     },
     "experience": [
       {
-        "title": "FRONTEND DEVELOPER",
+        "title": "PROGRAMISTA FRONTEND",
         "subTitle": "Autopay Service",
-        "period": "12.2024–Present",
+        "period": "12.2024-Obecnie",
         "description": [
-          "Delivering tasks in projects for the insurance and banking sectors, as well as internal projects",
-          "Working on multiple projects in parallel",
-          "Regularly updating Angular and its dependencies",
-          "Adapting applications to WCAG guidelines",
-          "Working in the Kanban methodology"
+          "Rozwój aplikacji dla sektora ubezpieczeniowego i bankowego oraz produktów własnych firmy.",
+          "Migracje aplikacji w Angularze do najnowszych wersji.",
+          "Implementacja nowych funkcjonalności oraz standardów WCAG.",
+          "Praca w metodyce Kanban."
         ]
       },
       {
-        "title": "ANGULAR DEVELOPER",
+        "title": "PROGRAMISTA ANGULAR",
         "subTitle": "Transition Technologies-Software",
         "period": "10.2021-09.2024",
         "description": [
-          "Developing and maintaining complex applications for the public sector to manage data",
-          "Designing and implementing architecture",
-          "Participating in projects from initiation to completion",
-          "Ensuring high code quality and performance optimization",
-          "Diagnosing and fixing bugs",
-          "Conducting code reviews and verifications",
-          "Delivering projects in accordance with Agile methodologies (Scrum, Kanban)"
+          "Rozwijanie aplikacji dla sektora publicznego wspierających zarządzanie danymi.",
+          "Udział w projektowaniu i implementacji architektury nowych projektów.",
+          "Dbanie o wysoką jakość kodu oraz optymalizację wydajności aplikacji.",
+          "Realizacja projektów zgodnie z metodykami Agile (Scrum, Kanban)."
         ]
       },
       {
-        "title": "INTERN",
+        "title": "PRAKTYKANT",
         "subTitle": "Transition Technologies-Software",
         "period": "07-09.2021",
         "description": [
-          "Designing and implementing applications in Angular for the company's internal needs",
-          "Working with the development team using the Scrum methodology"
+          "Projektowanie oraz rozwój aplikacji webowych w Angularze na potrzeby wewnętrzne firmy."
         ]
       }
     ],
     "education": [
       {
-        "title": "COMPUTER SCIENCE AND ECONOMETRICS",
-        "subTitle": "University of Rzeszów",
+        "title": "INFORMATYKA I EKONOMETRIA",
+        "subTitle": "Uniwersytet Rzeszowski",
         "period": "2017-2021",
         "description": [
-          "Specialization: Information Systems in Management",
-          "Degree obtained: **Engineer**"
+          "Specjalizacja: Systemy informatyczne w zarządzaniu",
+          "Uzyskany tytuł: **Inżynier**"
         ]
       }
     ],
     "specializations": [
       {
+        "subTitle": "Technologie:",
         "description": [
-          "Proficiency in **JavaScript**, **TypeScript**, **HTML**, **CSS**, **jQuery**",
-          "Working with **Angular** versions 11–20",
-          "Knowledge of **SCSS**, **SASS**, **Bootstrap**",
-          "Experience with **Angular Material**, **PrimeNG**, and **NG Zorro**",
-          "Adapting applications to **WCAG** requirements",
-          "Creating **Matomo** configurations within projects",
-          "Experience working with **OpenLayers**",
-          "Building responsive websites",
-          "Familiarity with **Jira**, **YouTrack**, **Confluence**, **Git** tools",
-          "Ability to work using **Scrum** and **Kanban** methodologies",
-          "Experience working with **Docker**, **Jenkins**, **Postman**, **GitLab**, **Figma**",
-          "Knowledge of **English** – intermediate level (B1)"
+          "**Angular (11-20)**, **TypeScript**, **JavaScript**, **jQuery**, **Vue.js (podstawy)**"
         ]
+      },
+      {
+        "subTitle": "Styling / UI:",
+        "description": [
+          "**SCSS**, **PrimeNG**, **Ant Design**, **Tailwind**, **Bootstrap**."
+        ]
+      },
+      {
+        "subTitle": "Narzędzia:",
+        "description": [
+          "**Git**, **Docker**, **Postman**, **Jira**, **YouTrack**, **Confluence**, **Figma**"
+        ]
+      },
+      {
+        "subTitle": "Dodatkowo:",
+        "description": ["**WCAG**, **OpenLayers**, **Matomo**"]
       }
     ],
-    "clause": "I consent to the processing of my personal data for the purposes necessary for the recruitment process (in accordance with the Act of May 10, 2018, on the protection of personal data (Journal of Laws of 2018, item 1000) and in accordance with Regulation (EU) 2016/679 of the European Parliament and of the Council of April 27, 2016, on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (GDPR)."
+    "clause": "Wyrażam zgodę na przetwarzanie moich danych osobowych przez ASTEK Polska w celu prowadzenia rekrutacji na aplikowane przeze mnie stanowisko."
   }
 }

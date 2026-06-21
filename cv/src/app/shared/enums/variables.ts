@@ -10,5 +10,6 @@ export enum Colors {
 
 export enum SessionStorageKeys {
   CHIPS_INDEX = 'sessionStorage',
+  CHIPS_HEX = 'chips_hex',
   LANG = 'lang',
 }

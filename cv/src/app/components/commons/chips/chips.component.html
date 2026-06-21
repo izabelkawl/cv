@@ -1,16 +1,68 @@
-<mat-chip-listbox
-  multiple="false"
-  cdkDropList
-  cdkDropListOrientation="horizontal"
+<div
+  style="
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 900px;
+  "
 >
-  @for (option of options | async; let index = $index; track index) {
-    <mat-chip-option
-      [selected]="option.selected"
-      [disabled]="option.selected"
-      [style.backgroundColor]="option.selected ? option.color : ''"
-      (click)="toggleSelection(index, option.color)"
-    >
-      {{ "CHIPS." + option.name | translate }}
-    </mat-chip-option>
-  }
-</mat-chip-listbox>
+  <div style="flex: 0 0 120px; min-width: 120px">
+    <input
+      placeholder="#RRGGBB"
+      [value]="customColor"
+      maxlength="7"
+      (input)="onHexInput($any($event.target).value)"
+      style="width: 100%; padding: 8px 10px; height: 36px; border-radius: 10px; border: 1px solid #c4c4c4; background-color: #fff; box-sizing: border-box;"
+    />
+  </div>
+
+  <div style="flex: 1; min-width: 120px">
+    <input
+      type="range"
+      min="0"
+      max="360"
+      [value]="hue"
+      (input)="onHueChange($any($event.target).value)"
+      style="
+        width: 100%;
+        appearance: none;
+        height: 18px;
+        border-radius: 999px;
+        background: linear-gradient(
+          90deg,
+          #ff0000,
+          #ff8c00,
+          #ffeb3b,
+          #4caf50,
+          #00bcd4,
+          #3f51b5,
+          #e91e63,
+          #ff0000
+        );
+        outline: none;
+        cursor: pointer;
+        accent-color: white;
+      "
+    />
+  </div>
+  <div style="flex: 1; min-width: 120px">
+    <input
+      type="range"
+      min="0"
+      max="100"
+      [value]="lightness"
+      (input)="onLightnessChange($any($event.target).value)"
+      style="
+        width: 100%;
+        appearance: none;
+        height: 18px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #000, #666, #999, #ccc, #fff);
+        outline: none;
+        cursor: pointer;
+        accent-color: white;
+      "
+    />
+  </div>
+</div>

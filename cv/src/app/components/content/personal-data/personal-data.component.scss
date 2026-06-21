@@ -14,8 +14,12 @@
     font-size: 32px;
   }
 
+  &__description {
+    white-space: break-spaces;
+  }
+
   hr {
-    border-top: 2px solid $white-color;
+    border-top: 1px solid $white-color;
     margin-bottom: 16px;
     opacity: 1;
   }

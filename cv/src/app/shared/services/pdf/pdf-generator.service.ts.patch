@@ -1,0 +1,8 @@
+*** Begin Patch
+*** Update File: C:/Users/user/Desktop/cv repo/cv/cv/src/app/shared/services/pdf/pdf-generator.service.ts
+@@
+   constructor() {
+-    this.pdfMake.vfs = pdfFonts.vfs;
++    this.pdfMake['vfs'] = pdfFonts.vfs;
+     this.pdfMake.fonts = {
+*** End Patch

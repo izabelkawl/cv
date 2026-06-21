@@ -10,25 +10,55 @@
         <div class="section__header-title">{{ item.title }}</div>
         <div class="section__header-period">{{ item.period }}</div>
       </div>
-      <div class="section__header-subtitle">{{ item.subTitle }}</div>
+    }
+
+    @if (item.subTitle) {
+      <div
+        class="section__header-subtitle"
+        [ngClass]="{
+          white: whiteColor,
+          basic: heading === 'SECTIONS.EXPERIENCE',
+          specialization: heading === 'SECTIONS.SPECIALIZATION'
+        }"
+      >
+        {{ item.subTitle }}
+      </div>
     }
 
     @if (item?.description?.length) {
-      <ul class="section__list">
-        @for (task of item?.description; track $index) {
-          <li>
-            @for (
-              part of getPartialText(task);
-              track index;
-              let index = $index
-            ) {
-              <span [ngClass]="{ 'section__list--bold': index % 2 !== 0 }">{{
-                part
-              }}</span>
-            }
-          </li>
-        }
-      </ul>
+      @if (heading === "SECTIONS.SPECIALIZATION") {
+        <div class="section__specialization">
+          @for (task of item?.description; track $index) {
+            <div>
+              @for (
+                part of getPartialText(task);
+                track index;
+                let index = $index
+              ) {
+                <span [ngClass]="{ 'section__list--bold': index % 2 !== 0 }">{{
+                  part
+                }}</span>
+              }
+            </div>
+          }
+        </div>
+      } @else {
+        <ul class="section__list">
+          @for (task of item?.description; track $index) {
+            <li>
+              @for (
+                part of getPartialText(task);
+                track index;
+                let index = $index
+              ) {
+                <span [ngClass]="{ 'section__list--bold': index % 2 !== 0 }">{{
+                  part
+                }}</span>
+              }
+            </li>
+          }
+        </ul>
+      }
     }
   } @empty {
     <b>{{ "NO_DATA" | translate }}</b>
