@@ -12,7 +12,7 @@ import { ChipsComponent } from '@app/components/commons/chips/chips.component';
 import { PersonalDataComponent } from '@app/components/content/personal-data/personal-data.component';
 import { SectionComponent } from '@app/components/content/section/section.component';
 import { UserComponent } from '@app/components/content/user/user.component';
-import { IPersonalInformation } from './base-layout.interface';
+import { IInfo, IPersonalInformation } from './base-layout.interface';
 import { BaseLayoutService } from './base-layout.service';
 
 @UntilDestroy()
@@ -39,6 +39,7 @@ export class BaseLayoutComponent implements OnInit {
   public buttons: IButton[] = this.buttonConfig;
 
   public languageState: LangType = this.#langService.lang;
+  public isEditingTemplate = false;
 
   #data!: IPersonalInformation;
 
@@ -58,8 +59,10 @@ export class BaseLayoutComponent implements OnInit {
   private get buttonConfig(): IButton[] {
     return [
       {
-        name: 'BUTTONS.EDIT_TEMPLATE',
-        action: () => {},
+        name: this.isEditingTemplate
+          ? 'BUTTONS.SAVE_CHANGES'
+          : 'BUTTONS.EDIT_TEMPLATE',
+        action: () => this.toggleEditMode(),
       },
       {
         name: 'BUTTONS.DOWNLOAD_CV',
@@ -71,6 +74,20 @@ export class BaseLayoutComponent implements OnInit {
         action: () => this.changeLang(),
       },
     ];
+  }
+
+  public toggleEditMode(): void {
+    this.isEditingTemplate = !this.isEditingTemplate;
+    this.buttons = this.buttonConfig;
+  }
+
+  public updateUserInfo(update: Partial<IInfo>): void {
+    if (this.#data?.info) {
+      this.#data.info = {
+        ...this.#data.info,
+        ...update,
+      };
+    }
   }
 
   public get personalInfo(): Observable<IPersonalInformation> {

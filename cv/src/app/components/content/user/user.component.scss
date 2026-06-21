@@ -6,22 +6,30 @@
   flex-direction: column;
   font-family: $MontserratMedium;
 
+  &__firstName,
+  &__lastName,
+  &__position {
+    max-width: 382px;
+    width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    margin: 0;
+  }
+
   &__firstName {
     font-size: 32px;
     transform: scaleY(0.8);
-    margin: 0;
   }
 
   &__lastName {
     font-family: $MontserratExtraBold;
     color: $basic-color;
     font-size: 32px;
-    margin: 0;
   }
 
   &__position {
     font-size: 20px;
-    margin: 0;
     transform: scaleY(0.8);
   }
 
@@ -37,6 +45,27 @@
       margin: 8px 0;
       font-size: 30px;
       transform: scaleY(0.8);
+    }
+  }
+
+  .user__input {
+    font-family: $MontserratMedium;
+    font-size: 16px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 12px;
+    border: 1px solid rgba($basic-color, 0.3);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.92);
+  }
+
+  @include mixins.mq-min-width(extra-small) {
+    .user__input {
+      font-size: 18px;
+      height: 40px;
+      line-height: 40px;
+      padding: 0 14px;
     }
   }
 }

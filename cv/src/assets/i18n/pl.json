@@ -1,7 +1,8 @@
 {
   "BUTTONS": {
     "DOWNLOAD_CV": "Pobierz CV",
-    "EDIT_TEMPLATE": "Edytuj szablon"
+    "EDIT_TEMPLATE": "Edytuj szablon",
+    "SAVE_CHANGES": "Zapisz zmiany"
   },
   "CHIPS": {
     "NAVY_BLUE": "Granat",

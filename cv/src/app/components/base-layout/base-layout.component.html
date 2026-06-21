@@ -5,8 +5,8 @@
   </div>
 
   <div class="main" [@changeLanguage]="languageState">
-    <div class="main__background"></div>
     <div class="main__content">
+      <div class="main__background"></div>
       <div class="main__content-left-side">
         <app-personal-data [personalInfo]="personalInfo.info" />
         <app-section
@@ -16,7 +16,12 @@
         />
       </div>
 
-      <app-user class="main__content--user" [info]="personalInfo.info" />
+      <app-user
+        class="main__content--user"
+        [info]="personalInfo.info"
+        [isEditing]="isEditingTemplate"
+        (infoChange)="updateUserInfo($event)"
+      />
 
       <div class="main__content-right-side">
         <app-section

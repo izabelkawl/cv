@@ -1,7 +1,51 @@
 @if (info) {
   <div class="user">
-    <h1 class="user__firstName">{{ info.firstName | uppercase }}</h1>
-    <h1 class="user__lastName">{{ info.lastName | uppercase }}</h1>
-    <h6 class="user__position">{{ info.position }}</h6>
+    <ng-container *ngIf="!isEditing; else editMode">
+      <h1
+        class="user__firstName"
+        [style.fontSize]="getFontSize('firstName', info.firstName)"
+      >
+        {{ info.firstName | uppercase }}
+      </h1>
+      <h1
+        class="user__lastName"
+        [style.fontSize]="getFontSize('lastName', info.lastName)"
+      >
+        {{ info.lastName | uppercase }}
+      </h1>
+      <h6
+        class="user__position"
+        [style.fontSize]="getFontSize('position', info.position)"
+      >
+        {{ info.position }}
+      </h6>
+    </ng-container>
+
+    <ng-template #editMode>
+      <input
+        class="user__input user__firstName-input"
+        type="text"
+        [value]="info.firstName"
+        [attr.maxlength]="getMaxLength('firstName')"
+        (input)="onInputChange('firstName', $any($event.target).value)"
+        placeholder="First name"
+      />
+      <input
+        class="user__input user__lastName-input"
+        type="text"
+        [value]="info.lastName"
+        [attr.maxlength]="getMaxLength('lastName')"
+        (input)="onInputChange('lastName', $any($event.target).value)"
+        placeholder="Last name"
+      />
+      <input
+        class="user__input user__position-input"
+        type="text"
+        [value]="info.position"
+        [attr.maxlength]="getMaxLength('position')"
+        (input)="onInputChange('position', $any($event.target).value)"
+        placeholder="Position"
+      />
+    </ng-template>
   </div>
 }
