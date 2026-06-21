@@ -14,6 +14,7 @@
     white-space: normal;
     overflow-wrap: anywhere;
     word-break: break-word;
+    line-height: 0.8;
     margin: 0;
   }
 
@@ -38,11 +39,11 @@
     &__lastName {
       font-size: 54px;
       padding-bottom: 5px;
-      margin: 8px 0;
+      margin: 4px 0;
     }
 
     &__position {
-      margin: 8px 0;
+      margin: 4px 0;
       font-size: 30px;
       transform: scaleY(0.8);
     }
@@ -57,7 +58,7 @@
     border: 1px solid rgba($basic-color, 0.3);
     border-radius: 8px;
     margin-bottom: 10px;
-    background-color: rgba(255, 255, 255, 0.92);
+    background-color: rgba(255, 255, 255, 0.5);
   }
 
   @include mixins.mq-min-width(extra-small) {

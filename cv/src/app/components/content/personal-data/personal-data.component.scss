@@ -18,6 +18,57 @@
     white-space: break-spaces;
   }
 
+  &__textarea {
+    font-family: $MontserratLight;
+    font-size: 14px;
+    padding: 12px;
+    border: 1px solid rgba($white-color, 0.3);
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: $white-color;
+    resize: vertical;
+    margin-bottom: 16px;
+
+    &::placeholder {
+      color: rgba($white-color, 0.6);
+    }
+  }
+
+  &__edit-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__edit-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    label {
+      font-size: 12px;
+      font-family: $MontserratSemiBold;
+      color: rgba($white-color, 0.8);
+    }
+    &--no-label {
+      margin-top: 16px;
+    }
+  }
+
+  &__edit-input {
+    font-family: $MontserratLight;
+    font-size: 14px;
+    padding: 8px 12px;
+    border: 1px solid rgba($white-color, 0.3);
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: $white-color;
+
+    &::placeholder {
+      color: rgba($white-color, 0.6);
+    }
+  }
+
   hr {
     border-top: 1px solid $white-color;
     margin-bottom: 16px;

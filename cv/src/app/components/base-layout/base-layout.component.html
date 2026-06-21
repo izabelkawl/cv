@@ -15,12 +15,24 @@
     <div class="main__content">
       <div class="main__background"></div>
       <div class="main__content-left-side">
-        <app-personal-data [personalInfo]="personalInfo.info" />
-        <app-section
-          heading="SECTIONS.SPECIALIZATION"
-          [data]="personalInfo.specializations"
-          [whiteColor]="true"
+        <app-personal-data
+          [personalInfo]="personalInfo.info"
+          [isEditing]="isEditingTemplate"
+          (infoChange)="updateUserInfo($event)"
         />
+        @if (!isEditingTemplate) {
+          <app-section
+            heading="SECTIONS.SPECIALIZATION"
+            [data]="personalInfo.specializations"
+            [whiteColor]="true"
+          />
+        } @else {
+          <app-specializations
+            [data]="personalInfo.specializations"
+            [isEditing]="isEditingTemplate"
+            (dataChange)="updateSection('specializations', $event)"
+          />
+        }
       </div>
 
       <app-user

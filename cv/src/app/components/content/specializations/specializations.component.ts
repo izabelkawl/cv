@@ -1,4 +1,4 @@
-import { NgClass, NgFor } from '@angular/common';
+import { CommonModule, NgFor, NgClass } from '@angular/common';
 import {
   Component,
   EventEmitter,
@@ -7,20 +7,19 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
-import { ISection } from './section.interface';
+import { ISection } from '../section/section.interface';
 
 @Component({
-  selector: 'app-section',
-  templateUrl: './section.component.html',
-  styleUrls: ['./section.component.scss'],
+  selector: 'app-specializations',
+  templateUrl: './specializations.component.html',
+  styleUrls: ['./specializations.component.scss'],
   standalone: true,
-  imports: [TranslateModule, NgFor, NgClass],
+  imports: [CommonModule, NgFor, NgClass, MatButtonModule, TranslateModule],
 })
-export class SectionComponent implements OnChanges {
-  @Input() data!: ISection[];
-  @Input() heading: string = '';
-  @Input() whiteColor: boolean = false;
+export class SpecializationsComponent implements OnChanges {
+  @Input() data: ISection[] = [];
   @Input() isEditing = false;
   @Output() dataChange: EventEmitter<ISection[]> = new EventEmitter();
 
@@ -28,13 +27,8 @@ export class SectionComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['data'] && this.data) {
-      // deep clone to allow local edits
       this.editableData = JSON.parse(JSON.stringify(this.data));
     }
-  }
-
-  getPartialText(task: string): string[] {
-    return task.split('**');
   }
 
   public addSpecialization(): void {

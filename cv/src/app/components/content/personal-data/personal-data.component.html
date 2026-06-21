@@ -5,23 +5,55 @@
   <hr />
 
   @if (personalInfo) {
-    <span class="content__description">{{ personalInfo.description }}</span>
+    <ng-container *ngIf="!isEditing; else editMode">
+      <span class="content__description">{{ personalInfo.description }}</span>
 
-    <div class="content__contact">
-      @for (item of contactList; track $index) {
-        <div class="content__contact-item">
-          @if (item.value) {
-            @if (item.label) {
-              <span>{{ item.label }}</span>
+      <div class="content__contact">
+        @for (item of contactList; track item.field) {
+          <div class="content__contact-item">
+            @if (item.value) {
+              @if (item.label) {
+                <span>{{ item.label }}</span>
+              }
+              <a (click)="item?.onAction()">
+                <span class="content__contact-item--bold">
+                  {{ item.value }}
+                </span>
+              </a>
             }
-            <a (click)="item?.onAction()">
-              <span class="content__contact-item--bold">
-                {{ item.value }}
-              </span>
-            </a>
-          }
-        </div>
-      }
-    </div>
+          </div>
+        }
+      </div>
+    </ng-container>
+
+    <ng-template #editMode>
+      <textarea
+        class="content__textarea"
+        [value]="personalInfo.description"
+        (input)="onDescriptionChange($any($event.target).value)"
+        placeholder="Opis profilu"
+        rows="6"
+      ></textarea>
+
+      <div class="content__edit-fields">
+        @for (item of contactList; track item.field) {
+          <div
+            class="content__edit-field"
+            [class.content__edit-field--no-label]="item.isFirstNoLabel"
+          >
+            @if (item.label) {
+              <label>{{ item.label }}</label>
+            }
+            <input
+              type="text"
+              class="content__edit-input"
+              [value]="personalInfo[item.field]"
+              (input)="onContactChange(item.field, $any($event.target).value)"
+              [attr.placeholder]="item.label || item.field"
+            />
+          </div>
+        }
+      </div>
+    </ng-template>
   }
 </div>

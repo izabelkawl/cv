@@ -19,7 +19,9 @@ import { PersonalDataComponent } from '@app/components/content/personal-data/per
 import { SectionComponent } from '@app/components/content/section/section.component';
 import { UserComponent } from '@app/components/content/user/user.component';
 import { IInfo, IPersonalInformation } from './base-layout.interface';
+import { ISection } from '@app/components/content/section/section.interface';
 import { BaseLayoutService } from './base-layout.service';
+import { SpecializationsComponent } from '@app/components/content/specializations/specializations.component';
 
 @UntilDestroy()
 @Component({
@@ -35,6 +37,8 @@ import { BaseLayoutService } from './base-layout.service';
     PersonalDataComponent,
     UserComponent,
     ChipsComponent,
+    // add specializations editor
+    SpecializationsComponent,
   ],
 })
 export class BaseLayoutComponent implements OnInit {
@@ -156,6 +160,15 @@ export class BaseLayoutComponent implements OnInit {
         ...this.#data.info,
         ...update,
       };
+    }
+  }
+
+  public updateSection(
+    section: keyof IPersonalInformation,
+    data: ISection[],
+  ): void {
+    if (this.#data) {
+      (this.#data as any)[section] = data;
     }
   }
 

@@ -1,0 +1,70 @@
+<div class="specializations">
+  <h1 class="specializations__heading">
+    {{ "SECTIONS.SPECIALIZATION" | translate }}
+  </h1>
+  <hr class="specializations__divider" />
+  <div class="specializations__list">
+    @for (spec of editableData; track $index; let i = $index) {
+      <div class="specializations__item">
+        <div class="specializations__row">
+          <input
+            class="specializations__input"
+            [value]="spec.subTitle"
+            (input)="updateSubTitle(i, $any($event.target).value)"
+            placeholder="Enter specialization category"
+          />
+          <button
+            mat-raised-button
+            class="basicColor specializations__icon-button"
+            title="Remove"
+            (click)="removeSpecialization(i)"
+            [disabled]="editableData.length <= 1"
+          >
+            <span class="material-icons">delete</span>
+          </button>
+        </div>
+
+        <div class="specializations__descriptions">
+          @for (d of spec.description; track $index; let j = $index) {
+            <div class="specializations__desc-row">
+              <input
+                class="specializations__input"
+                [value]="d"
+                (input)="updateDescription(i, j, $any($event.target).value)"
+                placeholder="Enter specialization or focus"
+              />
+              <button
+                mat-raised-button
+                class="basicColor specializations__transparent-icon-button"
+                title="Remove"
+                (click)="removeDescription(i, j)"
+                [disabled]="hasSingleDescription(spec)"
+              >
+                <span class="material-icons">delete</span>
+              </button>
+            </div>
+          }
+          <button
+            mat-raised-button
+            class="basicColor specializations__icon-button"
+            title="Add description"
+            (click)="addDescription(i)"
+          >
+            +
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="specializations__actions">
+    <button
+      mat-raised-button
+      class="basicColor specializations__add-button"
+      title="Dodaj specjalizacje"
+      (click)="addSpecialization()"
+    >
+      Dodaj specjalizacje
+    </button>
+  </div>
+</div>
