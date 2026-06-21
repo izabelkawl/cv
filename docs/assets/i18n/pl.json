@@ -1,0 +1,24 @@
+{
+  "BUTTONS": {
+    "DOWNLOAD_CV": "Pobierz CV",
+    "EDIT_TEMPLATE": "Edytuj szablon",
+    "DOWNLOAD_TEMPLATE": "Pobierz szablon",
+    "UPLOAD_TEMPLATE": "Załaduj szablon",
+    "SAVE_CHANGES": "Zapisz zmiany"
+  },
+  "CHIPS": {
+    "NAVY_BLUE": "Granat",
+    "PURPLE": "Fiolet",
+    "GREEN": "Zielony",
+    "ORANGE": "Pomarańcz"
+  },
+  "SECTIONS": {
+    "EXPERIENCE": "Doświadczenie",
+    "EDUCATION": "Wykształcenie",
+    "SPECIALIZATION": "Specjalizacje"
+  },
+  "PERSONAL_DATA": {
+    "PROFILE": "Profil"
+  },
+  "NO_DATA": "Brak danych"
+}

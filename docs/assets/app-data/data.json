@@ -1,0 +1,166 @@
+{
+  "pl": {
+    "info": {
+      "firstName": "Izabela",
+      "lastName": "Wlazło",
+      "position": "Programista Front-end",
+      "website": "https://izaw.pl",
+      "phone": "733 253 028",
+      "email": "izabelawlazlo9@gmail.com",
+      "github": "https://github.com/izabelkawl",
+      "linkedIn": "https://www.linkedin.com/in/izabelawl",
+      "city": "Tarnów / Rzeszów, Zdalnie",
+      "description": "Frontend Developer (Angular) z 4,5+ letnim doświadczeniem.\nTworzę i rozwijam aplikacje dla sektora ubezpieczeniowego, bankowego i publicznego. Mam doświadczenie w migracjach Angulara, pracy nad architekturą oraz dbaniu o jakość i wydajność kodu."
+    },
+    "experience": [
+      {
+        "title": "PROGRAMISTA FRONTEND",
+        "subTitle": "Autopay Service",
+        "period": "12.2024-Obecnie",
+        "description": [
+          "Rozwój aplikacji dla sektora ubezpieczeniowego i bankowego oraz produktów własnych firmy.",
+          "Migracje aplikacji w Angularze do najnowszych wersji.",
+          "Implementacja nowych funkcjonalności oraz standardów WCAG.",
+          "Praca w metodyce Kanban."
+        ]
+      },
+      {
+        "title": "PROGRAMISTA ANGULAR",
+        "subTitle": "Transition Technologies-Software",
+        "period": "10.2021-09.2024",
+        "description": [
+          "Rozwijanie aplikacji dla sektora publicznego wspierających zarządzanie danymi.",
+          "Udział w projektowaniu i implementacji architektury nowych projektów.",
+          "Dbanie o wysoką jakość kodu oraz optymalizację wydajności aplikacji.",
+          "Realizacja projektów zgodnie z metodykami Agile (Scrum, Kanban)."
+        ]
+      },
+      {
+        "title": "PRAKTYKANT",
+        "subTitle": "Transition Technologies-Software",
+        "period": "07-09.2021",
+        "description": [
+          "Projektowanie oraz rozwój aplikacji webowych w Angularze na potrzeby wewnętrzne firmy."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "title": "INFORMATYKA I EKONOMETRIA",
+        "subTitle": "Uniwersytet Rzeszowski",
+        "period": "2017-2021",
+        "description": [
+          "Specjalizacja: Systemy informatyczne w zarządzaniu",
+          "Uzyskany tytuł: **Inżynier**"
+        ]
+      }
+    ],
+    "specializations": [
+      {
+        "subTitle": "Technologie:",
+        "description": [
+          "**Angular (11-20)**, **TypeScript**, **JavaScript**, **jQuery**, **Vue.js (podstawy)**"
+        ]
+      },
+      {
+        "subTitle": "Styling / UI:",
+        "description": [
+          "**SCSS**, **PrimeNG**, **Ant Design**, **Tailwind**, **Bootstrap**,"
+        ]
+      },
+      {
+        "subTitle": "Narzędzia:",
+        "description": [
+          "**Git**, **Docker**, **Postman**, **Jira**, **YouTrack**, **Confluence**, **Figma**"
+        ]
+      },
+      {
+        "subTitle": "Dodatkowo:",
+        "description": ["**WCAG**, **OpenLayers**, **Matomo**"]
+      }
+    ],
+    "clause": "Wyrażam zgodę na przetwarzanie moich danych osobowych przez ASTEK Polska w celu prowadzenia rekrutacji na aplikowane przeze mnie stanowisko."
+  },
+  "en": {
+    "info": {
+      "firstName": "Izabela",
+      "lastName": "Wlazło",
+      "position": "Programista Front-end",
+      "website": "https://izaw.pl",
+      "phone": "733 253 028",
+      "email": "izabelawlazlo9@gmail.com",
+      "github": "https://github.com/izabelkawl",
+      "linkedIn": "https://www.linkedin.com/in/izabelawl",
+      "city": "Tarnów / Rzeszów, Zdalnie",
+      "description": "Frontend Developer (Angular) z 4,5+ letnim doświadczeniem.\nTworzę i rozwijam aplikacje dla sektora ubezpieczeniowego, bankowego i publicznego. Mam doświadczenie w migracjach Angulara, pracy nad architekturą oraz dbaniu o jakość i wydajność kodu."
+    },
+    "experience": [
+      {
+        "title": "PROGRAMISTA FRONTEND",
+        "subTitle": "Autopay Service",
+        "period": "12.2024-Obecnie",
+        "description": [
+          "Rozwój aplikacji dla sektora ubezpieczeniowego i bankowego oraz produktów własnych firmy.",
+          "Migracje aplikacji w Angularze do najnowszych wersji.",
+          "Implementacja nowych funkcjonalności oraz standardów WCAG.",
+          "Praca w metodyce Kanban."
+        ]
+      },
+      {
+        "title": "PROGRAMISTA ANGULAR",
+        "subTitle": "Transition Technologies-Software",
+        "period": "10.2021-09.2024",
+        "description": [
+          "Rozwijanie aplikacji dla sektora publicznego wspierających zarządzanie danymi.",
+          "Udział w projektowaniu i implementacji architektury nowych projektów.",
+          "Dbanie o wysoką jakość kodu oraz optymalizację wydajności aplikacji.",
+          "Realizacja projektów zgodnie z metodykami Agile (Scrum, Kanban)."
+        ]
+      },
+      {
+        "title": "PRAKTYKANT",
+        "subTitle": "Transition Technologies-Software",
+        "period": "07-09.2021",
+        "description": [
+          "Projektowanie oraz rozwój aplikacji webowych w Angularze na potrzeby wewnętrzne firmy."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "title": "INFORMATYKA I EKONOMETRIA",
+        "subTitle": "Uniwersytet Rzeszowski",
+        "period": "2017-2021",
+        "description": [
+          "Specjalizacja: Systemy informatyczne w zarządzaniu",
+          "Uzyskany tytuł: **Inżynier**"
+        ]
+      }
+    ],
+    "specializations": [
+      {
+        "subTitle": "Technologie:",
+        "description": [
+          "**Angular (11-20)**, **TypeScript**, **JavaScript**, **jQuery**, **Vue.js (podstawy)**"
+        ]
+      },
+      {
+        "subTitle": "Styling / UI:",
+        "description": [
+          "**SCSS**, **PrimeNG**, **Ant Design**, **Tailwind**, **Bootstrap**."
+        ]
+      },
+      {
+        "subTitle": "Narzędzia:",
+        "description": [
+          "**Git**, **Docker**, **Postman**, **Jira**, **YouTrack**, **Confluence**, **Figma**"
+        ]
+      },
+      {
+        "subTitle": "Dodatkowo:",
+        "description": ["**WCAG**, **OpenLayers**, **Matomo**"]
+      }
+    ],
+    "clause": "Wyrażam zgodę na przetwarzanie moich danych osobowych przez ASTEK Polska w celu prowadzenia rekrutacji na aplikowane przeze mnie stanowisko."
+  }
+}
