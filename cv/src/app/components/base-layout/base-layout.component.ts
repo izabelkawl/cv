@@ -1,5 +1,11 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable, map, take } from 'rxjs';
 import { changeLanguage } from '@app/shared/animations/animations';
@@ -32,11 +38,15 @@ import { BaseLayoutService } from './base-layout.service';
   ],
 })
 export class BaseLayoutComponent implements OnInit {
+  @ViewChild('templateUploadInput')
+  private fileInput?: ElementRef<HTMLInputElement>;
+
   readonly #pdfService = inject(PdfService);
   readonly #langService = inject(LangService);
   readonly #baseLayoutService = inject(BaseLayoutService);
 
   public buttons: IButton[] = this.buttonConfig;
+  public personalInfo!: Observable<IPersonalInformation>;
 
   public languageState: LangType = this.#langService.lang;
   public isEditingTemplate = false;
@@ -45,10 +55,61 @@ export class BaseLayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.#langService.setDefaultLang();
+    this.refreshPersonalInfo();
   }
 
   private generatePdf(): void {
     this.#pdfService.generatePdf(this.#data, this.languageState);
+  }
+
+  private downloadTemplate(): void {
+    const url = '/assets/app-data/data-template.json';
+
+    fetch(url)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const downloadLink = document.createElement('a');
+        downloadLink.href = URL.createObjectURL(blob);
+        downloadLink.download = 'data-template.json';
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        downloadLink.remove();
+        URL.revokeObjectURL(downloadLink.href);
+      })
+      .catch(() => {
+        window.open(url, '_blank');
+      });
+  }
+
+  public uploadTemplate(): void {
+    this.fileInput?.nativeElement.click();
+  }
+
+  public onTemplateFileChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+
+    if (!file) {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const json = JSON.parse(reader.result as string) as Record<string, any>;
+        const loaded = this.#baseLayoutService.setData(json);
+
+        if (!loaded) {
+          throw new Error('Invalid template structure');
+        }
+
+        this.refreshPersonalInfo();
+      } catch {
+        window.alert('Nieprawidłowy plik JSON lub zła struktura.');
+      }
+    };
+    reader.readAsText(file);
+    input.value = '';
   }
 
   private changeLang(): void {
@@ -63,6 +124,14 @@ export class BaseLayoutComponent implements OnInit {
           ? 'BUTTONS.SAVE_CHANGES'
           : 'BUTTONS.EDIT_TEMPLATE',
         action: () => this.toggleEditMode(),
+      },
+      {
+        name: 'BUTTONS.DOWNLOAD_TEMPLATE',
+        action: () => this.downloadTemplate(),
+      },
+      {
+        name: 'BUTTONS.UPLOAD_TEMPLATE',
+        action: () => this.uploadTemplate(),
       },
       {
         name: 'BUTTONS.DOWNLOAD_CV',
@@ -90,10 +159,10 @@ export class BaseLayoutComponent implements OnInit {
     }
   }
 
-  public get personalInfo(): Observable<IPersonalInformation> {
+  private refreshPersonalInfo(): void {
     const { lang } = this.#langService;
 
-    return this.#baseLayoutService.getInfo(lang).pipe(
+    this.personalInfo = this.#baseLayoutService.getInfo(lang).pipe(
       untilDestroyed(this),
       take(1),
       map((response: IPersonalInformation) => {

@@ -2,6 +2,8 @@
   "BUTTONS": {
     "DOWNLOAD_CV": "Download CV",
     "EDIT_TEMPLATE": "Edit template",
+    "DOWNLOAD_TEMPLATE": "Download template",
+    "UPLOAD_TEMPLATE": "Upload template",
     "SAVE_CHANGES": "Save changes"
   },
   "CHIPS": {

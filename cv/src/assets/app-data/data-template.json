@@ -1,0 +1,94 @@
+{
+  "pl": {
+    "info": {
+      "firstName": "Podaj imię",
+      "lastName": "Podaj nazwisko",
+      "position": "Podaj nazwę stanowiska",
+      "website": "Podaj adres strony",
+      "phone": "Podaj numer telefonu",
+      "email": "Podaj adres e-mail",
+      "github": "Podaj adres GitHub",
+      "linkedIn": "Podaj adres LinkedIn",
+      "city": "Podaj lokalizację",
+      "description": "Podaj krótkie podsumowanie zawodowe"
+    },
+    "experience": [
+      {
+        "title": "Podaj tytuł stanowiska",
+        "subTitle": "Podaj nazwę firmy",
+        "period": "Podaj okres zatrudnienia",
+        "description": [
+          "Podaj główne obowiązki lub osiągnięcia",
+          "Podaj dodatkową informację o tym doświadczeniu"
+        ]
+      }
+    ],
+    "education": [
+      {
+        "title": "Podaj kierunek studiów",
+        "subTitle": "Podaj uczelnię",
+        "period": "Podaj okres nauki",
+        "description": [
+          "Podaj specjalizację lub kierunek",
+          "Podaj zdobyty stopień lub wyróżnienia"
+        ]
+      }
+    ],
+    "specializations": [
+      {
+        "subTitle": "Podaj kategorię specjalizacji",
+        "description": [
+          "Podaj technologie, narzędzia lub umiejętności",
+          "Podaj dodatkowe kompetencje"
+        ]
+      }
+    ],
+    "clause": "Podaj zgodę na przetwarzanie danych osobowych"
+  },
+  "en": {
+    "info": {
+      "firstName": "Enter first name",
+      "lastName": "Enter last name",
+      "position": "Enter job title",
+      "website": "Enter website address",
+      "phone": "Enter phone number",
+      "email": "Enter email address",
+      "github": "Enter GitHub URL",
+      "linkedIn": "Enter LinkedIn URL",
+      "city": "Enter location",
+      "description": "Enter a brief professional summary"
+    },
+    "experience": [
+      {
+        "title": "Enter job title",
+        "subTitle": "Enter company name",
+        "period": "Enter employment period",
+        "description": [
+          "Enter main responsibilities or achievements",
+          "Enter additional detail about this experience"
+        ]
+      }
+    ],
+    "education": [
+      {
+        "title": "Enter degree or field of study",
+        "subTitle": "Enter institution name",
+        "period": "Enter study period",
+        "description": [
+          "Enter specialization or focus",
+          "Enter degree earned or honors"
+        ]
+      }
+    ],
+    "specializations": [
+      {
+        "subTitle": "Enter specialization category",
+        "description": [
+          "Enter technologies, tools or skills",
+          "Enter additional competencies"
+        ]
+      }
+    ],
+    "clause": "Enter consent for personal data processing"
+  }
+}

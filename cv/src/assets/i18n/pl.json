@@ -2,6 +2,8 @@
   "BUTTONS": {
     "DOWNLOAD_CV": "Pobierz CV",
     "EDIT_TEMPLATE": "Edytuj szablon",
+    "DOWNLOAD_TEMPLATE": "Pobierz szablon",
+    "UPLOAD_TEMPLATE": "Załaduj szablon",
     "SAVE_CHANGES": "Zapisz zmiany"
   },
   "CHIPS": {

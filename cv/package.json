@@ -11,8 +11,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build-prod": "ng build --configuration production --base-href=/cv/",
-    "prepare": "husky install"
+    "build-prod": "ng build --configuration production --base-href=/cv/"
   },
   "private": true,
   "dependencies": {
@@ -53,7 +52,6 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "prettier": "3.1",
-    "typescript": "~5.5.4",
-    "husky": "^9.0.0"
+    "typescript": "~5.5.4"
   }
 }

@@ -2,6 +2,13 @@
   <div class="topbar">
     <app-chips />
     <app-buttons [buttonsConfig]="buttons" />
+    <input
+      #templateUploadInput
+      type="file"
+      accept="application/json,.json"
+      hidden
+      (change)="onTemplateFileChange($event)"
+    />
   </div>
 
   <div class="main" [@changeLanguage]="languageState">
