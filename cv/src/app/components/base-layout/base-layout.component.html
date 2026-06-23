@@ -46,15 +46,28 @@
         <app-section
           heading="SECTIONS.EXPERIENCE"
           [data]="personalInfo.experience"
+          [isEditing]="isEditingTemplate"
+          (dataChange)="updateSection('experience', $event)"
         />
         <app-section
           heading="SECTIONS.EDUCATION"
           [data]="personalInfo.education"
+          [isEditing]="isEditingTemplate"
+          (dataChange)="updateSection('education', $event)"
         />
       </div>
     </div>
     <div class="main__footer">
-      {{ personalInfo.clause }}
+      @if (isEditingTemplate) {
+        <textarea
+          class="main__footer-input"
+          [value]="personalInfo.clause"
+          (input)="updateClause($any($event.target).value)"
+          placeholder="Podaj tresc zgody RODO"
+        ></textarea>
+      } @else {
+        {{ personalInfo.clause }}
+      }
     </div>
   </div>
 }

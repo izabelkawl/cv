@@ -4,63 +4,147 @@
   </h1>
   <hr [ngClass]="['section__hr', whiteColor ? 'white' : '']" />
 
-  @for (item of data; track $index) {
-    @if (item.title) {
-      <div class="section__header">
-        <div class="section__header-title">{{ item.title }}</div>
-        <div class="section__header-period">{{ item.period }}</div>
-      </div>
-    }
+  @if (isEditing) {
+    <div class="section__editor-list">
+      @for (item of editableData; track $index; let i = $index) {
+        <div class="section__editor-item">
+          <div class="section__editor-row section__editor-row--top">
+            <input
+              class="section__input"
+              [value]="item.title"
+              (input)="updateTitle(i, $any($event.target).value)"
+              placeholder="Podaj tytul"
+            />
+            <input
+              class="section__input section__input--period"
+              [value]="item.period"
+              (input)="updatePeriod(i, $any($event.target).value)"
+              placeholder="Podaj okres"
+            />
+            <button
+              mat-raised-button
+              class="basicColor section__icon-button"
+              title="Usun"
+              (click)="removeSection(i)"
+              [disabled]="editableData.length <= 1"
+            >
+              <span class="material-icons">delete</span>
+            </button>
+          </div>
 
-    @if (item.subTitle) {
-      <div
-        class="section__header-subtitle"
-        [ngClass]="{
-          white: whiteColor,
-          basic: heading === 'SECTIONS.EXPERIENCE',
-          specialization: heading === 'SECTIONS.SPECIALIZATION'
-        }"
-      >
-        {{ item.subTitle }}
-      </div>
-    }
+          <div class="section__editor-row">
+            <input
+              class="section__input"
+              [value]="item.subTitle"
+              (input)="updateSubTitle(i, $any($event.target).value)"
+              placeholder="Podaj podtytul"
+            />
+          </div>
 
-    @if (item?.description?.length) {
-      @if (heading === "SECTIONS.SPECIALIZATION") {
-        <div class="section__specialization">
-          @for (task of item?.description; track $index) {
-            <div>
-              @for (
-                part of getPartialText(task);
-                track index;
-                let index = $index
-              ) {
-                <span [ngClass]="{ 'section__list--bold': index % 2 !== 0 }">{{
-                  part
-                }}</span>
-              }
-            </div>
-          }
+          <div class="section__editor-descriptions">
+            @for (task of item.description; track $index; let j = $index) {
+              <div class="section__editor-row">
+                <input
+                  class="section__input"
+                  [value]="task"
+                  (input)="updateDescription(i, j, $any($event.target).value)"
+                  placeholder="Podaj opis"
+                />
+                <button
+                  mat-raised-button
+                  class="basicColor section__transparent-icon-button"
+                  title="Usun"
+                  (click)="removeDescription(i, j)"
+                  [disabled]="hasSingleDescription(item)"
+                >
+                  <span class="material-icons">delete</span>
+                </button>
+              </div>
+            }
+            <button
+              mat-raised-button
+              class="basicColor section__icon-button section__description-add-button"
+              title="Dodaj opis"
+              (click)="addDescription(i)"
+            >
+              +
+            </button>
+          </div>
         </div>
-      } @else {
-        <ul class="section__list">
-          @for (task of item?.description; track $index) {
-            <li>
-              @for (
-                part of getPartialText(task);
-                track index;
-                let index = $index
-              ) {
-                <span [ngClass]="{ 'section__list--bold': index % 2 !== 0 }">{{
-                  part
-                }}</span>
-              }
-            </li>
-          }
-        </ul>
       }
+    </div>
+
+    <div class="section__actions">
+      <button
+        mat-raised-button
+        class="basicColor section__add-button"
+        title="Dodaj pozycje"
+        (click)="addSection()"
+      >
+        Dodaj pozycje
+      </button>
+    </div>
+  } @else {
+    @for (item of data; track $index) {
+      @if (item.title) {
+        <div class="section__header">
+          <div class="section__header-title">{{ item.title }}</div>
+          <div class="section__header-period">{{ item.period }}</div>
+        </div>
+      }
+
+      @if (item.subTitle) {
+        <div
+          class="section__header-subtitle"
+          [ngClass]="{
+            white: whiteColor,
+            basic: heading === 'SECTIONS.EXPERIENCE',
+            specialization: heading === 'SECTIONS.SPECIALIZATION'
+          }"
+        >
+          {{ item.subTitle }}
+        </div>
+      }
+
+      @if (item?.description?.length) {
+        @if (heading === "SECTIONS.SPECIALIZATION") {
+          <div class="section__specialization">
+            @for (task of item?.description; track $index) {
+              <div>
+                @for (
+                  part of getPartialText(task);
+                  track index;
+                  let index = $index
+                ) {
+                  <span
+                    [ngClass]="{ 'section__list--bold': index % 2 !== 0 }"
+                    >{{ part }}</span
+                  >
+                }
+              </div>
+            }
+          </div>
+        } @else {
+          <ul class="section__list">
+            @for (task of item?.description; track $index) {
+              <li>
+                @for (
+                  part of getPartialText(task);
+                  track index;
+                  let index = $index
+                ) {
+                  <span
+                    [ngClass]="{ 'section__list--bold': index % 2 !== 0 }"
+                    >{{ part }}</span
+                  >
+                }
+              </li>
+            }
+          </ul>
+        }
+      }
+    } @empty {
+      <b>{{ "NO_DATA" | translate }}</b>
     }
-  } @empty {
-    <b>{{ "NO_DATA" | translate }}</b>
   }
 </div>

@@ -172,6 +172,12 @@ export class BaseLayoutComponent implements OnInit {
     }
   }
 
+  public updateClause(clause: string): void {
+    if (this.#data) {
+      this.#data.clause = clause;
+    }
+  }
+
   private refreshPersonalInfo(): void {
     const { lang } = this.#langService;
 

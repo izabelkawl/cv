@@ -7,6 +7,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
 import { ISection } from './section.interface';
 
@@ -15,7 +16,7 @@ import { ISection } from './section.interface';
   templateUrl: './section.component.html',
   styleUrls: ['./section.component.scss'],
   standalone: true,
-  imports: [TranslateModule, NgFor, NgClass],
+  imports: [TranslateModule, NgFor, NgClass, MatButtonModule],
 })
 export class SectionComponent implements OnChanges {
   @Input() data!: ISection[];
@@ -28,8 +29,14 @@ export class SectionComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['data'] && this.data) {
-      // deep clone to allow local edits
-      this.editableData = JSON.parse(JSON.stringify(this.data));
+      this.editableData = JSON.parse(JSON.stringify(this.data)).map(
+        (section: ISection) => this.normalizeSection(section),
+      );
+    }
+
+    if (changes['isEditing'] && this.isEditing && !this.editableData.length) {
+      this.editableData = [this.createEmptySection()];
+      this.emitChange();
     }
   }
 
@@ -37,14 +44,24 @@ export class SectionComponent implements OnChanges {
     return task.split('**');
   }
 
-  public addSpecialization(): void {
-    this.editableData.push({ subTitle: '', description: [''] } as ISection);
+  public addSection(): void {
+    this.editableData.push(this.createEmptySection());
     this.emitChange();
   }
 
-  public removeSpecialization(index: number): void {
+  public removeSection(index: number): void {
     if (this.editableData.length <= 1) return;
     this.editableData.splice(index, 1);
+    this.emitChange();
+  }
+
+  public updateTitle(index: number, value: string): void {
+    this.editableData[index].title = value;
+    this.emitChange();
+  }
+
+  public updatePeriod(index: number, value: string): void {
+    this.editableData[index].period = value;
     this.emitChange();
   }
 
@@ -78,6 +95,23 @@ export class SectionComponent implements OnChanges {
 
   public hasSingleDescription(spec: ISection): boolean {
     return !spec.description || spec.description.length <= 1;
+  }
+
+  private createEmptySection(): ISection {
+    return {
+      title: '',
+      subTitle: '',
+      period: '',
+      description: [''],
+    };
+  }
+
+  private normalizeSection(section: ISection): ISection {
+    return {
+      ...this.createEmptySection(),
+      ...section,
+      description: section.description?.length ? section.description : [''],
+    };
   }
 
   private emitChange(): void {
