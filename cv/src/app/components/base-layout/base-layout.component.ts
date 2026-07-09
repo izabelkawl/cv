@@ -67,10 +67,17 @@ export class BaseLayoutComponent implements OnInit {
   }
 
   private downloadTemplate(): void {
-    const url = '/assets/app-data/data-template.json';
+    const basePath = window.location.origin.includes('localhost') ? '' : '/cv';
+    const url = `${window.location.origin}${basePath}/assets/app-data/data-template.json`;
 
     fetch(url)
-      .then((response) => response.blob())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Template file not found');
+        }
+
+        return response.blob();
+      })
       .then((blob) => {
         const downloadLink = document.createElement('a');
         downloadLink.href = URL.createObjectURL(blob);

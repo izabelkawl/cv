@@ -78,6 +78,10 @@ export class PdfService {
     return getComputedStyle(document.body).getPropertyValue(color).trim();
   }
 
+  hasValue(value?: string | null): boolean {
+    return !!value?.trim();
+  }
+
   generateSection(header: string, data: ISection[], darkMode?: boolean): any[] {
     const width =
       (this.page.width * (darkMode ? this.page.rightBox : this.page.leftBox)) /
@@ -172,6 +176,36 @@ export class PdfService {
   }
 
   generatePdf(data: IPersonalInformation, lang: LangType): void {
+    const githubRow = this.hasValue(data.info.github)
+      ? {
+          text: [
+            'github: ',
+            {
+              text: this.#linkPipe.transform(data.info.github),
+              font: this.fonts.semiBold,
+              link: data.info.github,
+            },
+          ],
+          font: this.fonts.light,
+          style: 'text',
+        }
+      : null;
+
+    const linkedInRow = this.hasValue(data.info.linkedIn)
+      ? {
+          text: [
+            'linkedIn: ',
+            {
+              text: this.#linkPipe.transform(data.info.linkedIn),
+              font: this.fonts.semiBold,
+              link: data.info.linkedIn,
+            },
+          ],
+          font: this.fonts.light,
+          style: 'text',
+        }
+      : null;
+
     const docDefinition: any = {
       pageSize: 'A4',
       pageMargins: [30, 30, 30, 40],
@@ -308,30 +342,8 @@ export class PdfService {
                   font: this.fonts.light,
                   style: 'text',
                 },
-                {
-                  text: [
-                    'github: ',
-                    {
-                      text: this.#linkPipe.transform(data.info.github),
-                      font: this.fonts.semiBold,
-                      link: data.info.github,
-                    },
-                  ],
-                  font: this.fonts.light,
-                  style: 'text',
-                },
-                {
-                  text: [
-                    'linkedIn: ',
-                    {
-                      text: this.#linkPipe.transform(data.info.linkedIn),
-                      font: this.fonts.semiBold,
-                      link: data.info.linkedIn,
-                    },
-                  ],
-                  font: this.fonts.light,
-                  style: 'text',
-                },
+                ...(githubRow ? [githubRow] : []),
+                ...(linkedInRow ? [linkedInRow] : []),
                 // {
                 //   text: this.#linkPipe.transform(data.info.website),
                 //   link: data.info.website,
